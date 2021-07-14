@@ -1,0 +1,56 @@
+/* Tutorial animation Keyframes  */
+/* Tutorial stap 1 */
+@keyframes color-me-in {}
+/* Tutorial stap 1 */
+/* Tutorial stap 2 */    
+@keyframes Gameboard-id-2{}
+/* Tutorial stap 2 */
+/* Tutorial stap 3 */
+@keyframes Gameboard-id-3{}
+/* Tutorial stap 3 */
+/* Tutorial stap 4 */
+@keyframes Gameboard-id-4 {}
+/* Tutorial stap 4 */
+/* Tutorial stap 5 */
+@keyframes Gameboard-id-5 {}
+/* Tutorial stap 5 */
+/* Tutorial stap 6 */
+@keyframes Gameboard-id-6 {}
+/* Tutorial stap 6 */
+/* Tutorial stap 7 */
+@keyframes Gameboard-id-7 {}
+/* Tutorial stap 7 */
+/* Tutorial stap 8 */
+@keyframes Gameboard-id-8 {}
+/* Tutorial stap 8 */
+
+
+.tutorial-stap-2,.tutorial-stap-3,.tutorial-stap-4,.tutorial-stap-5,.tutorial-stap-6,.tutorial-stap-7,.tutorial-stap-8,.tutorial-stap-9,.tutorial-stap-10,.Gameboard-id-9,.Gameboard-id-10{
+	display: none;z-index: 0;}
+.create_account_or {
+	width: 100%;
+	}
+.back_arrow.back-name img {
+	cursor: pointer;
+}
+.create_account_or {
+	text-align: right;
+}
+.login_input_stripe {
+	padding: 10px 0 10px 23px;
+	border: 2px solid #532e1f;
+	border-radius: 15px;
+}
+/* .login_input_stripe iframe .InputElement.is-invalid.Input,.login_input_stripe iframe .InputElement.is-empty.Input.Input--empty{
+	background: transparent;
+	border: 2px solid #532e1f;
+	padding: 0 23px;
+	border-radius: 14px;
+	font-family: 'Bangers';
+	height: 70px;
+	font-size:40px;
+} */
+/* .login_input_stripe iframe{
+	height: 70px !important;
+} */
+

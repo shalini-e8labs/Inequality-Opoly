@@ -1,0 +1,1363 @@
+@media(max-width:3000px){
+/*-----------------------------------------------------------------------------------------------*/
+    /*windows height 2048*/
+    .tb_2048 .tutorial-playariya {
+        width: 2492px;
+        height: 2492px; 
+        left: -30%;
+        top: -38%;
+        /*animation: 5s color-me-in-tab-2024 ease-in-out;*/
+        animation: 3s color-me-in-tab-2024 ease-in-out;
+    }
+
+    @keyframes color-me-in-tab-2024 {
+        0% {
+            transform: rotateZ(90deg);
+            position: relative;
+            left: -51%;
+            top: -88%;
+        }
+
+        50% {
+            transform: rotateZ(0deg);
+            left: 0%;
+            top: 0%;
+            width: 2048px;
+            height: 2048px;
+        }
+
+        100% {
+            left: -30%;
+            top: -38%;
+            width: 2492px;
+            height: 2492px; 
+        }
+    }
+
+    .tb_2048 .tutorial-playariya.Gameboard-id-2 {
+        height: 2492px;
+        top: -37%;
+        left: -28%;
+        animation: 2s Gameboard-id-2-tab-2024 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-2-tab-2024 {
+        from {
+            top: -38%;
+        }
+
+        to {
+            top: -38%;
+        }
+    }
+
+    .tb_2048 .tutorial-playariya.Gameboard-id-3 {
+        left: -21%;
+        top: -38%;
+        animation: 2s Gameboard-id-3-tab-2024 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-3-tab-2024 {
+        from {
+            top: -38%;
+            left: -28%
+        }
+
+        to {
+            left: -21%;
+            top: -38%;
+        }
+    }
+
+    .tb_2048 .tutorial-playariya.Gameboard-id-4{
+        top: -38%;
+        left: -2%;
+        animation: 2s Gameboard-id-4-tab-2024 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-4-tab-2024 {
+        from {
+            top: -38%;
+            left: -21%
+        }
+
+        to {
+            top: -38%;
+            left: -2%
+        }
+    }
+
+    /* tutorial stap 5 */
+    .tb_2048 .tutorial-playariya.Gameboard-id-5{
+        top: -38%;
+        left: 11%;
+        animation: 2s Gameboard-id-5-tab-2024 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-5-tab-2024 {
+        from {
+            top: -38%;
+            left: -2%
+        }
+
+        to {
+            top: -38%;
+            left: 11%
+        }
+    }
+
+    /* tutorial stap 6 */
+    .tb_2048 .tutorial-playariya.Gameboard-id-6{
+        top: -38%;
+        left: 34%;
+        animation: 2s Gameboard-id-6-tab-2024 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-6-tab-2024 {
+        from {
+            top: -38%;
+            left: 11%
+        }
+
+        to {
+            top: -38%;
+            left: 34%
+        }
+    }
+
+    .tb_2048 .tutorial-playariya.Gameboard-id-7 img,
+    .tb_2048 .tutorial-playariya.Gameboard-id-8 img, 
+    .tb_2048 .tutorial-playariya.Gameboard-id-9 img{
+        width: 2492px;
+        height: 2492px; 
+    }
+
+    /* tutorial stap 7 */
+    .tb_2048 .tutorial-playariya.Gameboard-id-7{
+        top: -38%;
+        left: 34%;
+        animation: 2s Gameboard-id-7-tab-2024 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-7-tab-2024 {
+        from {
+            top: -38%;
+            left: 11%;
+            transform: rotateZ(0deg);
+        }
+
+        to {
+            top: -38%;
+            left: 34%;
+            transform: rotateZ(-90deg);
+        }
+    }
+
+    /* tutorial stap 8 */
+    .tb_2048 .tutorial-playariya.Gameboard-id-8{
+        top: -38%;
+        left: 34%;
+        animation: 2s Gameboard-id-8-tab-2024 ease-in-out;
+        transform: rotateZ(-180deg);
+    }
+
+    @keyframes Gameboard-id-8-tab-2024 {
+        from {
+            top: -38%;
+            left: 24%;
+            transform: rotateZ(-90deg);
+        }
+
+        to {
+            top: -38%;
+            left: 34%;
+            transform: rotateZ(-180deg);
+        }
+    }
+
+    /* tutorial stap 9 */
+    .tb_2048  .identity_cards-main{height: 70vh;}
+    .tb_2048  .identity_cards-tutorial{height: 30vh;}
+
+    .tb_2048 .tutorial-stap.tutorial-stap-2,
+    .tb_2048 .tutorial-stap.tutorial-stap-3, 
+    .tb_2048 .tutorial-stap.tutorial-stap-4, 
+    .tb_2048 .tutorial-stap.tutorial-stap-5, 
+    .tb_2048 .tutorial-stap.tutorial-stap-6, 
+    .tb_2048 .tutorial-stap.tutorial-stap-7, 
+    .tb_2048 .tutorial-stap.tutorial-stap-8{
+        bottom: 5%;
+        height: 210px;
+    }
+
+    /* joind room start */
+    .tb_2048 .how_would{
+        width: 600px;
+        padding: 45px 45px;        
+    }
+
+    .tb_2048  .login_input input{
+        font-size: 30px;
+        height: 50px;
+    }   
+
+    .tb_2048   .sign_in_btn{
+        height: 50px !important;
+        font-size: 20px;
+    }
+
+    .tb_2048 .join_or_login .how_would-join button{
+        height: 50px !important;
+        font-size: 20px;
+    }
+
+    .tb_2048 .back_arrow{
+        width: 45px;
+        height: 45px;
+    }
+
+    .tb_2048 .join_or_login a{
+        font-size: 20px;
+    }
+    .tb_2048 #enter_name,
+    .tb_2048 #enter_room,
+    .tb_2048 #enter_email,
+    .tb_2048 #enter_password
+    {
+        width: 500px;
+    }
+    .tb_2048 .Pregame_Waiting_joing_usere_list{
+        width: 50%;
+    }
+
+    .tb_2048 .Pregame_Waiting_Room_ID{
+        width: 50%;
+    }
+    /* joind room end */
+
+    /*-bonesh start-*/
+    .tb_2048  .bg-board{
+        max-width: 2492px;
+        height: 2492px;
+    }
+
+    .tb_2048  .born-card{
+        bottom: -26%;
+    }
+
+    .tb_2048  .born-card.active{
+        bottom: -70%;
+    }
+    .tb_2048  .born{
+        bottom: 0%;
+    }
+
+    @keyframes bordmaster {
+        0% {
+            bottom: -100%;
+        }
+        
+        100% {
+            bottom: -18%;
+        }
+    }
+
+    .tb_2048 .select-card_back {
+        position: absolute;
+        top: 21.4%;
+        width: 500px;
+        right: 0;
+        margin: auto;
+        left: 0;
+        transform: rotateY(0deg);
+    }
+
+    @keyframes gebil {
+        0% {
+            top: 100%;
+            transform: rotateY(0deg); 
+        }
+
+        50% {
+            top: 23.4%;
+            transform: rotateY(20deg);
+        }
+
+        100% {
+            top: 23.4%;
+            transform: rotateY(90deg);
+            
+        }
+    }
+    .tb_2048 .select_card_fist_text_servies{
+        margin-bottom: 29px;       
+    }
+
+    .tb_2048 .Roll_inheritance-main{
+        top: -23%;
+    }
+
+    .tb_2048 .select_card_fist_img img {
+        width: 537px !important;
+    }
+
+    .tb_2048 .select_card_fist_text {
+        width: 1000px;
+        padding: 127px 87px 44px;
+        animation: 5s select_card_fist_text ease-in-out;
+        height: 752px;
+    }
+
+    .tb_2048  .select_card_fist_text_servies h3 {
+        font-size: 60px;
+        line-height: 70px;
+    }    
+
+    .tb_2048  .select_card_fist_text_servies p {
+        font-size: 30px;
+        line-height: 51px;}
+
+    .tb_2048 .title_card {
+        font-size: 70px;
+        line-height: 95px;
+    }
+
+    .tb_2048  .dice_throw img{
+        width: 600px;
+        height: 600px;
+    }
+
+    .tb_2048  .pass-number{
+        width: 600px;
+        height: 600px;
+    }
+
+    .tb_2048  .pass_number{
+        height: 400px;
+        font-size: 150px;
+    }
+
+    .tb_2048 #wiet_for_player .select_card_fist_text,.tb_2048 #ready_to_play_inner .select_card_fist_text{
+        width: 50%;
+    }
+
+
+    .tb_2048 #ready_to_play_inner .select_card_first-inner,
+    .tb_2048 #wiet_for_player .select_card_first-inner{
+        width: 41%;
+    }
+
+    .tb_2048 #wiet_for_player .select_card_fist_text,.wh_1080 #ready_to_play_inner .select_card_fist_text{
+        width: 50%;
+    }
+
+    .tb_2048 .select_card_first-inner{
+        width: 60%; 
+    }
+
+    .tb_2048 .Roll_inheritance,.tb_2048 .start_game_play {
+        height: 170px !important;
+        font-size: 68px;
+        padding: 20px 50px;
+    }
+
+
+    .tb_2048 #ready_to_play_inner .select_card_first-inner,
+    .tb_2048 #wiet_for_player .select_card_first-inner{
+        width: 60%;
+    }
+
+    .tb_2048 #ready_to_play_inner .select_card_fist_img .ready_to_play_img,
+    .tb_2048 #wiet_for_player .select_card_first-inner .wiet_for_player_img {
+        width: 732px !important;
+    }
+
+    .tb_2048 .Pregame_Waiting_joing_usere_list-inner p{
+        font-size: 55px;
+    }
+
+    .tb_2048  .Pregame_Waiting_joing_usere_list .host_icon {
+        position: absolute;
+        width: 66px;
+        top: -26px;
+        left: -26px;
+    }
+    /*-bonesh end-*/
+    /*windows height 2048 end*/
+/*-----------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------*/
+    /*windows height 1824*/
+    .tb_1824 .tutorial-playariya {
+        width: 2492px;
+        height: 2492px; 
+        left: -30%;
+        top: -52%;
+        animation: 3s color-me-in-tab-1824 ease-in-out;
+    }
+
+    @keyframes color-me-in-tab-1824 {
+        0% {
+            transform: rotateZ(90deg);
+            position: relative;
+            left: -51%;
+            top: -88%;
+            
+        }
+
+        50% {
+            transform: rotateZ(0deg);
+            left: 0%;
+            top: 0%;
+            width: 1824px;
+            height: 1824px;
+        }
+
+        100% {
+            left: -30%;
+            top: -52%;
+            width: 2492px;
+            height: 2492px; 
+        }
+    }
+
+    .tb_1824 .tutorial-playariya.Gameboard-id-2 {
+        height: 2492px;
+        top: -53%;
+        left: -29%;
+        animation: 2s Gameboard-id-2-tab-1824 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-2-tab-1824 {
+        from {
+            top: -53%;
+        }
+
+        to {
+            top: -53%;
+        }
+    }
+
+    .tb_1824 .tutorial-playariya.Gameboard-id-3 {
+        left: -23%;
+        top: -53%;
+        animation: 2s Gameboard-id-3-tab-1824 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-3-tab-1824 {
+        from {
+            top: -59%;
+            left: -29%
+        }
+
+        to {
+            left: -23%;
+            top: -59%;
+        }
+    }
+
+    .tb_1824 .tutorial-playariya.Gameboard-id-4{
+        top: -53%;
+        left: -2%;
+        animation: 2s Gameboard-id-4-tab-1824 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-4-tab-1824 {
+        from {
+            top: -53%;
+            left: -21%
+        }
+
+        to {
+            top: -53%;
+            left: -2%
+        }
+    }
+
+    /* tutorial stap 5 */
+    .tb_1824 .tutorial-playariya.Gameboard-id-5{
+        top: -53%;
+        left: 11%;
+        animation: 2s Gameboard-id-5-tab-1824 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-5-tab-1824 {
+        from {
+            top: -53%;
+            left: -2%
+        }
+
+        to {
+            top: -53%;
+            left: 11%
+        }
+    }
+
+    /* tutorial stap 6 */
+    .tb_1824 .tutorial-playariya.Gameboard-id-6{
+        top: -53%;
+        left: 34%;
+        animation: 2s Gameboard-id-6-tab-1824 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-6-tab-1824 {
+        from {
+            top: -53%;
+            left: 11%
+        }
+
+        to {
+            top: -53%;
+            left: 34%
+        }
+    }
+
+    .tb_1824 .tutorial-playariya.Gameboard-id-7 img,
+    .tb_1824 .tutorial-playariya.Gameboard-id-8 img, 
+    .tb_1824 .tutorial-playariya.Gameboard-id-9 img{
+        width: 2492px;
+        height: 2492px; 
+    }
+
+    /* tutorial stap 7 */
+    .tb_1824 .tutorial-playariya.Gameboard-id-7{
+        top: -53%;
+        left: 34%;
+        animation: 2s Gameboard-id-7-tab-1824 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-7-tab-1824 {
+        from {
+            top: -53%;
+            left: 11%;
+            transform: rotateZ(0deg);
+            
+        }
+
+        to {
+            top: -53%;
+            left: 34%;
+            transform: rotateZ(-90deg);
+        }
+    }
+
+    /* tutorial stap 8 */
+    .tb_1824 .tutorial-playariya.Gameboard-id-8{
+        top: -59%;
+        left: 34%;
+        animation: 2s Gameboard-id-8-tab-1824 ease-in-out;
+        transform: rotateZ(-180deg);
+    }
+
+    @keyframes Gameboard-id-8-tab-1824 {
+        from {
+            top: -53%;
+            left: 24%;
+            transform: rotateZ(-90deg);
+        }
+
+        to {
+            top: -53%;
+            left: 34%;
+            transform: rotateZ(-180deg);
+        }
+    }
+
+    /* tutorial stap 9 */
+    .tb_1824  .identity_cards-main{height: 70vh;}
+    .tb_1824  .identity_cards-tutorial{height: 30vh;}
+
+    .tb_1824 .tutorial-stap.tutorial-stap-2,
+    .tb_1824 .tutorial-stap.tutorial-stap-3, 
+    .tb_1824 .tutorial-stap.tutorial-stap-4, 
+    .tb_1824 .tutorial-stap.tutorial-stap-5, 
+    .tb_1824 .tutorial-stap.tutorial-stap-6, 
+    .tb_1824 .tutorial-stap.tutorial-stap-7, 
+    .tb_1824 .tutorial-stap.tutorial-stap-8{
+        bottom: 5%;
+        height: 210px;
+    }
+
+    /* joind room start */
+    .tb_1824 .how_would{
+        width: 600px;
+        padding: 45px 45px;        
+    }
+
+    .tb_1824  .login_input input{
+        font-size: 30px;
+        height: 50px;
+    }   
+
+    .tb_1824   .sign_in_btn{
+        height: 50px !important;
+        font-size: 20px;
+    }
+
+    .tb_1824 .join_or_login .how_would-join button{
+        height: 50px !important;
+        font-size: 20px;
+    }
+
+    .tb_1824 .back_arrow{
+        width: 45px;
+        height: 45px;
+    }
+
+    .tb_1824 .join_or_login a{
+        font-size: 20px;
+    }
+    .tb_1824 #enter_name,
+    .tb_1824 #enter_room,
+    .tb_1824 #enter_email,
+    .tb_1824 #enter_password
+    {
+        width: 500px;
+    }
+    .tb_1824 .Pregame_Waiting_joing_usere_list{
+        width: 50%;
+    }
+
+    .tb_1824 .Pregame_Waiting_Room_ID{
+        width: 50%;
+    }
+    /* joind room end */
+
+    /*-bonesh start-*/
+    .tb_1824  .bg-board{
+        max-width: 2492px;
+        height: 2492px;
+    }
+
+    .tb_1824  .born-card{
+        bottom: -26%;
+    }
+
+    .tb_1824  .born-card.active{
+        bottom: -70%;
+    }
+    .tb_1824  .born{
+        bottom: 0%;
+    }
+
+    @keyframes bordmaster {
+        0% {
+            bottom: -100%;
+        }
+        
+        100% {
+            bottom: -18%;
+        }
+    }
+
+    .tb_1824 .select-card_back {
+        position: absolute;
+        top: 21.4%;
+        width: 500px;
+        right: 0;
+        margin: auto;
+        left: 0;
+        transform: rotateY(0deg);
+    }
+
+    @keyframes gebil {
+        0% {
+            top: 100%;
+            transform: rotateY(0deg); 
+        }
+
+        50% {
+            top: 23.4%;
+            transform: rotateY(20deg);
+        }
+
+        100% {
+            top: 23.4%;
+            transform: rotateY(90deg);
+            
+        }
+    }
+    .tb_1824 .select_card_fist_text_servies{
+        margin-bottom: 29px;       
+    }
+
+    .tb_1824 .Roll_inheritance-main{
+        top: -23%;
+    }
+
+    .tb_1824 .select_card_fist_img img {
+        width: 537px !important;
+    }
+
+    .tb_1824 .select_card_fist_text {
+        width: 1000px;
+        padding: 127px 87px 44px;
+        animation: 5s select_card_fist_text ease-in-out;
+        height: 752px;
+    }
+
+    .tb_1824  .select_card_fist_text_servies h3 {
+        font-size: 60px;
+        line-height: 70px;
+    }    
+
+    .tb_1824  .select_card_fist_text_servies p {
+        font-size: 30px;
+        line-height: 51px;}
+
+    .tb_1824 .title_card {
+        font-size: 70px;
+        line-height: 95px;
+    }
+
+    .tb_1824  .dice_throw img{
+        width: 600px;
+        height: 600px;
+    }
+
+    .tb_1824  .pass-number{
+        width: 600px;
+        height: 600px;
+    }
+
+    .tb_1824  .pass_number{
+        height: 400px;
+        font-size: 150px;
+    }
+
+    .tb_1824 #wiet_for_player .select_card_fist_text,.tb_1824 #ready_to_play_inner .select_card_fist_text{
+        width: 50%;
+    }
+
+
+    .tb_1824 #ready_to_play_inner .select_card_first-inner,
+    .tb_1824 #wiet_for_player .select_card_first-inner{
+        width: 41%;
+    }
+
+    .tb_1824 #wiet_for_player .select_card_fist_text,.wh_1080 #ready_to_play_inner .select_card_fist_text{
+        width: 50%;
+    }
+
+    .tb_1824 .select_card_first-inner{
+        width: 60%; 
+    }
+
+    .tb_1824 .Roll_inheritance,.tb_1824 .start_game_play {
+        height: 170px !important;
+        font-size: 68px;
+        padding: 20px 50px;
+    }
+
+
+    .tb_1824 #ready_to_play_inner .select_card_first-inner,
+    .tb_1824 #wiet_for_player .select_card_first-inner{
+        width: 60%;
+    }
+
+    .tb_1824 #ready_to_play_inner .select_card_fist_img .ready_to_play_img,
+    .tb_1824 #wiet_for_player .select_card_first-inner .wiet_for_player_img {
+        width: 732px !important;
+    }
+
+    .tb_1824 .Pregame_Waiting_joing_usere_list-inner p{
+        font-size: 55px;
+    }
+
+    .tb_1824  .Pregame_Waiting_joing_usere_list .host_icon {
+        position: absolute;
+        width: 66px;
+        top: -26px;
+        left: -26px;
+    }
+    /*-bonesh end-*/
+    /*windows height 1824 end*/
+/*-----------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------*/
+    /*windows height 1600*/
+    .tb_1600 .tutorial-playariya {
+        width: 2492px;
+        height: 2492px; 
+        left: -30%;
+        top: -52%;
+        animation: 3s color-me-in-tab-1600 ease-in-out;
+    }
+
+    @keyframes color-me-in-tab-1600 {
+        0% {
+            transform: rotateZ(90deg);
+            position: relative;
+            left: -51%;
+            top: -88%;
+            
+        }
+
+        50% {
+            transform: rotateZ(0deg);
+            left: 0%;
+            top: 0%;
+            width: 1600px;
+            height: 1600px;
+        }
+
+        100% {
+            left: -30%;
+            top: -52%;
+            width: 2492px;
+            height: 2492px; 
+        }
+    }
+
+    .tb_1600 .tutorial-playariya.Gameboard-id-2 {
+        height: 2492px;
+        top: -53%;
+        left: -29%;
+        animation: 2s Gameboard-id-2-tab-1600 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-2-tab-1600 {
+        from {
+            top: -53%;
+        }
+
+        to {
+            top: -53%;
+        }
+    }
+
+    .tb_1600 .tutorial-playariya.Gameboard-id-3 {
+        left: -23%;
+        top: -53%;
+        animation: 2s Gameboard-id-3-tab-1600 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-3-tab-1600 {
+        from {
+            top: -59%;
+            left: -29%
+        }
+
+        to {
+            left: -23%;
+            top: -59%;
+        }
+    }
+
+    .tb_1600 .tutorial-playariya.Gameboard-id-4{
+        top: -53%;
+        left: -2%;
+        animation: 2s Gameboard-id-4-tab-1600 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-4-tab-1600 {
+        from {
+            top: -53%;
+            left: -21%
+        }
+
+        to {
+            top: -53%;
+            left: -2%
+        }
+    }
+
+    /* tutorial stap 5 */
+    .tb_1600 .tutorial-playariya.Gameboard-id-5{
+        top: -53%;
+        left: 11%;
+        animation: 2s Gameboard-id-5-tab-1600 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-5-tab-1600 {
+        from {
+            top: -53%;
+            left: -2%
+        }
+
+        to {
+            top: -53%;
+            left: 11%
+        }
+    }
+
+    /* tutorial stap 6 */
+    .tb_1600 .tutorial-playariya.Gameboard-id-6{
+        top: -53%;
+        left: 34%;
+        animation: 2s Gameboard-id-6-tab-1600 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-6-tab-1600 {
+        from {
+            top: -53%;
+            left: 11%
+        }
+
+        to {
+            top: -53%;
+            left: 34%
+        }
+    }
+
+    .tb_1600 .tutorial-playariya.Gameboard-id-7 img,
+    .tb_1600 .tutorial-playariya.Gameboard-id-8 img, 
+    .tb_1600 .tutorial-playariya.Gameboard-id-9 img{
+        width: 2492px;
+        height: 2492px; 
+    }
+
+    /* tutorial stap 7 */
+    .tb_1600 .tutorial-playariya.Gameboard-id-7{
+        top: -53%;
+        left: 34%;
+        animation: 2s Gameboard-id-7-tab-1600 ease-in-out;
+    }
+
+    @keyframes Gameboard-id-7-tab-1600 {
+        from {
+            top: -53%;
+            left: 11%;
+            transform: rotateZ(0deg);
+            
+        }
+
+        to {
+            top: -53%;
+            left: 34%;
+            transform: rotateZ(-90deg);
+        }
+    }
+
+    /* tutorial stap 8 */
+    .tb_1600 .tutorial-playariya.Gameboard-id-8{
+        top: -59%;
+        left: 34%;
+        animation: 2s Gameboard-id-8-tab-1600 ease-in-out;
+        transform: rotateZ(-180deg);
+    }
+
+    @keyframes Gameboard-id-8-tab-1600 {
+        from {
+            top: -53%;
+            left: 24%;
+            transform: rotateZ(-90deg);
+        }
+
+        to {
+            top: -53%;
+            left: 34%;
+            transform: rotateZ(-180deg);
+        }
+    }
+
+    /* tutorial stap 9 */
+    .tb_1600  .identity_cards-main{height: 70vh;}
+    .tb_1600  .identity_cards-tutorial{height: 30vh;}
+
+    .tb_1600 .tutorial-stap.tutorial-stap-2,
+    .tb_1600 .tutorial-stap.tutorial-stap-3, 
+    .tb_1600 .tutorial-stap.tutorial-stap-4, 
+    .tb_1600 .tutorial-stap.tutorial-stap-5, 
+    .tb_1600 .tutorial-stap.tutorial-stap-6, 
+    .tb_1600 .tutorial-stap.tutorial-stap-7, 
+    .tb_1600 .tutorial-stap.tutorial-stap-8{
+        bottom: 5%;
+        height: 210px;
+    }
+
+    /* joind room start */
+    .tb_1600 .how_would{
+        width: 600px;
+        padding: 45px 45px;        
+    }
+
+    .tb_1600  .login_input input{
+        font-size: 30px;
+        height: 50px;
+    }   
+
+    .tb_1600   .sign_in_btn{
+        height: 50px !important;
+        font-size: 20px;
+    }
+
+    .tb_1600 .join_or_login .how_would-join button{
+        height: 50px !important;
+        font-size: 20px;
+    }
+
+    .tb_1600 .back_arrow{
+        width: 45px;
+        height: 45px;
+    }
+
+    .tb_1600 .join_or_login a{
+        font-size: 20px;
+    }
+    .tb_1600 #enter_name,
+    .tb_1600 #enter_room,
+    .tb_1600 #enter_email,
+    .tb_1600 #enter_password
+    {
+        width: 500px;
+    }
+    .tb_1600 .Pregame_Waiting_joing_usere_list{
+        width: 50%;
+    }
+
+    .tb_1600 .Pregame_Waiting_Room_ID{
+        width: 50%;
+    }
+    /* joind room end */
+
+    /*-bonesh start-*/
+    .tb_1600  .bg-board{
+        max-width: 2492px;
+        height: 2492px;
+    }
+
+    .tb_1600  .born-card{
+        bottom: -26%;
+    }
+
+    .tb_1600  .born-card.active{
+        bottom: -70%;
+    }
+    .tb_1600  .born{
+        bottom: 0%;
+    }
+
+    @keyframes bordmaster {
+        0% {
+            bottom: -100%;
+        }
+        
+        100% {
+            bottom: -18%;
+        }
+    }
+
+    .tb_1600 .select-card_back {
+        position: absolute;
+        top: 21.4%;
+        width: 500px;
+        right: 0;
+        margin: auto;
+        left: 0;
+        transform: rotateY(0deg);
+    }
+
+    @keyframes gebil {
+        0% {
+            top: 100%;
+            transform: rotateY(0deg); 
+        }
+
+        50% {
+            top: 23.4%;
+            transform: rotateY(20deg);
+        }
+
+        100% {
+            top: 23.4%;
+            transform: rotateY(90deg);
+            
+        }
+    }
+    .tb_1600 .select_card_fist_text_servies{
+        margin-bottom: 29px;       
+    }
+
+    .tb_1600 .Roll_inheritance-main{
+        /*top: -23%;*/
+            top: 4%;
+    }
+
+    .tb_1600 .select_card_fist_img img {
+        width: 537px !important;
+    }
+
+    .tb_1600 .select_card_fist_text {
+        width: 1000px;
+        padding: 127px 87px 44px;
+        animation: 5s select_card_fist_text ease-in-out;
+        height: 752px;
+    }
+
+    .tb_1600  .select_card_fist_text_servies h3 {
+        font-size: 60px;
+        line-height: 70px;
+    }    
+
+    .tb_1600  .select_card_fist_text_servies p {
+        font-size: 30px;
+        line-height: 51px;}
+
+    .tb_1600 .title_card {
+        font-size: 70px;
+        line-height: 95px;
+    }
+
+    .tb_1600  .dice_throw img{
+        width: 600px;
+        height: 600px;
+    }
+
+    .tb_1600  .pass-number{
+        width: 600px;
+        height: 600px;
+    }
+
+    .tb_1600  .pass_number{
+        height: 400px;
+        font-size: 150px;
+    }
+
+    .tb_1600 #wiet_for_player .select_card_fist_text,.tb_1600 #ready_to_play_inner .select_card_fist_text{
+        width: 50%;
+        height: 700px; /*3000px*/
+    }
+
+
+    .tb_1600 #ready_to_play_inner .select_card_first-inner,
+    .tb_1600 #wiet_for_player .select_card_first-inner{
+        width: 41%;
+    }
+
+    .tb_1600 #wiet_for_player .select_card_fist_text,.wh_1080 #ready_to_play_inner .select_card_fist_text{
+        width: 50%;
+    }
+
+    .tb_1600 .select_card_first-inner{
+        width: 60%; 
+    }
+
+    .tb_1600 .Roll_inheritance,.tb_1600 .start_game_play {
+        height: 170px !important;
+        font-size: 68px;
+        padding: 20px 50px;
+    }
+
+
+    .tb_1600 #ready_to_play_inner .select_card_first-inner,
+    .tb_1600 #wiet_for_player .select_card_first-inner{
+        width: 60%;
+    }
+
+    .tb_1600 #ready_to_play_inner .select_card_fist_img .ready_to_play_img,
+    .tb_1600 #wiet_for_player .select_card_first-inner .wiet_for_player_img {
+        width: 732px !important;
+    }
+
+    .tb_1600 .Pregame_Waiting_joing_usere_list-inner p{
+        font-size: 55px;
+    }
+
+    .tb_1600  .Pregame_Waiting_joing_usere_list .host_icon {
+        position: absolute;
+        width: 66px;
+        top: -26px;
+        left: -26px;
+    }
+    /*-bonesh end-*/
+    /*windows height 1600 end*/
+/*-----------------------------------------------------------------------------------------------*/
+}
+
+/*Tutorial Page*/
+   @media (max-width: 2048px){
+.tutorial-stap.tutorial-stap-2 {
+    right: 28%;
+    bottom: 3%;}
+}
+
+@media (max-width: 1640px){
+.tutorial-stap.tutorial-stap-2 {
+    right: 28%;
+    bottom: 1%;}
+}
+
+@media (max-width: 1668px){
+.tutorial-stap.tutorial-stap-2 {
+    right: 28%;
+    bottom: 1%;}
+}
+
+@media (max-width: 1080px){
+.tutorial-stap.tutorial-stap-2 {
+    right: 32%;
+    bottom: 2%;}
+}
+
+@media (max-width: 1024px){
+    .tutorial-stap.tutorial-stap-2{bottom: 6%;}
+    .tutorial-stap.tutorial-stap-3{right: 20%;bottom: 6%;}
+    .tutorial-stap.tutorial-stap-4{right: 20%;bottom: 6%;}
+    .tutorial-stap.tutorial-stap-5{right: 20%;bottom: 6%;}
+    .tutorial-stap.tutorial-stap-6{right: 20%;bottom: 6%;}
+    .tutorial-stap.tutorial-stap-7{right: 20%;bottom: 6%;}
+    .tutorial-stap.tutorial-stap-8{right: 20%;bottom: 6%;}
+    .tutorial-stap .button-stap button, .identity_cards-tutorial .button-stap button {
+        padding: 18px 0px; font-size: 12px; width: 100px; font-weight: bold;}
+}
+
+@media (max-width: 800px){
+    .tutorial-stap-text p, .identity_cards-tutorial p{font-size: 10px;line-height: 10px;}
+.tutorial-stap.tutorial-stap-1 {bottom: 10%;font-size: 10px;line-height: 10px;}
+.tutorial-stap.tutorial-stap-2 { right: 30%;bottom: 2%;}
+.tutorial-stap.tutorial-stap-3 { right: 15%;bottom: 2%;}
+.tutorial-stap.tutorial-stap-4 { right: 15%;bottom: 2%;}
+.tutorial-stap.tutorial-stap-5 { right: 15%;bottom: 2%;}
+.tutorial-stap.tutorial-stap-6 { right: 15%;bottom: 2%;}
+.tutorial-stap.tutorial-stap-7 { right: 15%;bottom: 2%;}
+.tutorial-stap.tutorial-stap-8 { right: 15%;bottom: 2%;}
+}
+
+
+
+/*@media all(max-width:2732px){
+    .tutorial-stap-text {padding: 13px 8px;margin-top: -20%;}
+
+    .tutorial-stap-text  h1, .identity_cards-tutorial h3{font-size:70px;color: #fff;}
+    .tutorial-stap-text p, .identity_cards-tutorial p { font-size: 30px; line-height: 40px;
+        color: #fff;}
+    .tutorial-stap .button-stap button, .identity_cards-tutorial .button-stap button { 
+        padding: 35px 0px; font-size: 30px; width: 260px;font-weight:bold;border-radius: 20px;}
+    .tutorial-stap .tutorial-stap-img{padding: 15px 0px;margin-top: -20%;}
+
+    .tutorial-playariya{margin-top: -5%; }
+}*/
+
+
+@media (max-width: 768px){
+    
+    .tutorial-stap-text p, .identity_cards-tutorial p{font-size: 10px;line-height: 10px;}
+.tutorial-stap.tutorial-stap-1 {bottom: 10%;font-size: 10px;line-height: 10px;}
+.tutorial-stap.tutorial-stap-2 { right: 25%;bottom: 4%;}
+.tutorial-stap.tutorial-stap-3 { right: 9%;bottom: 4%;}
+.tutorial-stap.tutorial-stap-4 { right: 32%;bottom: 4%;}
+.tutorial-stap.tutorial-stap-5 { right: 9%;bottom: 4%;}
+.tutorial-stap.tutorial-stap-6 { right: 12%;bottom: 4%;}
+.tutorial-stap.tutorial-stap-7 { right: 12%;bottom: 4%;}
+.tutorial-stap.tutorial-stap-8 { right: 12%;bottom: 4%;}
+
+.tutorial-stap-text .button-stap button { 
+        padding: 20px 0px; font-size: 12px; width: 85px;font-weight:bold;}
+    .tutorial-stap.tutorial-stap-2 .button-stap button { 
+        padding: 20px 0px; font-size: 12px; width: 95px;font-weight:bold;}
+    .tutorial-stap.tutorial-stap-3 .button-stap button { 
+        padding: 20px 0px; font-size: 12px; width: 95px;font-weight:bold;}
+    .tutorial-stap.tutorial-stap-4 .button-stap button { 
+        padding: 20px 0px; font-size: 12px; width: 95px;font-weight:bold;}
+    .tutorial-stap.tutorial-stap-5 .button-stap button { 
+        padding: 20px 0px; font-size: 12px; width: 95px;font-weight:bold;}
+    .tutorial-stap.tutorial-stap-6 .button-stap button { 
+        padding: 20px 0px; font-size: 12px; width: 95px;font-weight:bold;}
+    .tutorial-stap.tutorial-stap-7 .button-stap button { 
+        padding: 20px 0px; font-size: 12px; width: 95px;font-weight:bold;}
+    .tutorial-stap.tutorial-stap-8 .button-stap button { 
+        padding: 20px 0px; font-size: 12px; width: 95px;font-weight:bold;}
+    .tutorial-stap.tutorial-stap-9 .button-stap button, .identity_cards-tutorial .button-stap button { 
+        padding: 20px 0px; font-size: 12px; width: 95px;font-weight:bold;}
+    .tutorial-stap.tutorial-stap-10 .button-stap button, .identity_cards-tutorial .button-stap button { 
+        padding: 20px 0px; font-size: 12px; width: 95px;font-weight:bold;}
+}
+
+/*End tutorial page*/
+
+/*Game Playbonus*/
+
+@media (min-width:2049px) and (max-width: 3000px){
+   /*.born-inner h3{color: lime;}*/
+  /* #oner_id{margin-top: 5%;}*/
+   .bg-board img{margin-top: -22%;}
+   .born{bottom:-23% !important;}
+   .born-inner p {font-size:12rem;}
+   .Roll_inheritance-main {top: 2% !important;width: 100%;height: auto;font-size: 10rem;}
+   .select_card_fist_text{height: auto !important;}
+   .select_box_bonus,.wiaht-for_text-inner{margin-top: 20%;}
+}
+
+@media (min-width:1601px) and (max-width: 1920px){
+   /*.born-inner h3{color: blue;}*/
+   .bg-board{bottom: -10%; margin-right: auto;}
+   .born{bottom:-26%;}
+   .born-card img { width: 100%;height: auto;}
+   .select_box_bonus { width: 77%;height: auto;}
+}
+
+@media (min-width: 1025px) and (max-width: 1600px){
+    /*.born-inner h3{color: orange;}*/
+    .bg-board{bottom: -10%; margin-right: auto;}
+    .show_cardt { float: left; width: 100%;height: 116vh;}
+    .born{bottom: -13rem;}
+    .select_box_bonus{margin-bottom: -12%;}
+    .Roll_inheritance-main {top: 15vh;}
+
+    #ready_to_play_inner .select_card_fist_img .ready_to_play_img{width: 460px !important;
+     padding: 64px 1px; margin-left: 45px;}
+
+    #wiet_for_player .select_card_first-inner .wiet_for_player_img{
+     height: auto; padding: 70px 1px; margin-left: 45px;}
+
+     .born-card img { width:85%;}
+}
+
+@media (min-width: 769px) and (max-width: 1024px){
+    /*.born-inner h3{color: skyblue;}*/
+    .bg-board{bottom: -10%; margin-right: auto;}
+    .show_cardt { float: left; width: 100%;height: 144vh;}
+    .born{bottom: -16rem;}
+    #ready_to_play_inner .select_card_fist_img .ready_to_play_img{width: 460px !important;
+    height: auto; padding: 64px 1px; margin-left: 45px;}
+    #wiet_for_player .select_card_first-inner .wiet_for_player_img{
+     height: auto; padding: 70px 1px; margin-left: 45px;}
+     .select_card_fist_text { width: 350PX; height: 60vh; padding: 70px 29px 44px;}
+     .select_box_bonus .select_card_fist_img img{width: 216px !important;height: 420px;}
+}
+
+@media (max-width: 600px){
+    .bg-board{bottom: -30%; margin-right: auto;}
+    /*.born-inner h3{color: yellow;}*/
+    .select_box_bonus.select_card_fist_img img{width: 207px !important;height: 337px;margin-left: 20px;}
+}
+
+@media (min-width:1921px) and (max-width: 2048px){
+    .bg-board{bottom: 10%;width: 50%;margin-right: auto;margin-bottom: auto;margin-left: auto;}
+    .born-inner{margin-bottom: -20%;}
+    /*.born-inner h3{color: pink;}*/
+    .born-inner p { font-size: 7rem;}
+    .select_card_fist_text{width:32vw;height: auto;}
+    .sign_in_btn.Roll_inheritance{font-size: 40px;width: 50%;}
+    .select_card_fist_img{margin-left: auto;}
+    #ready_to_play.select_card_fist_text{width: 40%;margin-right: 5%;}
+}
+
+@media (min-width:601px) and (max-width: 768px){
+    .show_cardt { float: left; width: 100%;height: 140vh;}
+     .born{bottom: -21%;}
+   .select_box_bonus { width: 108%;}
+   .born-inner p { font-size: 5rem;}
+   .select_card_fist_text{width:20rem;height:auto}
+}
+
+
+/*scrollbar design*/
+::-webkit-scrollbar-track
+{
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #555;
+}
