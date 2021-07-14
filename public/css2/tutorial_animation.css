@@ -1,0 +1,38 @@
+/* tutorial  */
+@media(max-width:3900px){   
+    /* tutorial stap  1 */
+        .wh_2160 .tutorial-playariya{
+            width: 3600px;
+            height: 3600px;
+            left: -36%;
+            top: -135%;
+            animation: 5s color-me-in-2280 ease-in-out;
+        }
+        @keyframes color-me-in-1200 {
+            0% {
+                transform: rotateZ(90deg);
+                position: relative;
+                left: -51%;
+                top: -88%;
+                
+            }
+        
+            50% {
+                transform: rotateZ(0deg);
+                left: 0%;
+                top: 0%;
+                width: 2160px;
+                height: 2160px;
+            }
+        
+            100% {
+                left: -36%;
+                top: -135%;
+                width: 3600px;
+                height: 3600px; 
+            }
+        }
+    /* tutorial stap  1 */
+}
+
+/* tutorial */
