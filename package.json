@@ -1,8 +1,8 @@
 {
+  "homepage": "https://shalini-e8labs.github.io/Inequality-Opoly",
   "name": "inequalityopoly",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://inequalityopoly.www70-32-25-208.a2hosted.com/",
   "dependencies": {
     "@stripe/react-stripe-js": "^1.4.1",
     "@stripe/stripe-js": "^1.15.1",
@@ -10,6 +10,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "dompurify": "^2.2.9",
+    "gh-pages": "^3.2.3",
     "query-string": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -22,6 +23,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
