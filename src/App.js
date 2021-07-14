@@ -17,7 +17,6 @@ import {
   Route
 } from "react-router-dom";
 const stripePromise=loadStripe('pk_test_51HI8DKFnJnpnXbSy7opnsEbltFN4Py8E9aEWQzWXT4M20kRxnQTkhtkm6Vtd0cyWRmVv38I5lxgzzXOOZomqmqsC00M0rbFc7r');
-
 function App() {
   let islogin = false;
   if(localStorage.getItem('token') != '' && localStorage.getItem('token') != null){
