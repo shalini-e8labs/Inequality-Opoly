@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "./static/css/main.83febc84.chunk.css",
-    "main.js": "./static/js/main.ae948604.chunk.js",
-    "main.js.map": "./static/js/main.ae948604.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.a530c19e.js",
-    "runtime-main.js.map": "./static/js/runtime-main.a530c19e.js.map",
-    "static/js/2.7bafb94d.chunk.js": "./static/js/2.7bafb94d.chunk.js",
-    "static/js/2.7bafb94d.chunk.js.map": "./static/js/2.7bafb94d.chunk.js.map",
-    "static/js/3.71a6b4d6.chunk.js": "./static/js/3.71a6b4d6.chunk.js",
-    "static/js/3.71a6b4d6.chunk.js.map": "./static/js/3.71a6b4d6.chunk.js.map",
-    "index.html": "./index.html",
-    "static/css/main.83febc84.chunk.css.map": "./static/css/main.83febc84.chunk.css.map",
-    "static/js/2.7bafb94d.chunk.js.LICENSE.txt": "./static/js/2.7bafb94d.chunk.js.LICENSE.txt"
+    "main.css": "/Inequality-Opoly/static/css/main.83febc84.chunk.css",
+    "main.js": "/Inequality-Opoly/static/js/main.ae948604.chunk.js",
+    "main.js.map": "/Inequality-Opoly/static/js/main.ae948604.chunk.js.map",
+    "runtime-main.js": "/Inequality-Opoly/static/js/runtime-main.bac5579b.js",
+    "runtime-main.js.map": "/Inequality-Opoly/static/js/runtime-main.bac5579b.js.map",
+    "static/js/2.8846e4e4.chunk.js": "/Inequality-Opoly/static/js/2.8846e4e4.chunk.js",
+    "static/js/2.8846e4e4.chunk.js.map": "/Inequality-Opoly/static/js/2.8846e4e4.chunk.js.map",
+    "static/js/3.71a6b4d6.chunk.js": "/Inequality-Opoly/static/js/3.71a6b4d6.chunk.js",
+    "static/js/3.71a6b4d6.chunk.js.map": "/Inequality-Opoly/static/js/3.71a6b4d6.chunk.js.map",
+    "index.html": "/Inequality-Opoly/index.html",
+    "static/css/main.83febc84.chunk.css.map": "/Inequality-Opoly/static/css/main.83febc84.chunk.css.map",
+    "static/js/2.8846e4e4.chunk.js.LICENSE.txt": "/Inequality-Opoly/static/js/2.8846e4e4.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.a530c19e.js",
-    "static/js/2.7bafb94d.chunk.js",
+    "static/js/runtime-main.bac5579b.js",
+    "static/js/2.8846e4e4.chunk.js",
     "static/css/main.83febc84.chunk.css",
     "static/js/main.ae948604.chunk.js"
   ]
