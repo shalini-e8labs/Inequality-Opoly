@@ -1,4 +1,5 @@
-body{font-family: 'Montserrat';}
+body{font-family: 'Montserrat';background-color: rgba(70,35,33,0.9) !important;
+  position: relative;}
 .wapper{width:100%; height: 100vh;position:relative;background-image: url("../img/Group 610.png");
  background-position: center; background-size: cover;  overflow: hidden;
  background-color: rgba(70,35,33,0.9) !important;}
@@ -425,18 +426,44 @@ body{font-family: 'Montserrat';}
 
     }
 
+   
+     /* 12-07-2021 */
+    .gameboardPaass .button button{
+        position: relative;
+        top: 0;
+        transition: 300ms ease-in-out all;
+    }
+
+    .gameboardPaass .button button:hover{
+        top:-19px
+    }
+
+
+    .gameboardPaass .button .play_index_btn{
+        font-family: "Titan One";
+        font-weight: normal !important;
+        font-size: 30px !important;
+    }
+    /* 12-07-2021 */
+
+    /* 12-07-2021 */
     .Learn-More {
-        text-align: center;
-        font-size: 6px;
-        width: 50px;
         padding: 8px 9px;
         line-height: 0.3;
         background: transparent;
         border: 2px solid #fff;
         border-radius: 8px;
-        color: #fff;
         margin-left: 20px;
+        text-align: center;
+        font-family: "Titan One" !important;
+        font-weight: normal !important;
+        font-size: 19px;
+        color: #feead8 !important;
+        text-shadow: -3px 3px 6px rgba(0, 0, 0, 0.25) !important;
     }
+
+    .forget-password {        color: rgba(255,0,0,.5) !important;    }
+    /* 12-07-2021 */
 
     /* gameboard index content button and subtext animation  */
     @keyframes titel_p_text {
@@ -871,7 +898,7 @@ body{font-family: 'Montserrat';}
     .how_would-join button {
         float: left;
         width: 100%;
-        margin-bottom: 30px;
+        margin-bottom: 15px;
         height: 50px;
         padding: 6px;
         border: none;
@@ -954,7 +981,6 @@ body{font-family: 'Montserrat';}
             height: 50px !important;
             color: #fff !important;
             font-family: 'Titan One';
-            
         }
         .manage_account {
             border: 3px solid #826652 !important;
@@ -1865,7 +1891,7 @@ body{font-family: 'Montserrat';}
 .player_dise#player_id_4{top:150px; }
 
 .user_name {
-    /* position: absolute; */
+    position: absolute;
     left: -1px;
     right: 0;
     bottom: 0;
@@ -1874,7 +1900,6 @@ body{font-family: 'Montserrat';}
     border-left: 4px solid #000;
     border-bottom: 8px solid #000;
     border-right: 4px solid #000; */
-    text-align:left;
 }
 /* Show select card */
 .gameplay_select_card{
