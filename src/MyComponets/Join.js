@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import './css/Tutorials.css';
+import './css/login.css';
 
 class App extends Component {
     constructor(props) {
@@ -39,10 +40,10 @@ class App extends Component {
 
                 {/*  create and join Room */}
                 <div className="how_would" id="how_would">
-                    <h3>What would you like to do?</h3>
+                    <h3>What would you<br/>like to do?</h3>
                     <div className="how_would-join">
                         <Link to="CreateRoom"><button class="sign_in_btn">CREATE ROOM</button></Link>
-                        <Link to="JoinRoom"><button class="sign_in_btn go_premium ">JOIN ROOM</button></Link>
+                        <Link to="JoinRoom"><button class="sign_in_btn go_premium join_room_btn  ">JOIN ROOM</button></Link>
                         <Link to="#"><button class="sign_in_btn manage_account ">MANAGE MY ACCOUNT</button></Link>
                     </div>
                 </div>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
 import { ElementsConsumer,CardNumberElement,CardCvcElement,CardExpiryElement } from '@stripe/react-stripe-js';
 import './css/Tutorials.css';
+import './css/login.css';
 import CardSection from "./CardSection"
 class App extends React.Component {
     constructor(props) {
@@ -558,11 +559,11 @@ class App extends React.Component {
                                     <input type="text" placeholder="Email" value={this.state.loginemail} onChange={this.change_loginemail} />
                                     <span style={{color: "red"}}>{this.state.errors_loginemail}</span>
                                 </div>
-                                <div className="login_input">
+                                <div className="login_input passowrd_input">
                                     <input type="password" placeholder="Password" value={this.state.loginpassword} onChange={this.change_loginpassword} />
                                     <span style={{color: "red"}}>{this.state.errors_loginpassword}</span>
                                 </div>
-                                <a className="create_account_or" href="javascript:void(0);">FORGOT YOUR PASSWORD?</a>
+                                <a className="create_account_or forget-password" href="javascript:void(0);">FORGOT YOUR PASSWORD?</a>
                                 <div className="how_would-join">
                                     <button className="sign_in_btn" id="login" onClick={this.userlogin}>SIGN IN</button>
                                 </div>
@@ -607,9 +608,9 @@ class App extends React.Component {
 
                     {/* <!-- Enter Name box --> */}
                     {this.state.login == false && this.state.singup_process_step == 1 ? 
-                        <div className="how_would enter_name">
+                        <div className="how_would enter_name" id="enter_name" >
                             <div onClick={() => this.singup_process_step_back(0)} className="back_arrow back-name"><img src="img/Group_3325.png" alt=""/></div>
-                            <h3>ENTER<br/>YOUR NAME</h3>
+                            <h3>ENTER YOUR <br/> NAME</h3>
                             <div className="how_would-join join_or_login">
                                 <div className="login_input">
                                     <input type="text" placeholder="NAME" value={this.state.signupname} onChange={this.change_signupname} />
@@ -627,7 +628,7 @@ class App extends React.Component {
                     {this.state.login == false && this.state.singup_process_step == 2 ? 
                         <div className="how_would enter_name enter_email" id='enter_email'>
                             <div onClick={() => this.singup_process_step_back(1)}  className="back_arrow back-email"><img src="img/Group_3325.png" alt="" /></div>
-                            <h3>Enter you<br/>Email</h3>
+                            <h3>Enter your<br/>Email</h3>
                             <div className="how_would-join join_or_login">
                                 <div className="login_input">
                                     <input type="email" placeholder="Email" value={this.state.signupemail} onChange={this.change_signupemail} />
@@ -656,7 +657,7 @@ class App extends React.Component {
                                     <span style={{color: "red"}}>{this.state.errors_signuppassword}</span>
                                 </div>
                                 <div className="login_input">
-                                    <input type="email" placeholder="Confirm password" value={this.state.signuppasswordconfirm} onChange={this.change_signuppasswordconfirm} />
+                                    <input type="password" placeholder="Confirm password" value={this.state.signuppasswordconfirm} onChange={this.change_signuppasswordconfirm} />
                                     <span style={{color: "red"}}>{this.state.errors_signuppasswordconfirm}</span>
                                 </div>
                                 <div className="how_would-join">

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
 import { ElementsConsumer,CardNumberElement,CardCvcElement,CardExpiryElement } from '@stripe/react-stripe-js';
 import './css/Tutorials.css';
+import './css/login.css';
 import CardSection from "./CardSection"
 
 class App extends React.Component {
@@ -504,9 +505,9 @@ class App extends React.Component {
                 <div className="how_would-main">
                     {/*  create and join Room */}
                     {this.state.login  == false && this.state.singup_process_step == 0 ? 
-                        <div className="how_would">
+                        <div className="how_would joing_or_gestd_account" id="joing_or_create_account">
                             <Link className="back_arrow" to="/Join"><img src="img/Group_3325.png" alt="" /></Link>
-                            <h3>Log in or <br/>continue as guest</h3>
+                            <h3>Log in or <br/>Create Account</h3>
                             <div className="how_would-join join_or_login">
                                 <div className="login_input">
                                     <input type="text" placeholder="Email" value={this.state.loginemail} onChange={this.change_loginemail} />
@@ -516,6 +517,7 @@ class App extends React.Component {
                                     <input type="password" placeholder="Password" value={this.state.loginpassword} onChange={this.change_loginpassword} />
                                     <span style={{color: "red"}}>{this.state.errors_loginpassword}</span>
                                 </div>
+                                <a class="create_account_or forget-password" href="javascript:void(0);">FORGOT YOUR PASSWORD?</a>
                                 <div className="how_would-join">
                                     <button className="sign_in_btn" id="login" onClick={this.userlogin}>SIGN IN</button>
                                 </div>
@@ -548,7 +550,7 @@ class App extends React.Component {
 
                     {/* <!-- Enter Name box --> */}
                     {this.state.login == false && this.state.singup_process_step == 1 ? 
-                        <div className="how_would enter_name">
+                        <div className="how_would enter_name" id="enter_name">
                             <div onClick={() => this.singup_process_step_back(0)} className="back_arrow back-name"><img src="img/Group_3325.png" alt=""/></div>
                             <h3>ENTER<br/>YOUR NAME</h3>
                             <div className="how_would-join join_or_login">
@@ -597,7 +599,7 @@ class App extends React.Component {
                                     <span style={{color: "red"}}>{this.state.errors_signuppassword}</span>
                                 </div>
                                 <div className="login_input">
-                                    <input type="email" placeholder="Confirm password" value={this.state.signuppasswordconfirm} onChange={this.change_signuppasswordconfirm} />
+                                    <input type="password" placeholder="Confirm password" value={this.state.signuppasswordconfirm} onChange={this.change_signuppasswordconfirm} />
                                     <span style={{color: "red"}}>{this.state.errors_signuppasswordconfirm}</span>
                                 </div>
                                 <div className="how_would-join">
@@ -683,9 +685,9 @@ class App extends React.Component {
                     {/* create and join Room */}
                     
                     {this.state.login == false && this.state.singup_process_step == 7 ?
-                       <div className="how_would enter_name">
+                       <div className="how_would enter_name" id="enter_name">
                         <div onClick={() => this.singup_process_step_back(0)} className="back_arrow back-name"><img src="img/Group_3325.png" alt=""/></div>
-                        <h3>ENTER</h3>
+                        <h3>ENTER<br/>YOUR NAME</h3>
                         <div className="how_would-join join_or_login">
                             <div className="login_input">
                                 <input type="text" placeholder="NAME" value={this.state.signupname_guest} onChange={this.change_signupname_guest} />

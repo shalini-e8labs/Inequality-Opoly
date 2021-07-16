@@ -4,6 +4,7 @@ import { Redirect } from "react-router";
 import io from "socket.io-client"
 import DOMPurify from "dompurify";
 import queryString from 'query-string';
+
 import Pickidentity from "../Pickidentity/pickidentity";
 const ENDPOINT = 'http://api.inequalityopoly.www70-32-25-208.a2hosted.com/';
 let socket;
@@ -749,9 +750,9 @@ function App() {
 					<div className="Pregame_Waiting_Room_ID">
 						<p>ROOM</p>
 						<h3>{JSON.parse(localStorage.getItem('room')).room_key}</h3>
-						<div className="how_would-join">
+						<div className="how_would-join game-start-btn-main">
 							{ishostid == 1?
-								<button className="sign_in_btn go_premium" onClick={() => onMessageSubmit(0)}>PLAY</button>
+								<button className="sign_in_btn go_premium game-start-btn" onClick={() => onMessageSubmit(0)}>PLAY</button>
 							:  'Wait for host for start the game'
 							}
 						</div>

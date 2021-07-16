@@ -1,0 +1,113 @@
+.forget-password {    color: rgba(255,0,0,.5) !important;}
+/* joing_or_create_account */
+.joing_or_gestd_account .passowrd_input{margin-bottom: 15px; border-radius: 13px;border-width: 3px;} 
+/* joing_or_create_account */
+/* waitingroom */
+#Pregame_Waiting_Room .Pregame_Waiting_joing_usere_list {    padding: 30px 30px 30px;}
+#Pregame_Waiting_Room .Pregame_Waiting_joing_usere_list-inner p {    font-size: 20px;}
+#Pregame_Waiting_Room .Pregame_Waiting_joing_usere_list-inner p .user_name {    position: relative;    text-align: left;    text-transform: capitalize;    font-weight: 600;}
+#Pregame_Waiting_Room .Pregame_Waiting_joing_usere_list .host_icon {    width: 35px;    top: -17px;    left: -20px;}
+/* waitingroom */
+@media(max-width:3000px){
+	.Pregame_Waiting_joing_usere_list-inner{height: 450px;}
+}
+@media(max-width:2600px){
+#Pregame_Waiting_Room .game-start-btn-main{width: 200px; margin-top: 30px;}
+#Pregame_Waiting_Room .Pregame_Waiting_Room_ID h3{font-size: 120px;}
+#Pregame_Waiting_Room .Pregame_Waiting_joing_usere_list-inner p .user_name{font-size: 30px;}
+#Pregame_Waiting_Room .Pregame_Waiting_joing_usere_list{padding:50px;}
+#Pregame_Waiting_Room .back_arrow {    width: 80px; height: 80px;}
+}
+@media(max-width:1930px){
+	.forget-password { font-size: 18px !important; margin-bottom: 60px!important;}
+	/* join */
+	#how_would .manage_account {	border: 3px solid #826652 !important;}
+	#how_would .join_room_btn {		margin: 30px 0 45px;	}
+	#how_would  h3{font-size: 60px; padding-top:0;}
+	#how_would .how_would-join .sign_in_btn{font-size: 22px}
+	/* join */
+	/* join room */
+	.joing_or_gestd_account h3 {		font-size: 60px;	}
+	.joing_or_gestd_account .login_input{margin-bottom: 20px !important;}
+	.joing_or_gestd_account .forget-password {margin: 0px 0 20px !important }
+	.joing_or_gestd_account .join_or_login a {font-size: 18px; margin-bottom: 20px;	margin-top: 20px;}
+	.joing_or_gestd_account .join_or_login .create_account_or{width:70%;}
+	/* join room */
+	/* Pregame_Waiting_Room */
+	.how_would-join .sign_in_btn {    height: 60px !important;    font-size: 20px;}
+	#Pregame_Waiting_Room{width: 1000px;}
+	#Pregame_Waiting_Room .game-start-btn-main{width: 150px; margin-top: 30px;}
+	#Pregame_Waiting_Room .back_arrow {		width: 60px;		position: absolute;		top: 30px;		left: 30px;	}
+	#Pregame_Waiting_Room .Pregame_Waiting_Room_ID h3 {		font-size: 80px;	}
+	#Pregame_Waiting_Room .Pregame_Waiting_joing_usere_list {		padding: 30px;	}
+	#Pregame_Waiting_Room .Pregame_Waiting_joing_usere_list-inner p .user_name {		font-size: 20px;	}
+	/* Pregame_Waiting_Room */
+}
+
+@media(max-width:1700px){
+	.forget-password{font-size: 16px !important;   margin-bottom: 60px !important; }
+	#how_would .how_would{width: 400px;}
+	#how_would .how_would-join .sign_in_btn{height: 60px !important; font-size: 18px;}
+	/* Create New account*/
+	#enter_name.enter_name h3, #enter_email h3, #enter_password h3, #payment h3{font-size: 50px;}
+	#enter_name.enter_name .login_input{    margin-bottom: 50px;}
+	/* Create New account*/
+	/* join */
+	#how_would .manage_account {	border: 3px solid #826652 !important;}
+	#how_would .join_room_btn {		margin: 20px 0 35px;	}
+	#how_would  h3{font-size: 50px;}
+	/* join */
+	#enter_name.enter_name h3{padding: 0 0 30px !important;}
+	#enter_name.enter_name h3, #enter_email h3, #enter_password h3, #payment h3{font-size: 50px;}
+	/* join room */
+	.joing_or_gestd_account h3 {		font-size: 60px;	}
+	.joing_or_gestd_account .login_input{margin-bottom: 20px !important;}
+	.joing_or_gestd_account .forget-password {margin: 0px 0 20px !important }
+	.joing_or_gestd_account .join_or_login a {font-size: 18px; margin-bottom: 20px;	margin-top: 20px;}
+	.joing_or_gestd_account .join_or_login .create_account_or{width:70%;}
+	/* join room */
+	/* waitingroom */
+	
+	#Pregame_Waiting_Room {padding: 30px; width:800px;}
+	#Pregame_Waiting_Room .Pregame_Waiting_joing_usere_list-inner{height: 250px;}
+	#Pregame_Waiting_Room .Pregame_Waiting_joing_usere_list .host_icon {		width: 35px;		top: -16px;		left: -20px;	}
+	#Pregame_Waiting_Room .Pregame_Waiting_Room_ID h3{font-size: 60px;}
+	/* waitingroom */
+}
+
+@media(max-width:1400px){
+	.forget-password{font-size: 14px !important;   margin-bottom: 50px !important; }	
+	/* joing_or_create_account */
+	.joing_or_gestd_account .how_would-join button { font-size: 18px;		width: 70%;	}
+	/* joing_or_create_account */
+	/* Create New account*/
+	#enter_name.enter_name h3, #enter_email h3, #enter_password h3, #payment h3,#how_would h3 {		font-size: 45px;	}
+	#enter_name.enter_name .login_input{    margin-bottom: 50px;}
+	/* payment */
+	.login_input_stripe {		border-radius: 13px;		padding: 0;		height: 50px;}
+	.ElementsApp, .ElementsApp .InputElement{    font-size: 30px !important;}
+	/* payment */
+	/* Create New account*/
+	/* join */
+	#how_would{width: 400px; border-radius: 14px;}
+	#how_would .how_would-join .sign_in_btn{height: 50px !important; font-size: 20px;}
+	#how_would .manage_account {	border: 3px solid #826652 !important;}
+	#how_would .join_room_btn {		margin: 15px 0 30px;	}
+	/* join */
+	/* join room */
+	.joing_or_gestd_account .login_input{margin-bottom: 20px !important;}
+	.joing_or_gestd_account .forget-password {margin: 0px 0 20px !important }
+	.joing_or_gestd_account .join_or_login a {font-size: 14px; margin-bottom: 20px;	margin-top: 20px;}
+	.joing_or_gestd_account .join_or_login .create_account_or{width:70%;}
+	/* join room */
+	/* waitingroom */
+	
+	#Pregame_Waiting_Room .Pregame_Waiting_joing_usere_list-inner {		height: 220px;	}
+	/* waitingroom */
+}
+
+@media(max-width:1200px){
+	#Pregame_Waiting_Room {		width: 600px;	}
+	#Pregame_Waiting_Room .Pregame_Waiting_joing_usere_list {		padding: 20px 20px 20px;	}
+	#Pregame_Waiting_Room .how_would-join .sign_in_btn {		height: 50px !important;		font-size: 16px;	}
+}
