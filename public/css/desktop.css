@@ -1,101 +1,77 @@
-
-.gameboardPaass .button {
-    margin-top: 7vh !important;}
+.gameboardPaass .button{margin-top:7vh!important}
 
 @media(max-width:5121px){
-    /* Index page */
-    /* .gameboard{
-        width: 1000px;
-        height: 1000px;
-        top: -384px;
-    } */
-    
-    
-    .gameboardPaass{        max-width: 2000px;    }
-    .gameboardPaass img{        width: 500px;        /*position: relative;*/    }
-    .gameboardPaass h1 {        font-size: 335px;       /* margin-left: 45px;*/           }
-    .gameboardPaass p {        /*font-size: 60px;*/        font-size: 65px;        /*margin-left: 60px;*/    }
+    .gameboardPaass{max-width:2000px}
+    .gameboardPaass img{width:500px}
+    .gameboardPaass h1{font-size:335px}
+    .gameboardPaass p{font-size:65px}
     /*12-07-*/
-    .gameboardPaass .button button {        /*width: 600px;*/        height: 7vh;        font-size: 50px;        width: 20vh;        border-radius: 24px;        font-weight: bold;        position: relative;        top: 0;        transition: 300ms ease-in-out all;    }    
-    .gameboardPaass .button button:hover{        top: -120px;    }
-    .gameboardPaass .button .play-btn{        background-size: 100% 100%;        font-size: 100px !important;    }
-    .gameboardPaass .button .Learn-More{        border: 8px solid #fff;    }    
+    .gameboardPaass .button button{height:7vh;font-size:50px;width:20vh;border-radius:24px;font-weight:700;position:relative;top:0;transition:.3s ease-in-out all}
+    .gameboardPaass .button button:hover{top:-120px}
+    .gameboardPaass .button .play-btn{background-size:100% 100%;font-size:100px!important}
+    .gameboardPaass .button .Learn-More{border:8px solid #fff}
     /*12-07*/
-    .gameboardPaass .button{        margin-top: 100px;            }
+    .gameboardPaass .button{margin-top:100px}
     /* Index page */
 
     /* tutorial page */
-    .tutorial-stap-text h1,.identity_cards-tutorial h3{font-size: 130px;}
-    .tutorial-stap-text p,.identity_cards-tutorial p {        font-size: 42px;        line-height: 50px;    }
-    .tutorial-stap tutorial-stap-1{width: 10%;}
-    .identity_cards-tutorial {        max-width: 1300px;    }    
-    .tutorial-stap .button-stap button,.identity_cards-tutorial .button-stap button{        padding: 76px 0px;        font-size: 60px;        width: 426px;        background-size: 100% 100%;        font-weight: bold;        border-radius: 24px;    }        
+    .identity_cards-tutorial h3,.tutorial-stap-text h1{font-size:130px}
+    .identity_cards-tutorial p,.tutorial-stap-text p{font-size:42px;line-height:50px}
+    .tutorial-stap tutorial-stap-1{width:10%}
+    .identity_cards-tutorial{max-width:1300px}
+    .identity_cards-tutorial .button-stap button,.tutorial-stap .button-stap button{padding:76px 0;font-size:60px;width:426px;background-size:100% 100%;font-weight:700;border-radius:24px}
     /* tutorial page */
     /*Login page */
     /*join room page */
     /*joing table as gaset*/
     .how_would{        width: 1000px;        padding: 70px;            }
     /* login */
-    .login_input input{        font-size: 100px;        height: 150px;    }   
-    .sign_in_btn{        height: 50px !important;        font-size: 20px;    }
-    .login_input{        margin-bottom: 60px;    }
-    .join_or_login .how_would-join button{        height: 150px !important;        font-size: 51px;   }
-    .how_would h3 {        font-size: 110px;    }
-    #enter_room h3 {        padding: 30px 0 40px !important;        font-size: 80px;        line-height: 90px;    }
+    .login_input input{font-size:100px;height:150px}
+    .sign_in_btn{height:50px!important;font-size:20px}
+    .login_input{margin-bottom:60px}
+    .join_or_login .how_would-join button{height:150px!important;font-size:51px}
+    .how_would h3{font-size:110px}
+    #enter_room h3{padding:30px 0 40px!important;font-size:80px;line-height:90px}
     /* login */
-    .back_arrow{        width: 100px;        height: 100px;    }   
-    .join_or_login a{        font-size: 50px;    }
-     #enter_name,     #enter_room,     #enter_email,     #enter_password    {        width: 1000px;    }
-    .enter_name h3{        font-size: 120px;    }
-    .Pregame_Waiting_joing_usere_list{        width: 50%;    }
-    .Pregame_Waiting_Room_ID{        width: 50%;    }
-     #Pregame_Waiting_Room{        width:2000px;    }
-     .Pregame_Waiting_joing_usere_list-inner{        height: 650px;    }
-     .Pregame_Waiting_Room_ID p{        font-size: 100px;    }
-     .Pregame_Waiting_Room_ID p{        font-size: 100px;    }
-     .Pregame_Waiting_Room_ID h3{        font-size: 200px;    }
-     .Pregame_Waiting_joing_usere_list .sign_in_btn {        height: 124px !important;        font-size: 60px;    }
-     .Pregame_Waiting_Room_ID .how_would-join{        width: 500px;    }
-     .how_would-join .sign_in_btn{        height: 128px !important;           font-size: 60px;    }
-    .Pregame_Waiting_joing_usere_list-inner p {        font-size: 55px;    }
-    #pricing–2 {        display: flex;        width: 76%;        justify-content: space-between;    }
-    .month-price p .month-price-text {        font-size: 80px;        margin-left: 18px;        line-height: 108px;    }
-    #pricing–2 .enter_name h3{        font-size: 100px;        line-height: 130px;    }
-    .Pregame_Waiting_joing_usere_list .host_icon {        position: absolute;        width: 80px;        top: -40px;        left: -38px;    }
+    .back_arrow{width:100px;height:100px}
+    .join_or_login a{font-size:50px}
+    #enter_email,#enter_name,#enter_password,#enter_room{width:1000px}
+    .enter_name h3{font-size:120px}
+    .Pregame_Waiting_joing_usere_list{width:50%}
+    .Pregame_Waiting_Room_ID{width:50%}
+    #Pregame_Waiting_Room{width:2000px}
+    .Pregame_Waiting_joing_usere_list-inner{height:650px}
+    .Pregame_Waiting_Room_ID p{font-size:100px}
+    .Pregame_Waiting_Room_ID p{font-size:100px}
+    .Pregame_Waiting_Room_ID h3{font-size:200px}
+    .Pregame_Waiting_joing_usere_list .sign_in_btn{height:124px!important;font-size:60px}
+    .Pregame_Waiting_Room_ID .how_would-join{width:500px}
+    .how_would-join .sign_in_btn{height:128px!important;font-size:60px}
+    .Pregame_Waiting_joing_usere_list-inner p{font-size:55px}
+    #pricing–2{display:flex;width:76%;justify-content:space-between}
+    .month-price p .month-price-text{font-size:80px;margin-left:18px;line-height:108px}
+    #pricing–2 .enter_name h3{font-size:100px;line-height:130px}
+    .Pregame_Waiting_joing_usere_list .host_icon{position:absolute;width:80px;top:-40px;left:-38px}
     /* ragister */
     /* 12-07 */
-    #enter_name, #enter_room, #enter_email, #enter_password{ width: 800px;}
-    #enter_name .back-name{        position: relative;        top: 0;        left: 0;        float: left;    }
-    #enter_email .back_arrow, #enter_password .back_arrow,#payment .back_arrow { top: 70px; left: 70px; }
-    #enter_name h3,
-    #enter_email h3,
-    #enter_password h3{float: left; width:100%;}
-    #enter_name .login_input input,
-    #enter_email .login_input input,
-    #enter_password .login_input input
-    {border: 4px solid #532e1f; font-size: 80px; height: 150px;}
-    #enter_name .login_input{ margin-bottom: 100px;}
-    #enter_name .join_or_login .how_would-join button,
-    #enter_email .join_or_login .how_would-join button,
-    #enter_password .join_or_login .how_would-join button
-    {border: none;}
-    
-    #pricing–2 {width: 60%;}
-    #pricing–2 .month-price p .month-price-img {    width: 80px;}
-    #pricing–2 .month-price p{padding: 20px;}
-
-    #payment.how_would {        width: 1200px; }
-    #payment .join_or_login a{display: inline-block !important; width:100%;  margin-bottom: 0;}
-    #payment .join_or_login .how_would-join button {        min-width: 752px;    }
-    #payment .login_input input {        border: 6px solid #532e1f;        border-radius: 25px;    }
-    #payment .back_arrow {        top: 50px;        left: 50px;}
-
-
-    .back_arrow{top:70px; left:70px;}
-
-
-    #enter_room h3{font-size: 110px;  line-height: 150px; padding: 100px 0 40px !important}
-    #enter_room  .login_input input {margin-bottom: 100px; border-width:8px; border-radius:20px;}
+    #enter_email,#enter_name,#enter_password,#enter_room{width:800px}
+    #enter_name .back-name{position:relative;top:0;left:0;float:left}
+    #enter_email .back_arrow,#enter_password .back_arrow,#payment .back_arrow{top:70px;left:70px}
+    #enter_email h3,#enter_name h3,#enter_password h3{float:left;width:100%}
+    #enter_email .login_input input,#enter_name .login_input input,#enter_password .login_input input{border:4px solid #532e1f;font-size:80px;height:150px}
+    #enter_name .login_input{margin-bottom:100px}
+    #enter_email .join_or_login .how_would-join button,#enter_name .join_or_login .how_would-join button,#enter_password .join_or_login .how_would-join button{border:none}
+    #pricing–2{width:60%}
+    #pricing–2 .month-price p .month-price-img{width:80px}
+    #pricing–2 .month-price p{padding:20px}
+    #payment.how_would{width:1200px}
+    #payment .join_or_login a{display:inline-block!important;width:100%;margin-bottom:0}
+    #payment .join_or_login .how_would-join button{min-width:752px}
+    #payment .login_input input{border:6px solid #532e1f;border-radius:25px}
+    #payment .back_arrow{top:50px;left:50px}
+    .back_arrow{top:70px;left:70px}
+    #enter_room h3{font-size:110px;line-height:150px;padding:100px 0 40px!important}
+    #enter_room .login_input input{margin-bottom:100px;border-width:8px;border-radius:20px}
     /* 12-07 */    
     
     /*Login page */
@@ -1305,6 +1281,8 @@
         font-weight: bold;
         position: relative;
         top:0;
+    }
+    .gameboardPaass .splashscreen{
         transition: 200ms ease-in-out all !important;
     }
 
@@ -1861,7 +1839,7 @@
     .tutorial-stap-text h1,.identity_cards-tutorial h3{font-size: 35px;}
     .tutorial-stap-text p, .identity_cards-tutorial p {       font-size: 16px;       line-height: 25px;   }
     .identity_cards-tutorial {        max-width: 1300px;    }        /* 12-07-2021 */
-    .tutorial-stap .button-stap button, .identity_cards-tutorial .button-stap button {        padding: 20px 0px;        font-size: 20px;        width: 187PX;   }
+    .tutorial-stap .button-stap button, .identity_cards-tutorial .button-stap button {        padding: 25px 0px;        font-size: 20px;        width: 187PX;   }
     /* 12-07-2021 */
     /* tutorial page */
     /* Gamestart  */
@@ -2005,7 +1983,7 @@
     #enter_room h3{padding: 50px 0 25px !important; font-size: 50px; line-height: 1;}
     #enter_room .login_input input{border-width: 2px;}
     .gameboardPaass .button .play-btn {        background-size: 100% 100%;        font-size: 32px !important;   }
-    .gameboardPaass .button .Learn-More {        border: 2px solid #fff;        border-radius: 12px;     font-size: 18px;}
+    .gameboardPaass .button .Learn-More{border:2px solid #fff;border-radius:12px;font-size:18px;height:70px;top:-6px;}
    /* 12-07 */
    #enter_room .login_input input{font-size: 30px;}
     /* login page */

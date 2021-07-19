@@ -131,8 +131,8 @@ class App extends Component {
                     <h1>STARE HERE</h1>
                     <p>Each player starts out on this start space.Each time a player passes by either payday while employed, they receive their current slary.If  they land onplyday they erceive double their salay. There are two paydays representing the 1st and th.</p>
                     <div class="button button-stap">
-                        <button class="play-btn stap-1" data-stap-id="1">Next</button>
-                        <Link to="/Join"><button class="Learn-More">Skip Tutorial</button></Link>
+                        <button class="play-btn stap-1" data-stap-id="1">NEXT</button>
+                        <Link to="/Join"><button class="Learn-More">SKIP TUTORIAL</button></Link>
                     </div>
                 </div>
             </div>
@@ -147,8 +147,8 @@ class App extends Component {
                     <h1>Properties</h1>
                     <p>Properties can be purchased if not owned by another. if owned by another, you must pay them rent.</p>
                     <div class="button button-stap">
-                        <button class="play-btn stap-2" data-stap-id="1">Next</button>
-                        <Link to="/Join"><button class="Learn-More">Skip Tutorial</button></Link>
+                        <button class="play-btn stap-2" data-stap-id="1">NEXT</button>
+                        <Link to="/Join"><button class="Learn-More">SKIP TUTORIAL</button></Link>
                     </div>
                 </div>
             </div>
@@ -163,8 +163,8 @@ class App extends Component {
                     <h1>Life events</h1>
                     <p>if player lands on a life event space, they draw a life eve t card and follow the instructions.Yellow life event cards affect individual players while green life event cards affect all players.</p>
                     <div class="button button-stap">
-                        <button class="play-btn stap-3" data-stap-id="1">Next</button>
-                        <Link to="/Join"><button class="Learn-More">Skip Tutorial</button></Link>
+                        <button class="play-btn stap-3" data-stap-id="1">NEXT</button>
+                        <Link to="/Join"><button class="Learn-More">SKIP TUTORIAL</button></Link>
                     </div>
                 </div>
             </div>
@@ -179,8 +179,8 @@ class App extends Component {
                     <h1>Police interactions</h1>
                     <p>if a player lands on this space, the player must roll the dice to datermine if they go to Prison industrial Complex which would mean they would lose their job and maybe the right to vote.</p>
                     <div class="button button-stap">
-                        <button class="play-btn stap-4" data-stap-id="1">Next</button>
-                        <Link to="/Join"><button class="Learn-More">Skip Tutorial</button></Link>
+                        <button class="play-btn stap-4" data-stap-id="1">NEXT</button>
+                        <Link to="/Join"><button class="Learn-More">SKIP TUTORIAL</button></Link>
                     </div>
                 </div>
             </div>
@@ -195,8 +195,8 @@ class App extends Component {
                     <h1>Pink tax</h1>
                     <p>if a player lands on Pink Tax they roll the dice and pay 5 times roll if male and 10 times roll if female to the Lottery</p>
                     <div class="button button-stap">
-                        <button class="play-btn stap-5" data-stap-id="1">Next</button>
-                        <Link to="/Join"><button class="Learn-More">Skip Tutorial</button></Link>
+                        <button class="play-btn stap-5" data-stap-id="1">NEXT</button>
+                        <Link to="/Join"><button class="Learn-More">SKIP TUTORIAL</button></Link>
                     </div>
                 </div>
             </div>
@@ -211,8 +211,8 @@ class App extends Component {
                     <h1>Commissary</h1>
                     <p>If a player,in the ordinary course of play, lands on Commissary.They must roll the dice4 andpaty ten times roll to Lottery.</p>
                     <div class="button button-stap">
-                        <button class="play-btn stap-6" data-stap-id="1">Next</button>
-                        <Link to="/Join"><button class="Learn-More">Skip Tutorial</button></Link>
+                        <button class="play-btn stap-6" data-stap-id="1">NEXT</button>
+                        <Link to="/Join"><button class="Learn-More">SKIP TUTORIAL</button></Link>
                     </div>
                 </div>
             </div>
@@ -227,8 +227,8 @@ class App extends Component {
                     <h1>Payday</h1>
                     <p>Insert description here... lorem ipsuo lorem ipsuilorem ipsuilorem lorem ipsuo lorem ipsuilorem ipsuilorem</p>
                     <div class="button button-stap">
-                        <button class="play-btn stap-7" data-stap-id="1">Next</button>
-                        <Link to="/Join"><button class="Learn-More">Skip Tutorial</button></Link>
+                        <button class="play-btn stap-7" data-stap-id="1">NEXT</button>
+                        <Link to="/Join"><button class="Learn-More">SKIP TUTORIAL</button></Link>
                     </div>
                 </div>
             </div>
@@ -243,8 +243,8 @@ class App extends Component {
                     <h1>Jackpot</h1>
                     <p>if a player lands on the lottery space they automatically receive all the money in the lottery. if the lottery is empty, the player collects $500 from the bank.</p>
                     <div class="button button-stap">
-                        <button class="play-btn stap-8" data-stap-id="1">Next</button>
-                        <Link to="/Join"><button class="Learn-More">Skip Tutorial</button></Link>
+                        <button class="play-btn stap-8" data-stap-id="1">NEXT</button>
+                        <Link to="/Join"><button class="Learn-More">SKIP TUTORIAL</button></Link>
                     </div>
                 </div>
             </div>
@@ -255,8 +255,8 @@ class App extends Component {
                 <h3>identity Cards</h3>
                 <p>Before the game begins, each player randomly picks a perceived identity card repreesenting getting born.Specific lines in the ID card will be constantly referred to throughout the coures of the game to each player What they have to roll in order to avoid or partake in cetain events.</p>
                 <div class="button button-stap">
-                    <button class="play-btn stap-9" data-stap-id="1">Next</button>
-                    <Link to="/Join"><button class="Learn-More">Skip Tutorial</button></Link>
+                    <button class="play-btn stap-9" data-stap-id="1">NEXT</button>
+                    <Link to="/Join"><button class="Learn-More">SKIP TUTORIAL</button></Link>
                 </div>
             </div>
             {/* tutorial stap 9  */}
@@ -266,8 +266,8 @@ class App extends Component {
                 <h3>identity Cards</h3>
                 <p>Before the game begins, each player randomly picks a perceived identity card repreesenting getting born.Specific lines in the ID card will be constantly referred to throughout the coures of the game to each player What they have to roll in order to avoid or partake in cetain events.</p>
                 <div class="button button-stap">
-                    <Link to="/Join"><button class="play-btn stap-10">Next</button></Link>
-                    <Link to="/Join"><button class="Learn-More">Skip Tutorial</button></Link>
+                    <Link to="/Join"><button class="play-btn stap-10">NEXT</button></Link>
+                    <Link to="/Join"><button class="Learn-More">SKIP TUTORIAL</button></Link>
                 </div>
             </div>
             {/* tutorial stap 10  */}

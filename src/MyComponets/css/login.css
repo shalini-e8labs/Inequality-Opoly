@@ -64,7 +64,7 @@
 	.joing_or_gestd_account .login_input{margin-bottom: 20px !important;}
 	.joing_or_gestd_account .forget-password {margin: 0px 0 20px !important }
 	.joing_or_gestd_account .join_or_login a {font-size: 18px; margin-bottom: 20px;	margin-top: 20px;}
-	.joing_or_gestd_account .join_or_login .create_account_or{width:70%;}
+	.joing_or_gestd_account .join_or_login .create_account_or{width:100%;margin-right:10%;}
 	/* join room */
 	/* waitingroom */
 	
