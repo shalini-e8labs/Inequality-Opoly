@@ -18,15 +18,13 @@ export default function SplashScreen() {
             {/* gameboard index content */}
             <div className="gameboardPaass_main ">
                 <div className="gameboardPaass">
-                    <img className="union_icon" src="img/Union 8.png" alt="" />
-                    <h1>Inequality-Opoly</h1>
-                    <p>The Board Game of Structral Racism and Sexism in America</p>
+                    <img className="union_icon" src="img/Union 8.png" alt="" width="200px" />
+                    {/* <h1>Inequality-Opoly</h1> */}
+                    <p><img className="logo" src="img/logo.png" width="55%" /></p>
+                    <p className="sub_tittle">The Board Game of Structral Racism and Sexism in America</p>
                     <div className="button">
-                        {/* <button className="play-btn"><Link to="Tutorials">Play</Link></button> */}
-                        <Link to="Tutorials"><button className="play-btn splashscreen">Play</button></Link>
-                        {/* <Link to="Tutorials"><img src="Component 12 – 1.svg" /></Link> */}
-                        {/* <Link to="/"><button className="play-btn">Learn More</button></Link> */}
-                        <button className="Learn-More">Learn More</button>
+                        <Link to="Tutorials"><button className="play-btn splashscreen">PLAY</button></Link>
+                        <Link to="/"><button className="Learn-More">LEARN MORE</button></Link>
                     </div>
                 </div>
             </div>

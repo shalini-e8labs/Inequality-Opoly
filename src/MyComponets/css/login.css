@@ -45,15 +45,15 @@
 }
 
 @media(max-width:1700px){
-	.forget-password{font-size: 16px !important;   margin-bottom: 60px !important; }
+	.forget-password{font-size: 16px !important;   margin-bottom: 50px !important; }
 	#how_would .how_would{width: 400px;}
-	#how_would .how_would-join .sign_in_btn{height: 60px !important; font-size: 18px;}
+	#how_would .how_would-join .sign_in_btn{height: 70px !important; font-size: 25px;}
 	/* Create New account*/
 	#enter_name.enter_name h3, #enter_email h3, #enter_password h3, #payment h3{font-size: 50px;}
 	#enter_name.enter_name .login_input{    margin-bottom: 50px;}
 	/* Create New account*/
 	/* join */
-	#how_would .manage_account {	border: 3px solid #826652 !important;}
+	#how_would .manage_account {	border: 3px solid #826652 !important;text-shadow:none;}
 	#how_would .join_room_btn {		margin: 20px 0 35px;	}
 	#how_would  h3{font-size: 50px;}
 	/* join */

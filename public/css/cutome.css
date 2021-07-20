@@ -1,10 +1,46 @@
-body{font-family: 'Montserrat';background-color: rgba(70,35,33,0.9) !important;
-  position: relative;}
-.wapper{width:100%; height: 100vh;position:relative;background-image: url("../img/Group 610.png");
- background-position: center; background-size: cover;  overflow: hidden;
- background-color: #372523 !important;}
-
- 
+body{font-family:'Montserrat';background-color:rgba(70,35,33,0.9)!important;position:relative;}
+.wapper{width:100%; height: 100vh;position:relative;background-image: url("../img/Group 610.png");background-position: center; background-size: cover;  overflow: hidden;background-color: #342C24 !important;}
+.gameboardPaass .play_button{height:70px;transition: .3s ease-in-out all;position: relative;top:0px;}
+.gameboardPaass .play_button:hover,.gameboardPaass .learn_more:hover{top:-18px;}
+.gameboardPaass .learn_more {
+	height: 85px;
+	margin-left: 20px;
+	margin-top: 5px;
+    transition: .3s ease-in-out all;position: relative;top:0px;
+}
+.gameboardPaass .sub_tittle{
+    margin-left: 3%;
+}
+#createaccount {
+	font-size: 20px !important;
+	text-shadow: none;
+	opacity: 0.7;
+}
+input:focus-visible {
+	outline: none;
+}
+.input_error {
+	font-size: 25px;
+	float: left;
+	font-weight: bold;
+	margin-top: 10px;
+	font-family: Bangers;
+	letter-spacing: 2px;
+}
+.input_error::before {
+	content: url(../img/cannot.png);
+	margin-right: 10px;
+}
+.input_error:empty {
+	display: none;
+}
+.month-price-text.red-class {
+	font-size: 40px !important;
+}
+.month-price-text.red-class::before {
+	content: url(../img/invite.png);
+	margin-right: 10px;
+}
 /* Gameboard-playboard */
 .gameplay_gameboard_wapper{background-color: rgba(70,35,33,0.9) !important;}
 .Gameboard-playboard {
@@ -347,7 +383,7 @@ body{font-family: 'Montserrat';background-color: rgba(70,35,33,0.9) !important;
         text-align: center;
     }
 
-    .gameboardPaass img {
+    .gameboardPaass union_icon {
         position: relative;
         top: -8px;
         left: 0%;
@@ -426,6 +462,10 @@ body{font-family: 'Montserrat';background-color: rgba(70,35,33,0.9) !important;
         width: 100px;
         padding: 13px 19px;
         line-height: 0.3;
+        text-shadow: -1px 3px 0px #B19F23;
+        font-family: "Titan One";
+        font-weight: normal;
+        color: #fff;
 
     }
 
@@ -435,6 +475,9 @@ body{font-family: 'Montserrat';background-color: rgba(70,35,33,0.9) !important;
         position: relative;
         top: 0;
         transition: 300ms ease-in-out all;
+    }
+    .gameboardPaass .button .Learn-More{
+        border: 4px solid #FEEAD8;
     }
 
     .gameboardPaass .button button:hover{
@@ -510,7 +553,7 @@ body{font-family: 'Montserrat';background-color: rgba(70,35,33,0.9) !important;
         animation: 3s color-me-in ease-in-out;
     }
     
-.tutorial-playariya{background-color: rgba(70,35,33,0.9);}
+    .tutorial-playariya,.wapper_child{background-color: rgba(70,35,33,0.9);}
     .tutorial-playariya img {
         width: 100%;
         /*height: 100vh;*/
@@ -522,7 +565,7 @@ body{font-family: 'Montserrat';background-color: rgba(70,35,33,0.9) !important;
         bottom: 0;
         right: 0;
         width: 34%;
-        height: 35vh;
+        height: 40vh;
         display: flex;
         animation: 4s tutorial-stap ease-in-out;  
     }
@@ -889,7 +932,7 @@ body{font-family: 'Montserrat';background-color: rgba(70,35,33,0.9) !important;
     .how_would h3 {
         font-size: 60px;
         color : #342C24;
-        padding: 20px 0 50px;
+        padding: 20px 0 40px;
         font-family: 'Bangers';
         line-height: 1;
         margin: 0;
@@ -906,6 +949,7 @@ body{font-family: 'Montserrat';background-color: rgba(70,35,33,0.9) !important;
         padding: 6px;
         border: none;
         border-radius: 13px;
+        text-shadow: -1px 3px 0px #B19F23;
     }
 
     #enter_room h3 {
