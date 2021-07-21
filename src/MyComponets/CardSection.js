@@ -4,15 +4,16 @@ import './css/Tutorials.css';
 const CARD_ELEMENT_OPTIONS = {
     style: {
       base: {
-        fontSize: '38px',
+        fontSize: '25px',
         color: '#000',
-        height:'70px',
+        height:'70px !important',
         padding:'0 23px',
         border:'2px solid #532e1f',
         fontFamily:'Bangers',
         fontWeight: 400,
         fontStyle:'italic',
         textAlign:'left',
+        paddingTop:'20px',
         '::placeholder': {
           color: '#706d5f',
           fontWeight: 400,

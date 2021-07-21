@@ -12,6 +12,9 @@ class App extends Component {
         // sreen wappper 
         <div class="wapper">
             <div class="wapper_child">
+                <div className="tutorials_wait_screen">
+                    <center><img src="/img/loader.gif" /></center>
+                </div>
                 {/* Gameboard Image  */}
                 <div class="tutorial-playariya Gameboard-id-1" >
                     {/* <img src="img/December2020-Gameboard.png" alt=""/>  */}

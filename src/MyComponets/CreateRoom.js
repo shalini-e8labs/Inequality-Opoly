@@ -693,7 +693,7 @@ class App extends React.Component {
                                 <div className="month-price">
                                     <p>
                                         {/* <span className="month-price-img"><img src="img/cannot.png" alt="" /></span> */}
-                                        <span className="month-price-text red-class" style={{color:'#6B8E0C'}}>PAYMENT SUCCESSFUL</span>
+                                        <span className="month-price-text red-class month-price-text2" style={{color:'#6B8E0C'}}>PAYMENT SUCCESSFUL</span>
                                     </p>
                                 </div>
                             </div>        

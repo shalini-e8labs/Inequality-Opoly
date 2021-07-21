@@ -8,6 +8,7 @@
 #Pregame_Waiting_Room .Pregame_Waiting_joing_usere_list-inner p .user_name {    position: relative;    text-align: left;    text-transform: capitalize;    font-weight: 600;}
 #Pregame_Waiting_Room .Pregame_Waiting_joing_usere_list .host_icon {    width: 35px;    top: -17px;    left: -20px;}
 /* waitingroom */
+.create_account_or.create_new_account{text-align:center;margin-right:0!important;}
 @media(max-width:3000px){
 	.Pregame_Waiting_joing_usere_list-inner{height: 450px;}
 }
@@ -31,7 +32,7 @@
 	.joing_or_gestd_account .login_input{margin-bottom: 20px !important;}
 	.joing_or_gestd_account .forget-password {margin: 0px 0 20px !important }
 	.joing_or_gestd_account .join_or_login a {font-size: 18px; margin-bottom: 20px;	margin-top: 20px;}
-	.joing_or_gestd_account .join_or_login .create_account_or{width:70%;}
+	.joing_or_gestd_account .join_or_login .create_account_or{width:100%;}
 	/* join room */
 	/* Pregame_Waiting_Room */
 	.how_would-join .sign_in_btn {    height: 60px !important;    font-size: 20px;}

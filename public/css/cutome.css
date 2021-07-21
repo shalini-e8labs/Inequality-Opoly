@@ -1,217 +1,79 @@
 body{font-family:'Montserrat';background-color:rgba(70,35,33,0.9)!important;position:relative;}
-.wapper{width:100%; height: 100vh;position:relative;background-image: url("../img/Group 610.png");background-position: center; background-size: cover;  overflow: hidden;background-color: #342C24 !important;}
-.gameboardPaass .play_button{height:70px;transition: .3s ease-in-out all;position: relative;top:0px;}
-.gameboardPaass .play_button:hover,.gameboardPaass .learn_more:hover{top:-18px;}
-.gameboardPaass .learn_more {
-	height: 85px;
-	margin-left: 20px;
-	margin-top: 5px;
-    transition: .3s ease-in-out all;position: relative;top:0px;
-}
-.gameboardPaass .sub_tittle{
-    margin-left: 3%;
-}
-#createaccount {
-	font-size: 20px !important;
-	text-shadow: none;
-	opacity: 0.7;
-}
-input:focus-visible {
-	outline: none;
-}
-.input_error {
-	font-size: 25px;
-	float: left;
-	font-weight: bold;
-	margin-top: 10px;
-	font-family: Bangers;
-	letter-spacing: 2px;
-}
-.input_error::before {
-	content: url(../img/cannot.png);
-	margin-right: 10px;
-}
-.input_error:empty {
-	display: none;
-}
-.month-price-text.red-class {
-	font-size: 40px !important;
-}
-.month-price-text.red-class::before {
-	content: url(../img/invite.png);
-	margin-right: 10px;
-}
+.wapper{width:100%;height:100vh;position:relative;background-image:url("../img/Group 610.png");background-position:center;background-size:cover;overflow:hidden;background-color:#342c24!important}
+.gameboardPaass .play_button{height:70px;transition:.3s ease-in-out all;position:relative;top:0}
+.gameboardPaass .learn_more:hover,.gameboardPaass .play_button:hover{top:-18px}
+.gameboardPaass .learn_more{height:85px;margin-left:20px;margin-top:5px;transition:.3s ease-in-out all;position:relative;top:0}
+.gameboardPaass .sub_tittle{margin-left:3%}
+#createaccount{font-size:20px!important;text-shadow:none;opacity:.7}
+input:focus-visible{outline:0}
+.input_error{font-size:25px;float:left;font-weight:700;margin-top:10px;font-family:Bangers;letter-spacing:2px}
+.input_error::before{content:url(../img/cannot.png);margin-right:10px}
+.input_error:empty{display:none}
+.month-price-text2.red-class{font-size:40px!important}
+.month-price-text2.red-class::before{content:url(../img/invite.png);margin-right:10px}
+.back_arrow img{cursor:pointer}
+.tutorials_wait_screen{height:100%;width:100%;position:fixed;z-index:9999;background:#fff;-moz-animation:cssAnimation 5s forwards;-webkit-animation:cssAnimation 5s forwards;-o-animation:cssAnimation 5s forwards;animation:cssAnimation 5s forwards;-webkit-animation-fill-mode:forwards;animation-fill-mode:forwards;opacity:0;visibility:hidden}
+@-webkit-keyframes cssAnimation{0%{opacity:1;visibility:visible}99%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
+@keyframes cssAnimation{0%{opacity:1;visibility:visible}99%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
+.tutorials_wait_screen center{height:100%;width:100%}
+.tutorials_wait_screen img{top:40%;position:relative}
 /* Gameboard-playboard */
 .gameplay_gameboard_wapper{background-color: rgba(70,35,33,0.9) !important;}
-.Gameboard-playboard {
-    width: 100%;
-    height: 100%;
-    
-}
-#Gameboard-playboard-main{
-    animation: 3s spinIt ease-in-out;
-}
-.Gameboard-playboard-main{
-    position: relative;
-    
-}
-.Gameboard-playboard-card,.center_gmaeboard{
-    background-position: center center;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-}
+.Gameboard-playboard{width:100%;height:100%}
+#Gameboard-playboard-main{animation:3s spinIt ease-in-out}
+.Gameboard-playboard-main{position:relative}
+.Gameboard-playboard-card,.center_gmaeboard{background-position:center center;background-size:100% 100%;background-repeat:no-repeat}
 /*center part of gameboard Image */
-.center_gmaeboard{
-    background-image: url("../img/gameboard-images/center-gameboard.png");
-    width:75.6585462468%;
-}   
+.center_gmaeboard{background-image:url(../img/gameboard-images/center-gameboard.png);width:75.6585462468%} 
 /*center part of gameboard Image */
 /* gameboard Start jeckpoprt and jaydayi card Width and height  */
 .Gameboard-playboard-start,
 .Gameboard-playboard-jack_poTi,
 .Gameboard-playboard-paydayi,
-.Gameboard-playboard-9{
-    width:14.6365616954%;
-    width:14.6365616954%;
-}
+.Gameboard-playboard-9{width:14.6365616954%;width:14.6365616954%;}
 /* gameboard Start jeckpoprt and jaydayi card Width and height  */
-.Gameboard-playboard-main {
-    width: 955px;
-    height: 955px;
-}
+.Gameboard-playboard-main{width:955px;height:955px;}
 /* Gameboard all card images */
-.Gameboard-playboard-start{
-    background-image: url("../img/gameboard-images/start-game.png");
-}
-
-.Gameboard-playboard-jack_poTi{
-    background-image: url("../img/gameboard-images/jack_poTi.png");
-}
-
-.Gameboard-playboard-paydayi{
-    background-image: url("../img/gameboard-images/paydayi.png");
-}
-
-.Gameboard-playboard-1{
-    background-image: url("../img/gameboard-images/1.png");
-}
-
-.Gameboard-playboard-2{
-    background-image: url("../img/gameboard-images/2.png");
-}
-
-.Gameboard-playboard-3{
-    background-image: url("../img/gameboard-images/3.png");
-}
-
-.Gameboard-playboard-4{
-    background-image: url("../img/gameboard-images/4.png");
-}
-
-.Gameboard-playboard-5{
-    background-image: url("../img/gameboard-images/5.png");
-}
-.Gameboard-playboard-6{
-    background-image: url("../img/gameboard-images/6.png");
-}
-
-.Gameboard-playboard-6_1{
-    background-image: url("../img/gameboard-images/6_1.png");
-}
-
-.Gameboard-playboard-7{
-    background-image: url("../img/gameboard-images/7.png");
-}
-
-.Gameboard-playboard-8{
-    background-image: url("../img/gameboard-images/8.png");
-}
-.Gameboard-playboard-9{
-    background-image: url("../img/gameboard-images/9.png");
-}
-
-.Gameboard-playboard-10{
-    background-image: url("../img/gameboard-images/10.png");
-}
-
-.Gameboard-playboard-11{
-    background-image: url("../img/gameboard-images/11.png");
-}
-.Gameboard-playboard-12{
-    background-image: url("../img/gameboard-images/12.png");
-}
-.Gameboard-playboard-13{
-    background-image: url("../img/gameboard-images/13.png");
-}
-.Gameboard-playboard-14{
-    background-image: url("../img/gameboard-images/14.png");
-}
-.Gameboard-playboard-15{
-    background-image: url("../img/gameboard-images/15.png");
-}
-.Gameboard-playboard-16{
-    background-image: url("../img/gameboard-images/16.png");
-}
-.Gameboard-playboard-17{
-    background-image: url("../img/gameboard-images/17.png");
-}
-.Gameboard-playboard-18{
-    background-image: url("../img/gameboard-images/18.png");
-}
-.Gameboard-playboard-19{
-    background-image: url("../img/gameboard-images/19.png");
-}
-.Gameboard-playboard-20{
-    background-image: url("../img/gameboard-images/20.png");
-}
-.Gameboard-playboard-21{
-    background-image: url("../img/gameboard-images/21.png");
-}
-.Gameboard-playboard-22{
-    background-image: url("../img/gameboard-images/22.png");
-}
-.Gameboard-playboard-23{
-    background-image: url("../img/gameboard-images/23.png");
-}
-.Gameboard-playboard-24{
-    background-image: url("../img/gameboard-images/24.png");
-}
-.Gameboard-playboard-25{
-    background-image: url("../img/gameboard-images/25.png");
-}
-.Gameboard-playboard-26{
-    background-image: url("../img/gameboard-images/26.png");
-}
-.Gameboard-playboard-27{
-    background-image: url("../img/gameboard-images/27.png");
-}
-.Gameboard-playboard-28{
-    background-image: url("../img/gameboard-images/28.png");
-}
-.Gameboard-playboard-29{
-    background-image: url("../img/gameboard-images/29.png");
-}
-.Gameboard-playboard-30{
-    background-image: url("../img/gameboard-images/30.png");
-}
-.Gameboard-playboard-31{
-    background-image: url("../img/gameboard-images/31.png");
-}
-.Gameboard-playboard-32{
-    background-image: url("../img/gameboard-images/32.png");
-}
-.Gameboard-playboard-33{
-    background-image: url("../img/gameboard-images/33.png");
-}
-.Gameboard-playboard-34{
-    background-image: url("../img/gameboard-images/34.png");
-}
-.Gameboard-playboard-35{
-    background-image: url("../img/gameboard-images/35.png");
-}
-.Gameboard-playboard-36{
-    background-image: url("../img/gameboard-images/36.png");
-}
+.Gameboard-playboard-start{background-image:url(../img/gameboard-images/start-game.png)}
+.Gameboard-playboard-jack_poTi{background-image:url(../img/gameboard-images/jack_poTi.png)}
+.Gameboard-playboard-paydayi{background-image:url(../img/gameboard-images/paydayi.png)}
+.Gameboard-playboard-1{background-image:url(../img/gameboard-images/1.png)}
+.Gameboard-playboard-2{background-image:url(../img/gameboard-images/2.png)}
+.Gameboard-playboard-3{background-image:url(../img/gameboard-images/3.png)}
+.Gameboard-playboard-4{background-image:url(../img/gameboard-images/4.png)}
+.Gameboard-playboard-5{background-image:url(../img/gameboard-images/5.png)}
+.Gameboard-playboard-6{background-image:url(../img/gameboard-images/6.png)}
+.Gameboard-playboard-6_1{background-image:url(../img/gameboard-images/6_1.png)}
+.Gameboard-playboard-7{background-image:url(../img/gameboard-images/7.png)}
+.Gameboard-playboard-8{background-image:url(../img/gameboard-images/8.png)}
+.Gameboard-playboard-9{background-image:url(../img/gameboard-images/9.png)}
+.Gameboard-playboard-10{background-image:url(../img/gameboard-images/10.png)}
+.Gameboard-playboard-11{background-image:url(../img/gameboard-images/11.png)}
+.Gameboard-playboard-12{background-image:url(../img/gameboard-images/12.png)}
+.Gameboard-playboard-13{background-image:url(../img/gameboard-images/13.png)}
+.Gameboard-playboard-14{background-image:url(../img/gameboard-images/14.png)}
+.Gameboard-playboard-15{background-image:url(../img/gameboard-images/15.png)}
+.Gameboard-playboard-16{background-image:url(../img/gameboard-images/16.png)}
+.Gameboard-playboard-17{background-image:url(../img/gameboard-images/17.png)}
+.Gameboard-playboard-18{background-image:url(../img/gameboard-images/18.png)}
+.Gameboard-playboard-19{background-image:url(../img/gameboard-images/19.png)}
+.Gameboard-playboard-20{background-image:url(../img/gameboard-images/20.png)}
+.Gameboard-playboard-21{background-image:url(../img/gameboard-images/21.png)}
+.Gameboard-playboard-22{background-image:url(../img/gameboard-images/22.png)}
+.Gameboard-playboard-23{background-image:url(../img/gameboard-images/23.png)}
+.Gameboard-playboard-24{background-image:url(../img/gameboard-images/24.png)}
+.Gameboard-playboard-25{background-image:url(../img/gameboard-images/25.png)}
+.Gameboard-playboard-26{background-image:url(../img/gameboard-images/26.png)}
+.Gameboard-playboard-27{background-image:url(../img/gameboard-images/27.png)}
+.Gameboard-playboard-28{background-image:url(../img/gameboard-images/28.png)}
+.Gameboard-playboard-29{background-image:url(../img/gameboard-images/29.png)}
+.Gameboard-playboard-30{background-image:url(../img/gameboard-images/30.png)}
+.Gameboard-playboard-31{background-image:url(../img/gameboard-images/31.png)}
+.Gameboard-playboard-32{background-image:url(../img/gameboard-images/32.png)}
+.Gameboard-playboard-33{background-image:url(../img/gameboard-images/33.png)}
+.Gameboard-playboard-34{background-image:url(../img/gameboard-images/34.png)}
+.Gameboard-playboard-35{background-image:url(../img/gameboard-images/35.png)}
+.Gameboard-playboard-36{background-image:url(../img/gameboard-images/36.png)}
 /* Gameboard all card images */
 /* Gameboard Card widht and height */
 .Gameboard-playboard-1,
@@ -232,46 +94,20 @@ input:focus-visible {
 .Gameboard-playboard-24,
 .Gameboard-playboard-25,
 .Gameboard-playboard-26,
-.Gameboard-playboard-27
-{
-    width:7.56585462468%;
-    height: 15.7258863141%;
-    /*position: relative;*/
-}
+.Gameboard-playboard-27{width:7.56585462468%;height:15.7258863141%;}
 /* Gameboard Card widht and height */
 /* Gameboard-playboard */
 
-
-
 /* index page */
-    /* gameboard image */
-    .gameboard { width: 320px; height: 320px; 
-        animation: 2s gameboard_image_animation ease-in-out; 
-        position: absolute;
-        /* top: -217px; */
-        top:-777px;
-        left: -56px;
-        transform: rotate(36deg);
-    }
-    .gameboard img { width: 50rem; background-color: rgba(70,35,33,0.9) !important; }
+/* gameboard image */
+.gameboard{width:320px;height:320px;animation:2s gameboard_image_animation ease-in-out;position:absolute;top:-777px;left:-56px;transform:rotate(36deg)}
+.gameboard img{width:50rem;background-color:rgba(70,35,33,.9)!important}
 
     /* gameboard image animation */
-    @keyframes gameboard_image_animation {
-        to {
-            transform: scale(1);
-            transform: rotate(36deg);
-            /* top: -217px;left: -56px; */
-            top: -777px;left: -56px;
-        }
-
-        from {
-            transform: scale(1);
-            transform: rotate(0deg);
-            /* top: -325px;left: -56px;     */
-            top: -885px;left: -56px;  
-            opacity: 1;
-        }
-    }
+@keyframes gameboard_image_animation {
+    to {transform:scale(1);transform:rotate(36deg);top:-777px;left:-56px;}
+    from {transform:scale(1);transform:rotate(0deg);top:-885px;left:-56px;opacity:1;}
+}
     /* gameboard image animation */
     /* gameboard image */
 
@@ -550,9 +386,12 @@ input:focus-visible {
         left: -28%;
         top: -65%;
         position: relative;
+        animation-delay: 5s!important;
         animation: 3s color-me-in ease-in-out;
     }
-    
+    .tutorial-stap.tutorial-stap-1{
+        animation-delay: 5s!important;
+    }
     .tutorial-playariya,.wapper_child{background-color: rgba(70,35,33,0.9);}
     .tutorial-playariya img {
         width: 100%;

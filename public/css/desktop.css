@@ -959,12 +959,12 @@
 
     #joing_or_create_account .how_would h3{font-size: 120px;}
     #joing_or_create_account .login_input input{font-size: 60px;        height: 100px;}
-    #joing_or_create_account .back_arrow {        top: 50px;        left: 50px;    }
+    #joing_or_create_account .back_arrow {        top: 30px;        left: 30px;    }
     #joing_or_create_account .how_would-join button{height: 100px !important;}    
 
     #enter_room h3 {        font-size: 90px;        padding: 100px 0 40px !important;        line-height: 100px;    }
     #enter_room .login_input input {        margin-bottom: 100px;        border-width: 5px;        border-radius: 16px;        height: 100px;        font-size: 60px;  margin-bottom: 50px;  }
-    #enter_room .back_arrow {        top: 50px;  left: 50px;    }
+    #enter_room .back_arrow {        top: 30px;  left: 30px;    }
     /* 12-07 */
 }
 
@@ -1119,7 +1119,7 @@
     {
         width: 600px;
     }
-    #enter_email .back_arrow,#enter_password .back_arrow {        top: 50px;        left: 50px;    }
+    #enter_email .back_arrow,#enter_password .back_arrow {        top: 30px;        left: 30px;    }
     #enter_name  h3,
     #enter_email h3,
     #enter_password h3{ font-size: 91px; }
@@ -1959,10 +1959,10 @@
     #enter_name .login_input input { font-size: 60px; height: 100px; }
     #enter_name .login_input{margin-bottom: 70px;}
     /* 12-07 */
-    #pricing–2 .how_would{padding: 30px;}
+    #pricing–2 .how_would{padding: 50px;}
     #pricing–2 .enter_name h3 {        font-size: 45px;        line-height: 50px;  padding: 30px 0 24px !important;  }
     #pricing–2 .month-price p .month-price-text {        font-size: 29px;    }
-    #pricing–2 .how_would{width: 350px; border-radius: 15px;}
+    #pricing–2 .how_would{width: 390px; border-radius: 15px;}
     /* 12-07 */
 
     /* login page */
@@ -1994,7 +1994,7 @@
     #joing_or_create_account .back_arrow{top:30px; left:30px;}
     #joing_or_create_account.how_would{width: 500px;padding: 50px;}
     .back_arrow {        width: 50px;    }
-    #enter_room{padding:30px;}
+    #enter_room{padding:50px;}
     #enter_room .back_arrow{top: 30px;  left: 30px;}    
     #enter_room h3{padding: 50px 0 25px !important; font-size: 50px; line-height: 1;}
     #enter_room .login_input input{border-width: 2px;}

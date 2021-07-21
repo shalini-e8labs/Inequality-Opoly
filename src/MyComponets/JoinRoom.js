@@ -511,17 +511,17 @@ class App extends React.Component {
                             <div className="how_would-join join_or_login">
                                 <div className="login_input">
                                     <input type="text" placeholder="Email" value={this.state.loginemail} onChange={this.change_loginemail} />
-                                    <span style={{color: "red"}}>{this.state.errors_loginemail}</span>
+                                    <span className="input_error" style={{color: "#FA303F"}}>{this.state.errors_loginemail}</span>
                                 </div>
                                 <div className="login_input">
                                     <input type="password" placeholder="Password" value={this.state.loginpassword} onChange={this.change_loginpassword} />
-                                    <span style={{color: "red"}}>{this.state.errors_loginpassword}</span>
+                                    <span className="input_error" style={{color: "#FA303F"}}>{this.state.errors_loginpassword}</span>
                                 </div>
                                 <a class="create_account_or forget-password" href="javascript:void(0);">FORGOT YOUR PASSWORD?</a>
                                 <div className="how_would-join">
                                     <button className="sign_in_btn" id="login" onClick={this.userlogin}>SIGN IN</button>
                                 </div>
-                                <a className="create_account_or" href="javascript:void(0);" onClick={this.create_room} > CREATE AN ACCOUNT </a>
+                                <a className="create_account_or create_new_account" href="javascript:void(0);" onClick={this.create_room} > CREATE AN ACCOUNT </a>
                                 <div className="how_would-join">
                                     <button id="createaccount" onClick={() => this.singup_next(7)}>CONTINUE AS GUST</button>
                                 </div>   
@@ -533,12 +533,12 @@ class App extends React.Component {
                     {/* <!--  Pregame Waiting Room --> */}
                     {this.state.login == true && this.state.singup_process_step == 0 && this.state.room_id == '' ? 
                         <div className="how_would enter_name enter_room " id='enter_room'>
-                            <Link className="back_arrow back-name" to="/Join"><img src="img/Group_3325.png" alt="" /></Link>
+                            <Link className="back_arrow" to="/Join"><img src="img/Group_3325.png" alt="" /></Link>
                             <h3>ENTER GAME <br/> CODE</h3>
                             <div className="how_would-join join_or_login">
                                 <div className="login_input">
                                     <input type="text" placeholder="#Ikao21"  value={this.state.room_key} onChange={this.change_room_key} />
-                                    <span style={{color: "red"}}>{this.state.errors_room_key}</span>
+                                    <span className="input_error" style={{color: "#FA303F"}}>{this.state.errors_room_key}</span>
                                 </div>
                                 <div className="how_would-join">
                                     <button className="sign_in_btn enter_room_next" onClick={() => this.singup_next(10)}>JOIN</button>
@@ -551,12 +551,12 @@ class App extends React.Component {
                     {/* <!-- Enter Name box --> */}
                     {this.state.login == false && this.state.singup_process_step == 1 ? 
                         <div className="how_would enter_name" id="enter_name">
-                            <div onClick={() => this.singup_process_step_back(0)} className="back_arrow back-name"><img src="img/Group_3325.png" alt=""/></div>
+                            <div onClick={() => this.singup_process_step_back(0)} className="back_arrow"><img src="img/Group_3325.png" alt=""/></div>
                             <h3>ENTER<br/>YOUR NAME</h3>
                             <div className="how_would-join join_or_login">
                                 <div className="login_input">
                                     <input type="text" placeholder="NAME" value={this.state.signupname} onChange={this.change_signupname} />
-                                <span style={{color: "red"}}>{this.state.errors_signupname}</span>
+                                <span className="input_error" style={{color: "#FA303F"}}>{this.state.errors_signupname}</span>
                                 </div>
                                 <div className="how_would-join">
                                     <button className="sign_in_btn enter_name-join_next" onClick={() => this.singup_next(2)}>NEXT</button>
@@ -569,16 +569,16 @@ class App extends React.Component {
                     {/* Enter email box */}
                     {this.state.login == false && this.state.singup_process_step == 2 ? 
                         <div className="how_would enter_name enter_email" id='enter_email'>
-                            <div onClick={() => this.singup_process_step_back(1)}  className="back_arrow back-email"><img src="img/Group_3325.png" alt="" /></div>
+                            <div onClick={() => this.singup_process_step_back(1)}  className="back_arrow"><img src="img/Group_3325.png" alt="" /></div>
                             <h3>ENTER YOUR<br/>EMAIL</h3>
                             <div className="how_would-join join_or_login">
                                 <div className="login_input">
                                     <input type="email" placeholder="Email" value={this.state.signupemail} onChange={this.change_signupemail} />
-                                    <span style={{color: "red"}}>{this.state.errors_signupemail}</span>
+                                    <span className="input_error" style={{color: "#FA303F"}}>{this.state.errors_signupemail}</span>
                                 </div>
                                 <div className="login_input">
                                     <input type="email" placeholder="Confirm email" value={this.state.signupemailconfirm} onChange={this.change_signupemailconfirm} />
-                                    <span style={{color: "red"}}>{this.state.errors_signuemalconfirm}</span>
+                                    <span className="input_error" style={{color: "#FA303F"}}>{this.state.errors_signuemalconfirm}</span>
                                 </div>
                                 <div className="how_would-join">
                                     <button className="sign_in_btn enter_email_next" onClick={() => this.singup_next(3)}>NEXT</button>
@@ -591,16 +591,16 @@ class App extends React.Component {
                     {/* Enter password box */}
                     {this.state.login == false && this.state.singup_process_step == 3 ? 
                         <div className="how_would enter_name enter_password" id='enter_password'>
-                            <div onClick={() => this.singup_process_step_back(2)}  className="back_arrow back-email"><img src="img/Group_3325.png" alt="" /></div>
-                            <h3>ENTER YOUR PASSWORD</h3>
+                            <div onClick={() => this.singup_process_step_back(2)}  className="back_arrow"><img src="img/Group_3325.png" alt="" /></div>
+                            <h3>ENTER YOUR<br/>PASSWORD</h3>
                             <div className="how_would-join join_or_login">
                                 <div className="login_input">
                                     <input type="password" placeholder="Password" value={this.state.signuppassword} onChange={this.change_signuppassword} />
-                                    <span style={{color: "red"}}>{this.state.errors_signuppassword}</span>
+                                    <span className="input_error" style={{color: "#FA303F"}}>{this.state.errors_signuppassword}</span>
                                 </div>
                                 <div className="login_input">
                                     <input type="password" placeholder="Confirm password" value={this.state.signuppasswordconfirm} onChange={this.change_signuppasswordconfirm} />
-                                    <span style={{color: "red"}}>{this.state.errors_signuppasswordconfirm}</span>
+                                    <span className="input_error" style={{color: "#FA303F"}}>{this.state.errors_signuppasswordconfirm}</span>
                                 </div>
                                 <div className="how_would-join">
                                     <button className="sign_in_btn enter_password_next" onClick={() => this.singup_next(4)}>NEXT</button>
@@ -614,7 +614,7 @@ class App extends React.Component {
                     {this.state.login == false && this.state.singup_process_step == 4 ? 
                         <div className="pricing–2" id='pricing–2' >
                             <div className="how_would enter_name">
-                                <h3> Premium Account<br/>$5.99</h3>
+                                <h3> Premium Account<br/>$5.99 PER MONTH</h3>
                                 <div className="how_would-join join_or_login">
                                     <div className="month-price">
                                         <p>
@@ -624,6 +624,10 @@ class App extends React.Component {
                                         <p>
                                             <span className="month-price-img"><img src="img/invite.png" alt="" /></span>
                                             <span className="month-price-text green-class"> JOIN ANY ROOM</span>
+                                        </p>
+                                        <p>
+                                            <span className="month-price-img"><img src="img/invite.png" alt="" /></span>
+                                            <span className="month-price-text green-class"> INVITE PLAYERS</span>
                                         </p>
                                     </div>
                                     
@@ -636,12 +640,16 @@ class App extends React.Component {
                                 <h3>FREE Account<br/>$0.00</h3>
                                 <div className="how_would-join join_or_login">
                                     <div className="month-price">
-                                        <p>
+                                        <p style={{opacity:0}}>
                                             <span className="month-price-img"><img src="img/cannot.png" alt="" /></span>
                                             <span className="month-price-text red-class">CANNOT Create Rooms</span>
                                         </p>
                                         <p>
                                             <span className="month-price-img"><img src="img/cannot.png" alt="" /></span>
+                                            <span className="month-price-text red-class">CANNOT Create Rooms</span>
+                                        </p>
+                                        <p>
+                                            <span className="month-price-img"><img src="img/invite.png" alt="" /></span>
                                             <span className="month-price-text green-class"> JOIN ANY ROOM</span>
                                         </p>
                                     </div>
@@ -657,7 +665,7 @@ class App extends React.Component {
                     {/* payment */}
                     {this.state.login == false && this.state.singup_process_step == 5 ? 
                         <div className="how_would enter_name" id='payment'>
-                            <div onClick={() => this.singup_process_step_back(4)}  className="back_arrow back-email"><img src="img/Group_3325.png" alt="" /></div>
+                            <div onClick={() => this.singup_process_step_back(4)}  className="back_arrow"><img src="img/Group_3325.png" alt="" /></div>
                             <h3>PAYMENT DETAILS</h3>
                             <div className="how_would-join join_or_login">
                                 <CardSection/>
@@ -686,12 +694,12 @@ class App extends React.Component {
                     
                     {this.state.login == false && this.state.singup_process_step == 7 ?
                        <div className="how_would enter_name" id="enter_name">
-                        <div onClick={() => this.singup_process_step_back(0)} className="back_arrow back-name"><img src="img/Group_3325.png" alt=""/></div>
+                        <div onClick={() => this.singup_process_step_back(0)} className="back_arrow"><img src="img/Group_3325.png" alt=""/></div>
                         <h3>ENTER<br/>YOUR NAME</h3>
                         <div className="how_would-join join_or_login">
                             <div className="login_input">
                                 <input type="text" placeholder="NAME" value={this.state.signupname_guest} onChange={this.change_signupname_guest} />
-                            <span style={{color: "red"}}>{this.state.errors_signupname_guest}</span>
+                            <span className="input_error" style={{color: "#FA303F"}}>{this.state.errors_signupname_guest}</span>
                             </div>
                             <div className="how_would-join">
                                 <button className="sign_in_btn enter_name-join_next" onClick={() => this.singup_next(9)}>NEXT</button>
@@ -702,7 +710,7 @@ class App extends React.Component {
                     {this.state.login == true && this.state.room_id != ''  && this.state.singup_process_step == 10 ?
                         <div className="how_would" id='Pregame_Waiting_Room'>
                             <Redirect to='/waitingroom' />
-                            <Link className="back_arrow back-name" to="/Join"><img src="img/Group_3325.png" alt="" /></Link>
+                            <Link className="back_arrow" to="/Join"><img src="img/Group_3325.png" alt="" /></Link>
                             <div className="Pregame_Waiting_Room_main">
                                 <div className="Pregame_Waiting_Room_ID">
                                     <p>ROOM</p>
@@ -727,7 +735,7 @@ class App extends React.Component {
                     {this.state.isinvite == true ?
                         <div className="invaite_user" id='invaite_user'>
                             <div className="how_would enter_name enter_room  invaite_user_inner">
-                                <div onClick={() => this.singup_next(13)}  className="back_arrow back-email"><img src="img/Group_3325.png" alt="" /></div>
+                                <div onClick={() => this.singup_next(13)}  className="back_arrow"><img src="img/Group_3325.png" alt="" /></div>
                                 <h3>SEND AN INVITE TO...</h3>
                                 <div className="how_would-join join_or_login">
                                     <div className="login_input">
