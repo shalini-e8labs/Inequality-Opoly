@@ -5,10 +5,8 @@ import Join from "./MyComponets/Join";
 import CreateRoomfun from "./MyComponets/CreateRoom";
 import JoinRoomfun from "./MyComponets/JoinRoom";
 import Waitingroom from "./MyComponets/waitingroom/waitingroom";
-import Pickidentity from "./MyComponets/Pickidentity/pickidentity";
 import {loadStripe} from "@stripe/stripe-js";
 import {Elements} from "@stripe/react-stripe-js";
-import GameStart from "./MyComponets/GameStart";
 
 
 import {
@@ -50,12 +48,6 @@ function App() {
           </Route>
           <Route exact path="/waitingroom">
             <Waitingroom />
-          </Route>
-          <Route exact path="/Pickidentity">
-            <Pickidentity />
-          </Route>
-          <Route exact path="/GameStart">
-            <GameStart/>
           </Route>
         </Switch> 
     </Router>

@@ -17,6 +17,7 @@ input:focus-visible{outline:0}
 @keyframes cssAnimation{0%{opacity:1;visibility:visible}99%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
 .tutorials_wait_screen center{height:100%;width:100%}
 .tutorials_wait_screen img{top:40%;position:relative}
+.game_start_host_ewait_msg{font-size:15px!important;color:#342C24;opacity:0.71;margin:0 10%;font-family:Montserrat!important;font-weight:600;line-height:1.4em;}
 /* Gameboard-playboard */
 .gameplay_gameboard_wapper{background-color: rgba(70,35,33,0.9) !important;}
 .Gameboard-playboard{width:100%;height:100%}
@@ -368,9 +369,26 @@ input:focus-visible{outline:0}
     position: relative;
     clear: both;
     height: 27px;
-    background-color: #95c11f;
+    background-color:rgba(255,255,255,0.59);
     border-radius: 30px;
     margin: auto;
+    display:block;
+}
+.lodding-fills_child{
+    height: 100%;
+    width: 100%;
+    background: #95c11f;
+    border-radius: 30px;
+    animation: 5s lodding_fills_child_animation ease-in-out;
+}
+@keyframes lodding_fills_child_animation {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
 }
 /* Lodding page */
 
@@ -390,7 +408,7 @@ input:focus-visible{outline:0}
         animation: 3s color-me-in ease-in-out;
     }
     .tutorial-stap.tutorial-stap-1{
-        animation-delay: 5s!important;
+        animation-delay: 10s!important;
     }
     .tutorial-playariya,.wapper_child{background-color: rgba(70,35,33,0.9);}
     .tutorial-playariya img {

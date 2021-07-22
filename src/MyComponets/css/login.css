@@ -37,7 +37,14 @@
 	/* Pregame_Waiting_Room */
 	.how_would-join .sign_in_btn {    height: 60px !important;    font-size: 20px;}
 	#Pregame_Waiting_Room{width: 1000px;}
-	#Pregame_Waiting_Room .game-start-btn-main{width: 150px; margin-top: 30px;}
+	#Pregame_Waiting_Room .game-start-btn-main {
+		width: 220px;
+		margin-top: 30px;
+		font-family: Bangers;
+		color: #342C24;
+		opacity: 0.71;
+		font-size: 20px;
+	}
 	#Pregame_Waiting_Room .back_arrow {		width: 60px;		position: absolute;		top: 30px;		left: 30px;	}
 	#Pregame_Waiting_Room .Pregame_Waiting_Room_ID h3 {		font-size: 80px;	}
 	#Pregame_Waiting_Room .Pregame_Waiting_joing_usere_list {		padding: 30px;	}
