@@ -1,238 +1,71 @@
 @media(max-width:3000px){
 /*-----------------------------------------------------------------------------------------------*/
     /*windows height 2048*/
-    .tb_2048 .tutorial-playariya {
-        width: 2492px;
-        height: 2492px; 
-        left: -30%;
-        top: -38%;
-        /*animation: 5s color-me-in-tab-2024 ease-in-out;*/
-        animation: 3s color-me-in-tab-2024 ease-in-out;
+    .tb_2048 .tutorial-playariya{width:2492px;height:2492px;left:-30%;top:-38%;animation:3s color-me-in-tab-2024 ease-in-out}
+    @keyframes color-me-in-tab-2024{
+        0%{transform:rotateZ(90deg);position:relative;left:-51%;top:-88%}
+        50%{transform:rotateZ(0);left:0;top:0;width:2048px;height:2048px}
+        100%{left:-30%;top:-38%;width:2492px;height:2492px}
     }
-
-    @keyframes color-me-in-tab-2024 {
-        0% {
-            transform: rotateZ(90deg);
-            position: relative;
-            left: -51%;
-            top: -88%;
-        }
-
-        50% {
-            transform: rotateZ(0deg);
-            left: 0%;
-            top: 0%;
-            width: 2048px;
-            height: 2048px;
-        }
-
-        100% {
-            left: -30%;
-            top: -38%;
-            width: 2492px;
-            height: 2492px; 
-        }
+    .tb_2048 .tutorial-playariya.Gameboard-id-2{height:2492px;top:-37%;left:-28%;animation:2s Gameboard-id-2-tab-2024 ease-in-out}
+    @keyframes Gameboard-id-2-tab-2024{
+        from{top:-38%}to{top:-38%}
     }
-
-    .tb_2048 .tutorial-playariya.Gameboard-id-2 {
-        height: 2492px;
-        top: -37%;
-        left: -28%;
-        animation: 2s Gameboard-id-2-tab-2024 ease-in-out;
+    .tb_2048 .tutorial-playariya.Gameboard-id-3{left:-21%;top:-38%;animation:2s Gameboard-id-3-tab-2024 ease-in-out}
+    @keyframes Gameboard-id-3-tab-2024{
+        from{top:-38%;left:-28%}to{left:-21%;top:-38%}
     }
-
-    @keyframes Gameboard-id-2-tab-2024 {
-        from {
-            top: -38%;
-        }
-
-        to {
-            top: -38%;
-        }
-    }
-
-    .tb_2048 .tutorial-playariya.Gameboard-id-3 {
-        left: -21%;
-        top: -38%;
-        animation: 2s Gameboard-id-3-tab-2024 ease-in-out;
-    }
-
-    @keyframes Gameboard-id-3-tab-2024 {
-        from {
-            top: -38%;
-            left: -28%
-        }
-
-        to {
-            left: -21%;
-            top: -38%;
-        }
-    }
-
-    .tb_2048 .tutorial-playariya.Gameboard-id-4{
-        top: -38%;
-        left: -2%;
-        animation: 2s Gameboard-id-4-tab-2024 ease-in-out;
-    }
-
-    @keyframes Gameboard-id-4-tab-2024 {
-        from {
-            top: -38%;
-            left: -21%
-        }
-
-        to {
-            top: -38%;
-            left: -2%
-        }
+    .tb_2048 .tutorial-playariya.Gameboard-id-4{top:-38%;left:-2%;animation:2s Gameboard-id-4-tab-2024 ease-in-out}
+    @keyframes Gameboard-id-4-tab-2024{
+        from{top:-38%;left:-21%}to{top:-38%;left:-2%}
     }
 
     /* tutorial stap 5 */
-    .tb_2048 .tutorial-playariya.Gameboard-id-5{
-        top: -38%;
-        left: 11%;
-        animation: 2s Gameboard-id-5-tab-2024 ease-in-out;
-    }
-
-    @keyframes Gameboard-id-5-tab-2024 {
-        from {
-            top: -38%;
-            left: -2%
-        }
-
-        to {
-            top: -38%;
-            left: 11%
-        }
+    .tb_2048 .tutorial-playariya.Gameboard-id-5{top:-38%;left:11%;animation:2s Gameboard-id-5-tab-2024 ease-in-out}
+    @keyframes Gameboard-id-5-tab-2024{
+        from{top:-38%;left:-2%}
+        to{top:-38%;left:11%}
     }
 
     /* tutorial stap 6 */
-    .tb_2048 .tutorial-playariya.Gameboard-id-6{
-        top: -38%;
-        left: 34%;
-        animation: 2s Gameboard-id-6-tab-2024 ease-in-out;
+    .tb_2048 .tutorial-playariya.Gameboard-id-6{top:-38%;left:34%;animation:2s Gameboard-id-6-tab-2024 ease-in-out}
+    @keyframes Gameboard-id-6-tab-2024{
+        from{top:-38%;left:11%}
+        to{top:-38%;left:34%}
     }
-
-    @keyframes Gameboard-id-6-tab-2024 {
-        from {
-            top: -38%;
-            left: 11%
-        }
-
-        to {
-            top: -38%;
-            left: 34%
-        }
-    }
-
-    .tb_2048 .tutorial-playariya.Gameboard-id-7 img,
-    .tb_2048 .tutorial-playariya.Gameboard-id-8 img, 
-    .tb_2048 .tutorial-playariya.Gameboard-id-9 img{
-        width: 2492px;
-        height: 2492px; 
-    }
+    .tb_2048 .tutorial-playariya.Gameboard-id-7 img,.tb_2048 .tutorial-playariya.Gameboard-id-8 img,.tb_2048 .tutorial-playariya.Gameboard-id-9 img{width:2492px;height:2492px}
 
     /* tutorial stap 7 */
-    .tb_2048 .tutorial-playariya.Gameboard-id-7{
-        top: -38%;
-        left: 34%;
-        animation: 2s Gameboard-id-7-tab-2024 ease-in-out;
-    }
+    .tb_2048 .tutorial-playariya.Gameboard-id-7{top:-38%;left:34%;animation:2s Gameboard-id-7-tab-2024 ease-in-out}
 
     @keyframes Gameboard-id-7-tab-2024 {
-        from {
-            top: -38%;
-            left: 11%;
-            transform: rotateZ(0deg);
-        }
-
-        to {
-            top: -38%;
-            left: 34%;
-            transform: rotateZ(-90deg);
-        }
+        from{top:-38%;left:11%;transform:rotateZ(0)}
+        to{top:-38%;left:34%;transform:rotateZ(-90deg)}
     }
 
     /* tutorial stap 8 */
-    .tb_2048 .tutorial-playariya.Gameboard-id-8{
-        top: -38%;
-        left: 34%;
-        animation: 2s Gameboard-id-8-tab-2024 ease-in-out;
-        transform: rotateZ(-180deg);
-    }
+    .tb_2048 .tutorial-playariya.Gameboard-id-8{top:-38%;left:34%;animation:2s Gameboard-id-8-tab-2024 ease-in-out;transform:rotateZ(-180deg)}
 
     @keyframes Gameboard-id-8-tab-2024 {
-        from {
-            top: -38%;
-            left: 24%;
-            transform: rotateZ(-90deg);
-        }
-
-        to {
-            top: -38%;
-            left: 34%;
-            transform: rotateZ(-180deg);
-        }
+        from{top:-38%;left:24%;transform:rotateZ(-90deg)}
+        to{top:-38%;left:34%;transform:rotateZ(-180deg)}
     }
 
     /* tutorial stap 9 */
-    .tb_2048  .identity_cards-main{height: 70vh;}
-    .tb_2048  .identity_cards-tutorial{height: 30vh;}
-
-    .tb_2048 .tutorial-stap.tutorial-stap-2,
-    .tb_2048 .tutorial-stap.tutorial-stap-3, 
-    .tb_2048 .tutorial-stap.tutorial-stap-4, 
-    .tb_2048 .tutorial-stap.tutorial-stap-5, 
-    .tb_2048 .tutorial-stap.tutorial-stap-6, 
-    .tb_2048 .tutorial-stap.tutorial-stap-7, 
-    .tb_2048 .tutorial-stap.tutorial-stap-8{
-        bottom: 5%;
-        height: 210px;
-    }
+    .tb_2048 .identity_cards-main{height: 70vh;}
+    .tb_2048 .identity_cards-tutorial{height: 30vh;}
+    .tb_2048 .tutorial-stap.tutorial-stap-2,.tb_2048 .tutorial-stap.tutorial-stap-3,.tb_2048 .tutorial-stap.tutorial-stap-4,.tb_2048 .tutorial-stap.tutorial-stap-5,.tb_2048 .tutorial-stap.tutorial-stap-6,.tb_2048 .tutorial-stap.tutorial-stap-7,.tb_2048 .tutorial-stap.tutorial-stap-8{bottom:5%;height:210px}}
 
     /* joind room start */
-    .tb_2048 .how_would{
-        width: 600px;
-        padding: 45px 45px;        
-    }
-
-    .tb_2048  .login_input input{
-        font-size: 30px;
-        height: 50px;
-    }   
-
-    .tb_2048   .sign_in_btn{
-        height: 50px !important;
-        font-size: 20px;
-    }
-
-    .tb_2048 .join_or_login .how_would-join button{
-        height: 50px !important;
-        font-size: 20px;
-    }
-
-    .tb_2048 .back_arrow{
-        width: 45px;
-        height: 45px;
-    }
-
-    .tb_2048 .join_or_login a{
-        font-size: 20px;
-    }
-    .tb_2048 #enter_name,
-    .tb_2048 #enter_room,
-    .tb_2048 #enter_email,
-    .tb_2048 #enter_password
-    {
-        width: 500px;
-    }
-    .tb_2048 .Pregame_Waiting_joing_usere_list{
-        width: 50%;
-    }
-
-    .tb_2048 .Pregame_Waiting_Room_ID{
-        width: 50%;
-    }
+    .tb_2048 .how_would{width:600px;padding:45px 45px}
+    .tb_2048 .login_input input{font-size:30px;height:50px}
+    .tb_2048 .sign_in_btn{height:50px!important;font-size:20px}
+    .tb_2048 .join_or_login .how_would-join button{height:50px!important;font-size:20px}
+    .tb_2048 .back_arrow{width:45px;height:45px}
+    .tb_2048 .join_or_login a{font-size:20px}
+    .tb_2048 #enter_email,.tb_2048 #enter_name,.tb_2048 #enter_password,.tb_2048 #enter_room{width:500px}
+    .tb_2048 .Pregame_Waiting_joing_usere_list{width:50%}
+    .tb_2048 .Pregame_Waiting_Room_ID{width:50%}
     /* joind room end */
 
     /*-bonesh start-*/
