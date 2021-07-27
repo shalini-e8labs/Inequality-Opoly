@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import './css/Tutorials.css';
-
+import '.././css/Tutorials.css';
 class App extends Component {
     constructor(props) {
         super(props);
@@ -12,75 +11,77 @@ class App extends Component {
         // sreen wappper 
         <div class="wapper">
             <div class="wapper_child">
-                <div className="tutorials_wait_screen">
-                    <center><img src="/img/loader.gif" /></center>
-                </div>
+                {this.state.loaded ? null :
+                    <div className="tutorials_wait_screen">
+                        <center><img src="/img/loader.gif" /></center>
+                    </div>
+                }
                 {/* Gameboard Image  */}
                 <div class="tutorial-playariya Gameboard-id-1" >
                     {/* <img src="img/December2020-Gameboard.png" alt=""/>  */}
                     <table class="Gameboard-playboard">
                         <tr>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-paydayi"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-19"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-20"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-21"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-22"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-23"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-24"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-25"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-26"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-27"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-jack_poTi"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-paydayi"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-19"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-20"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-21"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-22"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-23"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-24"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-25"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-26"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-27"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-jack_poTi"></td>
                         </tr>
                         <tr>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-18"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-18"></td>
                             <td class="center_gmaeboard" colspan="9" rowspan="9" ></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-28"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-28"></td>
                         </tr>
                         <tr>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-17"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-29"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-17"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-29"></td>
                         </tr>
                         <tr>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-16"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-30"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-16"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-30"></td>
                         </tr>
                         <tr>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-15"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-31"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-15"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-31"></td>
                         </tr>
                         <tr>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-14"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-32"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-14"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-32"></td>
                         </tr>
                         <tr>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-13"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-33"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-13"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-33"></td>
                         </tr>
                         <tr>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-12"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-34"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-12"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-34"></td>
                         </tr>
                         <tr>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-11"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-35"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-11"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-35"></td>
                         </tr>
                         <tr>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-10"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-36"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-10"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-36"></td>
                         </tr>
                         <tr>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-9"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-8"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-7"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-6_1"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-6"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-5"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-4"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-3"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-2"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-1"></td>
-                            <td class="Gameboard-playboard-card Gameboard-playboard-start"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-9"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-8"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-7"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-6_1"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-6"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-5"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-4"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-3"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-2"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-1"></td>
+                            <td loading="lazy" class="Gameboard-playboard-card Gameboard-playboard-start"></td>
                         </tr>
                     </table>
                 </div>
@@ -91,16 +92,16 @@ class App extends Component {
                 <div class="identity_cards-main Gameboard-id-9">
                     <div class="identity_cards-inner">
                         <div class="identity_cards identity_cards-1">
-                            <img src="img/1.png" alt=""/>
+                            <img src="img/indentity/1.png" alt=""/>
                         </div>
                         <div class="identity_cards identity_cards-2">
-                            <img src="img/2.png" alt=""/>
+                            <img src="img/indentity/2.png" alt=""/>
                         </div>
                         <div class="identity_cards identity_cards-3">
-                            <img src="img/3.png" alt=""/>
+                            <img src="img/indentity/3.png" alt=""/>
                         </div>
                         <div class="identity_cards identity_cards-4">
-                            <img src="img/4.png" alt=""/>
+                            <img src="img/indentity/4.png" alt=""/>
                         </div>
                     </div>
                 </div>
@@ -108,16 +109,16 @@ class App extends Component {
                 <div class="identity_cards-main Gameboard-id-10">
                     <div class="identity_cards-inner">
                         <div class="identity_cards identity_cards-1">
-                            <img src="img/5.png" alt=""/>
+                            <img src="img/indentity/5.png" alt=""/>
                         </div>
                         <div class="identity_cards identity_cards-2">
-                            <img src="img/6.png" alt=""/>
+                            <img src="img/indentity/6.png" alt=""/>
                         </div>
                         <div class="identity_cards identity_cards-3">
-                            <img src="img/7.png" alt=""/>
+                            <img src="img/indentity/7.png" alt=""/>
                         </div>
                         <div class="identity_cards identity_cards-4">
-                            <img src="img/8.png" alt=""/>
+                            <img src="img/indentity/8.png" alt=""/>
                         </div>
                     </div>
                 </div>

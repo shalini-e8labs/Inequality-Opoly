@@ -1,10 +1,11 @@
 import './App.css';
 import SplashScreen from "./MyComponets/SplashScreen";
-import Tutorials from "./MyComponets/Tutorials";
+import Tutorials from "./MyComponets/Tutorials/Tutorials";
 import Join from "./MyComponets/Join";
 import CreateRoomfun from "./MyComponets/CreateRoom";
 import JoinRoomfun from "./MyComponets/JoinRoom";
 import Waitingroom from "./MyComponets/waitingroom/waitingroom";
+import Forgotpassword from "./MyComponets/ForgotPassword/ForgotPassword";
 import {loadStripe} from "@stripe/stripe-js";
 import {Elements} from "@stripe/react-stripe-js";
 
@@ -48,6 +49,9 @@ function App() {
           </Route>
           <Route exact path="/waitingroom">
             <Waitingroom />
+          </Route>
+          <Route path="/ForgotPassword">
+            <Forgotpassword />
           </Route>
         </Switch> 
     </Router>

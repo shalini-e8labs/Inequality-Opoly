@@ -53,7 +53,8 @@ class App extends React.Component {
             invite_email : '',
             error_invite_email : '',
             message : '',
-            users : []
+            users : [],
+            errors_payment : ''
 
         };
 
@@ -385,6 +386,7 @@ class App extends React.Component {
     }
 
     singup_function = async (event)=>{
+        this.setState({errors_payment: ''});
         event.preventDefault();
         const {stripe, elements} = this.props
         if(!stripe || !elements) return;
@@ -393,41 +395,44 @@ class App extends React.Component {
         if(!result){
             console.log(result.error.message);
         }else{
-            console.log(result);
-            let data={
-                "name" : this.state.signupname,
-                "email" : this.state.signupemail,
-                "password" : this.state.signuppassword,
-                "ispayment" : 1,
-                "cardnumber" : result.token.card.last4,
-                "token" : result.token.id,
-                "securitycode" : '',
-                "expiration" : result.token.card.exp_month+result.token.card.exp_year,
-                "zipcode" : this.state.zipcode,
-                "gateway" : 'stripe',
-                "amount" : '1.00'
-            }
-    
-            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/registration", {
-                method: "POST",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body:JSON.stringify(data)
-            }).then((resp)=>{
-                resp.json().then((result)=>{
-                    if(result[0][0].SUCCESS == 1){
-                        localStorage.setItem('token', 'Bearer '+result[1][0].token);
-                        localStorage.setItem('user', JSON.stringify(result[2][0]));
-                        this.setState({login: true});
-                        this.setState({IsSubscription: result[2][0].IsSubscription});
-                        this.setState({singup_process_step: 6});
-                    }else{
-                        this.setState({errors_loginpassword: result[1][0].Message});
-                    }
+            if(!result.error){
+                let data={
+                    "name" : this.state.signupname,
+                    "email" : this.state.signupemail,
+                    "password" : this.state.signuppassword,
+                    "ispayment" : 1,
+                    "cardnumber" : result.token.card.last4,
+                    "token" : result.token.id,
+                    "securitycode" : '',
+                    "expiration" : result.token.card.exp_month+result.token.card.exp_year,
+                    "zipcode" : this.state.zipcode,
+                    "gateway" : 'stripe',
+                    "amount" : '1.00'
+                }
+        
+                fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/registration", {
+                    method: "POST",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body:JSON.stringify(data)
+                }).then((resp)=>{
+                    resp.json().then((result)=>{
+                        if(result[0][0].SUCCESS == 1){
+                            localStorage.setItem('token', 'Bearer '+result[1][0].token);
+                            localStorage.setItem('user', JSON.stringify(result[2][0]));
+                            this.setState({login: true});
+                            this.setState({IsSubscription: result[2][0].IsSubscription});
+                            this.setState({singup_process_step: 6});
+                        }else{
+                            this.setState({errors_loginpassword: result[1][0].Message});
+                        }
+                    })
                 })
-            })
+            }else{
+                this.setState({errors_payment: result.error.message});
+            }
         }
     }
     
@@ -538,7 +543,7 @@ class App extends React.Component {
                             <div className="how_would-join join_or_login">
                                 <div className="login_input">
                                     <input type="text" placeholder="#Ikao21"  value={this.state.room_key} onChange={this.change_room_key} />
-                                    <span className="input_error" style={{color: "#FA303F"}}>{this.state.errors_room_key}</span>
+                                    <span className="input_error" style={{color: "#FA303F",marginTop:"-40px",paddingBottom:"40px"}}>{this.state.errors_room_key}</span>
                                 </div>
                                 <div className="how_would-join">
                                     <button className="sign_in_btn enter_room_next" onClick={() => this.singup_next(10)}>JOIN</button>
@@ -669,6 +674,7 @@ class App extends React.Component {
                             <h3>PAYMENT DETAILS</h3>
                             <div className="how_would-join join_or_login">
                                 <CardSection/>
+                                <span className="input_error" style={{color: "#FA303F"}}>{this.state.errors_payment}</span>
                                 <div className="how_would-join">
                                     <button className="sign_in_btn enter_payment_next" onClick={this.singup_function}>SIGN UP</button>
                                 </div>

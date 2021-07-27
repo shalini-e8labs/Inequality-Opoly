@@ -52,7 +52,9 @@ class App extends React.Component {
             user : temp_name,
             isinvite : false,
             invite_email : '',
-            error_invite_email : ''
+            error_invite_email : '',
+            forgot_password : 0,
+            errors_payment : ''
         };
         if(localStorage.getItem('token') != '' && localStorage.getItem('token') != null){
             if(this.state.room_key == ''){
@@ -71,11 +73,12 @@ class App extends React.Component {
                     body:JSON.stringify(data)
                 }).then((resp)=>{
                     resp.json().then((result)=>{
+                        this.setState({singup_process_step: 6});
                         if(result[0][0].SUCCESS == 1){
                             localStorage.setItem('room', JSON.stringify(result[1][0]));
                             localStorage.setItem('room_host', 1);
                             setTimeout(() =>  
-                                this.setState({IsSubscription: 1,room_key: result[1][0].room_key,room_id:result[1][0].room_id})
+                                this.setState({IsSubscription: 1,room_key: result[1][0].room_key,room_id:result[1][0].room_id,singup_process_step:0})
                             ,3000);
                             
                         }
@@ -108,7 +111,57 @@ class App extends React.Component {
         this.change_zipcode = this.change_zipcode.bind(this);
         this.buynow_function = this.buynow_function.bind(this);
         this.change_invite_email = this.change_invite_email.bind(this);
+        this.forgot_password_function = this.forgot_password_function.bind(this);
     }
+
+    forgot_password_function(e){
+        if(e == 0){
+            this.setState({forgot_password: e});
+        }
+        if(e == 1){
+            let regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            let error_log = 0;
+            this.setState({errors_loginemail: ''});
+            let data={
+                "email" : this.state.loginemail,
+            }
+
+            if(this.state.loginemail == ''){
+                error_log = 1;
+                this.setState({errors_loginemail: 'Please enter Email'});
+            }else{
+                if (!regEmail.test(this.state.loginemail)) {
+                    error_log = 1;
+                    this.setState({errors_loginemail: 'Invalid Email Address'});
+                }
+            }
+            if(error_log == 1){
+                return false;
+            }
+            this.setState({forgot_password: e});
+        }
+        if(e == 2){
+            let data={
+                "email" : this.state.loginemail,
+            }
+
+            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/forgot_password", {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify(data)
+            }).then((resp)=>{
+                resp.json().then((result)=>{
+                    this.setState({forgot_password: e});
+                })
+            })
+            
+        }
+    }
+
+
     // Function logic
     change_invite_email(e) {
         this.setState({invite_email: e.target.value});
@@ -287,6 +340,7 @@ class App extends React.Component {
     }
 
     singup_function = async (event)=>{
+        this.setState({errors_payment: ''});
         event.preventDefault();
         const {stripe, elements} = this.props
         if(!stripe || !elements) return;
@@ -295,75 +349,79 @@ class App extends React.Component {
         if(!result){
             console.log(result.error.message);
         }else{
-            let data={
-                "name" : this.state.signupname,
-                "email" : this.state.signupemail,
-                "password" : this.state.signuppassword,
-                "ispayment" : 1,
-                "token" : result.token.id,
-                "cardnumber" : result.token.card.last4,
-                "securitycode" : '',
-                "expiration" : result.token.card.exp_month+result.token.card.exp_year,
-                "zipcode" : this.state.zipcode,
-                "gateway" : 'stripe',
-                "amount" : '1.00'
-            }
-    
-            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/registration", {
-                method: "POST",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body:JSON.stringify(data)
-            }).then((resp)=>{
-                resp.json().then((result)=>{
-                    if(result[0][0].SUCCESS == 1){
-                        localStorage.setItem('token', 'Bearer '+result[1][0].token);
-                        localStorage.setItem('user', JSON.stringify(result[2][0]));
+            if(!result.error){
+                let data={
+                    "name" : this.state.signupname,
+                    "email" : this.state.signupemail,
+                    "password" : this.state.signuppassword,
+                    "ispayment" : 1,
+                    "token" : result.token.id,
+                    "cardnumber" : result.token.card.last4,
+                    "securitycode" : '',
+                    "expiration" : result.token.card.exp_month+result.token.card.exp_year,
+                    "zipcode" : this.state.zipcode,
+                    "gateway" : 'stripe',
+                    "amount" : '1.00'
+                }
+        
+                fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/registration", {
+                    method: "POST",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body:JSON.stringify(data)
+                }).then((resp)=>{
+                    resp.json().then((result)=>{
+                        if(result[0][0].SUCCESS == 1){
+                            localStorage.setItem('token', 'Bearer '+result[1][0].token);
+                            localStorage.setItem('user', JSON.stringify(result[2][0]));
 
-                        let data={
-                            "PlayerID" : JSON.parse(localStorage.getItem('user')).PlayerID,
-                            "name" : JSON.parse(localStorage.getItem('user')).Name,
-                            "email" : JSON.parse(localStorage.getItem('user')).Email
-                        }
-                        fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/room_create", {
-                            method: "POST",
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json',
-                                'authorization': localStorage.getItem('token'),
-                            },
-                            body:JSON.stringify(data)
-                        }).then((resp)=>{
-                            resp.json().then((result)=>{
-                                if(result[0][0].SUCCESS == 1){
-                                    localStorage.setItem('room', JSON.stringify(result[1][0]));
-                                    localStorage.setItem('room_host', 1);
-                                    this.setState({room_key: result[1][0].room_key});
-                                    this.setState({room_id: result[1][0].room_id});
-                                    this.setState({singup_process_step:0});
-                                }
-                                if(result[0][0].SUCCESS == 2){
-                                    localStorage.removeItem('token');
-                                    localStorage.removeItem('user');
-                                    this.setState({login: 'false'});
-                                }
+                            let data={
+                                "PlayerID" : JSON.parse(localStorage.getItem('user')).PlayerID,
+                                "name" : JSON.parse(localStorage.getItem('user')).Name,
+                                "email" : JSON.parse(localStorage.getItem('user')).Email
+                            }
+                            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/room_create", {
+                                method: "POST",
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json',
+                                    'authorization': localStorage.getItem('token'),
+                                },
+                                body:JSON.stringify(data)
+                            }).then((resp)=>{
+                                resp.json().then((result)=>{
+                                    if(result[0][0].SUCCESS == 1){
+                                        localStorage.setItem('room', JSON.stringify(result[1][0]));
+                                        localStorage.setItem('room_host', 1);
+                                        this.setState({room_key: result[1][0].room_key});
+                                        this.setState({room_id: result[1][0].room_id});
+                                        this.setState({singup_process_step:0});
+                                    }
+                                    if(result[0][0].SUCCESS == 2){
+                                        localStorage.removeItem('token');
+                                        localStorage.removeItem('user');
+                                        this.setState({login: 'false'});
+                                    }
+                                })
                             })
-                        })
 
-                        this.setState({login: true});
-                        this.setState({IsSubscription: result[2][0].IsSubscription});
-                        this.setState({singup_process_step: 5});
-                    }else{
-                        this.setState({errors_loginpassword: result[1][0].Message});
-                    }
+                            this.setState({login: true});
+                            this.setState({IsSubscription: result[2][0].IsSubscription});
+                            this.setState({singup_process_step: 5});
+                        }else{
+                            this.setState({errors_loginpassword: result[1][0].Message});
+                        }
+                    })
                 })
-            })
+            }else{
+                this.setState({errors_payment: result.error.message});
+            }
         }
     }
     buynow_function = async (event)=>{
-        
+        this.setState({errors_payment: ''});
         event.preventDefault();
         const {stripe, elements} = this.props
         if(!stripe || !elements) return;
@@ -372,76 +430,82 @@ class App extends React.Component {
         if(!result){
             console.log(result.error.message);
         }else{
-            let data={
-                "cardnumber" : result.token.card.last4,
-                "securitycode" : '',
-                "expiration" : result.token.card.exp_month+result.token.card.exp_year,
-                "zipcode" : this.state.zipcode,
-                "gateway" : 'stripe',
-                "amount" : '1.00',
-                "token" : result.token.id,
-                "PlayerID" : JSON.parse(localStorage.getItem('user')).PlayerID,
-                "token" : result.token.id
-            }
-    
-            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/subscription", {
-                method: "POST",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'authorization': localStorage.getItem('token'),
-                },
-                body:JSON.stringify(data)
-            }).then((resp)=>{
-                resp.json().then((result)=>{
-                    if(result[0][0].SUCCESS == 1){
+            if(!result.error){
+                let data={
+                    "cardnumber" : result.token.card.last4,
+                    "securitycode" : '',
+                    "expiration" : result.token.card.exp_month+result.token.card.exp_year,
+                    "zipcode" : this.state.zipcode,
+                    "gateway" : 'stripe',
+                    "amount" : '1.00',
+                    "token" : result.token.id,
+                    "PlayerID" : JSON.parse(localStorage.getItem('user')).PlayerID,
+                    "token" : result.token.id
+                }
+        
+                fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/subscription", {
+                    method: "POST",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'authorization': localStorage.getItem('token'),
+                    },
+                    body:JSON.stringify(data)
+                }).then((resp)=>{
+                    resp.json().then((result)=>{
+                        if(result[0][0].SUCCESS == 1){
 
-                        let data={
-                            "PlayerID" : JSON.parse(localStorage.getItem('user')).PlayerID,
-                            "name" : JSON.parse(localStorage.getItem('user')).Name,
-                            "email" : JSON.parse(localStorage.getItem('user')).Email
-                        }
-                        fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/room_create", {
-                            method: "POST",
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json',
-                                'authorization': localStorage.getItem('token'),
-                            },
-                            body:JSON.stringify(data)
-                        }).then((resp)=>{
-                            resp.json().then((result)=>{
-                                if(result[0][0].SUCCESS == 1){
-                                    localStorage.setItem('room', JSON.stringify(result[1][0]));
-                                    localStorage.setItem('room_host', 1);
-                                    this.setState({room_key: result[1][0].room_key});
-                                    this.setState({room_id: result[1][0].room_id});
-                                    setTimeout(() => 
-                                        this.setState({ singup_process_step:0,IsSubscription:1}), 
-                                        3000
-                                    );
-                                }
-                                if(result[0][0].SUCCESS == 2){
-                                    localStorage.removeItem('token');
-                                    localStorage.removeItem('user');
-                                    this.setState({login: 'false'});
-                                }
+                            let data={
+                                "PlayerID" : JSON.parse(localStorage.getItem('user')).PlayerID,
+                                "name" : JSON.parse(localStorage.getItem('user')).Name,
+                                "email" : JSON.parse(localStorage.getItem('user')).Email
+                            }
+                            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/room_create", {
+                                method: "POST",
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json',
+                                    'authorization': localStorage.getItem('token'),
+                                },
+                                body:JSON.stringify(data)
+                            }).then((resp)=>{
+                                resp.json().then((result)=>{
+                                    if(result[0][0].SUCCESS == 1){
+                                        localStorage.setItem('room', JSON.stringify(result[1][0]));
+                                        localStorage.setItem('room_host', 1);
+                                        this.setState({room_key: result[1][0].room_key});
+                                        this.setState({room_id: result[1][0].room_id});
+                                        setTimeout(() => 
+                                            this.setState({ singup_process_step:0,IsSubscription:1}), 
+                                            3000
+                                        );
+                                    }
+                                    if(result[0][0].SUCCESS == 2){
+                                        localStorage.removeItem('token');
+                                        localStorage.removeItem('user');
+                                        this.setState({login: 'false'});
+                                    }
+                                })
                             })
-                        })
 
-                        this.setState({IsSubscription: 1});
-                        this.setState({singup_process_step: 5});
-                    }else{
-                        this.setState({errors_loginpassword: ''});
-                    }
+                            this.setState({IsSubscription: 1});
+                            this.setState({singup_process_step: 5});
+                        }else{
+                            this.setState({errors_loginpassword: ''});
+                        }
+                    })
                 })
-            })
+            }else{
+                this.setState({errors_payment: result.error.message});
+            }
         }
     }
     
     singup_process_step_back(e){
         this.setState({singup_process_step: e});
     }
+
+    
     
     userlogin(e) {
         let regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -550,7 +614,7 @@ class App extends React.Component {
                 <div className="how_would-main">
 
                     {/*  create and join Room */}
-                    {this.state.login  == false && this.state.singup_process_step == 0 ? 
+                    {this.state.login == false && this.state.singup_process_step == 0 ? 
                         <div className="how_would" id="joing_or_create_account">
                             <Link className="back_arrow" to="/Join"><img src="img/Group_3325.png" alt="" /></Link>
                             <h3>Log in or <br/>Create Account</h3>
@@ -563,7 +627,7 @@ class App extends React.Component {
                                     <input type="password" placeholder="Password" value={this.state.loginpassword} onChange={this.change_loginpassword} />
                                     <span className="input_error" style={{color: "#FA303F"}}>{this.state.errors_loginpassword}</span>
                                 </div>
-                                <a className="create_account_or forget-password" href="javascript:void(0);">FORGOT YOUR PASSWORD?</a>
+                                <a className="create_account_or forget-password" onClick={() => this.forgot_password_function(1)} href="javascript:void(0);">FORGOT YOUR PASSWORD?</a>
                                 <div className="how_would-join">
                                     <button className="sign_in_btn" id="login" onClick={this.userlogin}>SIGN IN</button>
                                 </div>
@@ -576,6 +640,26 @@ class App extends React.Component {
                         </div>
                     : ""}
                     {/*  create and join Room */}
+                    {this.state.forgot_password == 1 ?
+                        <div className="forgot_password" id='forgot_password'>
+                            <div className="how_would enter_room forgot_password_inner">
+                                <div className="back_arrow"><img  onClick={() => this.forgot_password_function(0)} src="img/Group_3325.png" alt="" /></div>
+                                <h3>RESET YOUR<br/>PASSWORD?</h3>
+                                <p>We'll send a password reset link<br/>to your email</p>
+                                <div className="how_would-join join_or_login">
+                                    <div className="login_input">
+                                    </div>
+                                    <div className="how_would-join">
+                                        <button className="sign_in_btn enter_name_next" onClick={() => this.forgot_password_function(2)} >RESET PASSWORD</button>
+                                    </div>
+                                    <div class="how_would-join">
+                                        <br/>
+                                        <button id="createaccount" onClick={() => this.forgot_password_function(0)} >CANCEL</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    : ""}
 
                     {/* <!--  Pregame Waiting Room --> */}
                     {this.state.login == true && this.state.singup_process_step == 0 && this.state.IsSubscription == 1 ? 
@@ -593,9 +677,6 @@ class App extends React.Component {
                                 <div className="Pregame_Waiting_joing_usere_list">
                                     <div className="Pregame_Waiting_joing_usere_list-inner">
                                         <p className="host"><img className="host_icon" src="img/Group3331.png" /><span className="user_name">{this.state.user} (host)</span></p>
-                                        {/* <p><span className="user_name">Melanie</span><span className="user_icon"><img src="img/Group3333.png" alt="" /></span></p>
-                                        <p><span className="user_name">Noah</span><span className="user_icon"><img src="img/Group3333.png" alt="" /></span></p>
-                                        <p><span className="user_name">Andy</span><span className="user_icon"><img src="img/Group3333.png" alt="" /></span></p> */}
                                     </div>
                                     <div className="how_would-join">
                                         <button className="sign_in_btn enter_room_next" onClick={() => this.singup_next(5)}>INVITE PLAYERS</button>
@@ -676,6 +757,8 @@ class App extends React.Component {
                             <div className="how_would-join join_or_login">
                                 <CardSection/>
 
+                                <span className="input_error" style={{color: "#FA303F"}}>{this.state.errors_payment}</span>
+                                
                                 <div className="how_would-join">
                                     {this.state.login == true && this.state.IsSubscription == 0 ?
                                         <button className="sign_in_btn enter_payment_next" onClick={this.buynow_function}>Pay Now</button>
@@ -722,6 +805,13 @@ class App extends React.Component {
                             </div>
                         </div>
                     : ""}
+
+                    {this.state.singup_process_step == 6 ?
+                        <div className="tutorials_wait_screen">
+                            <center><img src="/img/loader.gif" /></center>
+                        </div>
+                    : ""
+                    }
                     
                     {/* invaite user box box */}
                     

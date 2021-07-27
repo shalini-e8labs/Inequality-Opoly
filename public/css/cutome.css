@@ -893,7 +893,7 @@ input:focus-visible{outline:0}
         }
     /*login*/
     /* Invaite user */
-        #invaite_user {
+        #invaite_user,#forgot_password {
             position: fixed;
             top: 0;
             left: 0;
@@ -903,11 +903,23 @@ input:focus-visible{outline:0}
             z-index: 999;
             display: flex;
         }
-        .invaite_user_inner {
+        .invaite_user_inner,#forgot_password .forgot_password_inner {
             margin: auto;
             text-align: center;
             border-radius: 15px;
-        }    
+        }
+        .how_would.enter_room.forgot_password_inner {
+            width: 420px;
+        }
+        .forgot_password_inner p {
+            font-family: Montserrat;
+            font-weight: 500;
+            color: rgba(52, 44, 36, 0.85);
+            font-size: 18px;
+        }
+        .forgot_password_inner h3 {
+            font-size:50px !important;
+        }
 
         .send_email {
             float: left;

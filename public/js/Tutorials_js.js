@@ -1,3 +1,11 @@
+
+$('body')
+.css('background-image','url(http://picture.de/image.png)')
+.waitForImages(function() {
+  alert('Background image done loading');
+  // This *does* work
+}, $.noop, true);
+
 // Tutiral stap show and animation 
     // windows with
     var sreen_width = parseFloat(window.innerWidth);
