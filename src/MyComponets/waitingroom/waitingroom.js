@@ -4,6 +4,7 @@ import { Redirect } from "react-router";
 import io from "socket.io-client"
 import DOMPurify from "dompurify";
 import queryString from 'query-string';
+import {gameboard_assets} from "./gameboard_assets.js"
 
 const ENDPOINT = 'http://api.inequalityopoly.www70-32-25-208.a2hosted.com/';
 let socket;
@@ -196,7 +197,7 @@ function App() {
 	// 	],
 	// ]
 
-	let temp_card = [
+	/*let temp_card = [
 		[
 			{ "name":"Pay Day", "value":"Player pays  you $70 every time they land on this space" },
 		],
@@ -236,7 +237,7 @@ function App() {
 		[
 			{ "name":"Yellow Life Event", "value":"Player pays  you $70 every time they land on this space" },
 		]
-	]
+	]*/
 
 	let srnumber2 = 0;
 	const [hostid, sethostid] = useState(JSON.parse(localStorage.getItem('room')).PlayerID);
@@ -260,8 +261,9 @@ function App() {
 	const [dice1, setdice1] = useState(0);
 	const [dice2, setdice2] = useState(0);
 	const [identity_cards, setidentity_cards] = useState(temp_identity);
-	const [board_cards, setitemp_card] = useState(temp_card);
+	const [board_cards, setitemp_card] = useState(gameboard_assets);
 	const [hostisonline, sethostisonline] = useState(1);
+	const [inheritance_id, setinheritance_id] = useState(0);
 	
 	
 	const invite_fucntion = (e) => {
@@ -325,6 +327,7 @@ function App() {
 			if(data.players != undefined){
 				setplayers(data.players);
 				setgamestart(data.text);
+				
 				data.players.forEach(function(element) {
 					if(element.PlayerID == current_user){
 						setmyidentity(element.IdentityID)
@@ -335,13 +338,13 @@ function App() {
 					if(element.PlayerID == current_user){
 						setdice1(element.dice1);
 						setdice2(element.dice2);
+						setinheritance_id(element.isinheritance);
 					}
 				});
-				console.log('Here Data')
-				console.log(data)
-				setTimeout(() =>  setpickup_step(1),5000);
-				setTimeout(() =>  setpickup_step(2),10000);
-				setTimeout(() =>  setpickup_step(3),15000);
+				setTimeout(() =>  setpickup_step(1),7000);
+				setTimeout(() =>  setpickup_step(2),12000);
+				setTimeout(() =>  setpickup_step(3),17000);
+				
 			}
 		});
     }, [ENDPOINT, room,name]);
@@ -421,7 +424,7 @@ function App() {
 											</div>
 											<div className="select_card_fist_text">
 												<h3 className="title_card">PERCEIVED IDENTITY</h3>
-												{identity_cards[myidentity].map(function(identity_card, i){
+												{identity_cards[myidentity-1].map(function(identity_card, i){
 													return <div className="select_card_fist_text_servies">
 														<h3>{identity_card.name}</h3>
 														<h3>{identity_card.value}</h3>
@@ -437,7 +440,7 @@ function App() {
 					</div>
 				</div>
 			:
-			pickup_step == 2 ?
+			pickup_step == 2 && inheritance_id != 0 ?
 				<div className="wapper gamepay-wapper">
 					<div className="gamebordPaass_main gamebordPaass_main-1">
 						{/* background gamedoard img */}
@@ -454,12 +457,12 @@ function App() {
 								<div class="select_box_bonus">
 									<div class="select_card_fist_img">
 										{/* <img src="img/red_park.png" /> */}
-										<img src={`img/cards/${dice1 + dice2}.png`}></img>
+										<img src={board_cards[inheritance_id].url}></img>
 									</div>
 									<div class="select_card_fist_text">
-										<h3 class="title_card">RED PARK</h3>
+										<h3 class="title_card">{board_cards[inheritance_id].name}</h3>
 										<div class="cards_text_inner">
-											{board_cards[dice1 + dice2].map(function(board_cards, i){
+											{board_cards[inheritance_id].description.map(function(board_cards, i){
 												return <div className="select_card_fist_text_servies">
 														<h3>{board_cards.name}</h3>
 														<h3>{board_cards.value}</h3>
@@ -476,8 +479,55 @@ function App() {
 					</div>
 				</div>
 			:
+			pickup_step == 2 && inheritance_id == 0 ?
+				<div className="wapper gamepay-wapper">
+					<div className="gamebordPaass_main gamebordPaass_main-1">
+						{/* background gamedoard img */}
+						<div className="bg-board">
+							<img src="img/December2020-Gameboard.png" alt="" />
+						</div>
+						{/* background gamedoard img */}
+						{/* Pick in identity card  */}
+						<div className="show_cardt" id="oner_id">
+							{/* Pick in identity card screen */}
+							{/* select identity card image */}
+							<div className="select_card_first" id="select_card_first">
+									<div className="select_card_first-inner">
+										<div className="select_box_bonus">
+											<div className="select_card_fist_img">
+												<img src={`img/indentity/${myidentity}.png`}></img>
+											</div>
+											<div className="select_card_fist_text">
+												<h3 className="title_card">PERCEIVED IDENTITY</h3>
+												{identity_cards[myidentity].map(function(identity_card, i){
+													return <div className="select_card_fist_text_servies">
+														<h3>{identity_card.name}</h3>
+														<h3>{identity_card.value}</h3>
+													</div>
+												})}
+											</div>
+										</div>
+									</div>
+								</div>
+							{/* details about selected  identity card screen- */}
+						</div>
+						{/* Pick in identity card  */}
+					</div>
+				</div>
+			:
 			pickup_step == 3 ?
-				<div>Game Start</div>
+				<div>
+					Game Start {inheritance_id}
+					<br/>
+					Dice 1 {dice1}
+					<br/>
+					Dice 2 {dice2}
+					<br/>
+					myidentity {myidentity}
+					<br/>
+					inheritance_id {inheritance_id}
+				</div>
+				
 			: ""
 			
 		: 
@@ -513,9 +563,6 @@ function App() {
 								<p className="game_start_host_ewait_msg">Players cannot join the room once the game has started.</p>
 							:  ''
 							}
-							{hostisonline == 0 ?
-								<p className="game_start_host_ewait_msg">Host leaves or closes the window</p>
-							: ""}
 					</div>
 					
 					<div className="Pregame_Waiting_joing_usere_list">
@@ -561,6 +608,25 @@ function App() {
 					</div>
 				</div>
 			: ""}
+			{ hostisonline == 0 ? 
+				<div className="forgot_password" id='forgot_password'>
+					<div className="how_would enter_room forgot_password_inner">
+						<span className="" style={{color: "#6B8E0C",fontSize:"25px",float:"left",fontWeight:"700",marginTop:"10px",fontFamily:"Bangers",letterSpacing:"2px",paddingTop:"40px",paddingBottom:"40px"}}>Host leaves or closes the window</span>
+					</div>
+				</div>
+			: ""
+			}
+			{hostisonline == 0 ?
+				setTimeout(
+				() => sethostisonline(2), 
+				3000
+				)
+			:	""
+			}
+			{hostisonline == 2 ?
+				<Redirect to='/Join' />
+			: ""
+			}
 		</div>
 
 		{/*  gameboard property card animation */}

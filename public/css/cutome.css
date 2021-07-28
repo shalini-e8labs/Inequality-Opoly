@@ -12,9 +12,7 @@ input:focus-visible{outline:0}
 .month-price-text2.red-class{font-size:40px!important}
 .month-price-text2.red-class::before{content:url(../img/invite.png);margin-right:10px}
 .back_arrow img{cursor:pointer}
-.tutorials_wait_screen{height:100%;width:100%;position:fixed;z-index:9999;background:#fff;-moz-animation:cssAnimation 10s forwards;-webkit-animation:cssAnimation 10s forwards;-o-animation:cssAnimation 10s forwards;animation:cssAnimation 10s forwards;-webkit-animation-fill-mode:forwards;animation-fill-mode:forwards;opacity:0;visibility:hidden}
-@-webkit-keyframes cssAnimation{0%{opacity:1;visibility:visible}99%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
-@keyframes cssAnimation{0%{opacity:1;visibility:visible}99%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
+.tutorials_wait_screen{height:100%;width:100%;position:fixed;z-index:9999;background:#fff;}
 .tutorials_wait_screen center{height:100%;width:100%}
 .tutorials_wait_screen img{top:40%;position:relative}
 .game_start_host_ewait_msg{font-size:15px!important;color:#342C24;opacity:0.71;margin:0 10%;font-family:Montserrat!important;font-weight:600;line-height:1.4em;}
@@ -404,12 +402,11 @@ input:focus-visible{outline:0}
         left: -28%;
         top: -65%;
         position: relative;
-        animation-delay: 10s!important;
-        animation: 3s color-me-in ease-in-out;
+        /* animation: 3s color-me-in ease-in-out; */
     }
-    .tutorial-stap.tutorial-stap-1{
+    /* .tutorial-stap.tutorial-stap-1{
         animation-delay: 10s!important;
-    }
+    } */
     .tutorial-playariya,.wapper_child{background-color: rgba(70,35,33,0.9);}
     .tutorial-playariya img {
         width: 100%;
@@ -424,7 +421,7 @@ input:focus-visible{outline:0}
         width: 34%;
         height: 40vh;
         display: flex;
-        animation: 4s tutorial-stap ease-in-out;  
+        /* animation: 4s tutorial-stap ease-in-out;   */
     }
 
     .tutorial-stap-img {
@@ -615,7 +612,7 @@ input:focus-visible{outline:0}
         /* top: -135%;
         left: 35%; */
         transform: rotateZ(-90deg);
-        animation: 2s Gameboard-id-7 ease-in-out;
+        animation: 2s Gameboard-id-7 ease-in-out !important;
         
     }
 
@@ -624,14 +621,14 @@ input:focus-visible{outline:0}
         right: 25%;
         flex-direction: column;
         /* bottom: 15%; */
-        animation: 2s tutorial-stap-2 ease-in-out;
+        animation: 2s tutorial-stap-2 ease-in-out !important;
     }
 
     /* tutorial stap 8 */
     .tutorial-playariya.Gameboard-id-8{
         /* top: -135%;
         left: 35%; */
-        animation: 2s Gameboard-id-8 ease-in-out;
+        animation: 2s Gameboard-id-8 ease-in-out !important;
         transform: rotateZ(-180deg);
     }
     
@@ -639,7 +636,7 @@ input:focus-visible{outline:0}
         right: 25%;
         flex-direction: column;
         /* bottom: 15%; */
-        animation: 2s tutorial-stap-2 ease-in-out;
+        animation: 2s tutorial-stap-2 ease-in-out !important;
     } 
 
     /* tutorial stap 8 */
@@ -649,7 +646,7 @@ input:focus-visible{outline:0}
         top: -166%;
         left: 103%;
         transform: rotateZ(-78deg);
-        animation: 2s Gameboard-id-9 ease-in-out;
+        animation: 2s Gameboard-id-9 ease-in-out !important;
         display: none;
     }
     /* tutorial stap 9 and 10 gameboard animation */

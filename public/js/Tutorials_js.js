@@ -1,11 +1,10 @@
-
-$('body')
-.css('background-image','url(http://picture.de/image.png)')
-.waitForImages(function() {
-  alert('Background image done loading');
-  // This *does* work
-}, $.noop, true);
-
+var image = document.querySelector('.Gameboard-playboard-card');
+var isLoaded = image.complete && image.naturalHeight !== 0;
+setTimeout(function(){
+    $('.tutorials_wait_screen').hide();
+    $('.tutorial-playariya').css("animation", "3s color-me-in ease-in-out");
+    $('.tutorial-stap-1').css("animation", "4s tutorial-stap ease-in-out");
+}, 1000);
 // Tutiral stap show and animation 
     // windows with
     var sreen_width = parseFloat(window.innerWidth);
