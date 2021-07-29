@@ -374,6 +374,15 @@ function App() {
 		}
 		return array;
 	}
+	useEffect(() => {
+		const script = document.createElement('script');
+		script.src = "./js/loader.js";
+		script.async = true;
+		document.body.appendChild(script);
+	  return () => {
+		  document.body.removeChild(script);
+		}
+	  }, []);
 	return (
 		gamestart == 1 ?
 			pickup_step == 0 ?

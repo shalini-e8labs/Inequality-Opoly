@@ -1,3 +1,8 @@
+
+window.onload = function afterWebPageLoad() { 
+    $('body > #root .wapper').show();
+    $('.main_loader_website').hide();
+}
 var windows_height = $(window).height(); 
 var windows_width = $(window).width(); 
 // dextop

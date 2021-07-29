@@ -775,6 +775,12 @@ class App extends React.Component {
             </div>  
         )
     }
+    componentDidMount(){    
+        const script2 = document.createElement("script");
+        script2.src = "./js/loader.js";
+        script2.async = true;
+        document.body.appendChild(script2);
+    }
 }
 // export default App;
 export default function JoinRoomfun(){

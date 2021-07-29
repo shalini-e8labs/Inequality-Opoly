@@ -18,7 +18,7 @@ export const gameboard_assets = [
         value : "Inheritance"
       }
     ],
-    name: "Red park"
+    name: "Red park"  
   },
   {
     url : "./img/cards/1.png",

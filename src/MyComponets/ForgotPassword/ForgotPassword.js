@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import useQuery from "./useQuery";
 import { Redirect } from "react-router";
 export default function Forgotpassword(props) {
@@ -73,6 +73,15 @@ export default function Forgotpassword(props) {
 			})
 		})
     }
+    useEffect(() => {
+		const script = document.createElement('script');
+		script.src = "./js/loader.js";
+		script.async = true;
+		document.body.appendChild(script);
+	  return () => {
+		  document.body.removeChild(script);
+		}
+	  }, []);
     return (
         forgotpassword_status == 1 ?
             // sreen wappper
@@ -169,4 +178,5 @@ export default function Forgotpassword(props) {
 
         </div> 
     )
+    
 }

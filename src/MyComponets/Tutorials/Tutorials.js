@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import '.././css/Tutorials.css';
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -285,8 +286,12 @@ class App extends Component {
     const script = document.createElement("script");
     script.src = "./js/Tutorials_js.js";
     script.async = true;
-
     document.body.appendChild(script);
+
+    const script2 = document.createElement("script");
+    script2.src = "./js/loader.js";
+    script2.async = true;
+    document.body.appendChild(script2);
   }
 }
 
