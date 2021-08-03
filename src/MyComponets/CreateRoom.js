@@ -629,7 +629,7 @@ class App extends React.Component {
                                 </div>
                                 <a className="create_account_or forget-password" onClick={() => this.forgot_password_function(1)} href="javascript:void(0);">FORGOT YOUR PASSWORD?</a>
                                 <div className="how_would-join">
-                                    <button className="sign_in_btn" id="login" onClick={this.userlogin}>SIGN IN</button>
+                                    <button className="sign_in_btn" id="login" onClick={this.userlogin} style={{border:"none"}}>SIGN IN</button>
                                 </div>
                                 
                                 <div className="how_would-join">

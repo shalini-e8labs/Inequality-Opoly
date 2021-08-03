@@ -2282,6 +2282,10 @@ input:focus-visible{outline:0}
     font-size: 23px;
     padding: 15px 67px;
 }
+.play_buton_hold{
+    background: #D8D8D8 !important;
+    border :4px solid #707070 !important;
+}
 /* landed_no_pick */
 
 /* Game play end */

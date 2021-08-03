@@ -4,7 +4,8 @@ import { Redirect } from "react-router";
 import io from "socket.io-client"
 import DOMPurify from "dompurify";
 import queryString from 'query-string';
-import {gameboard_assets} from "./gameboard_assets.js"
+import {gameboard_assets} from "./gameboard_assets.js";
+import {identity_assets} from "./identity_assets.js"
 
 const ENDPOINT = 'http://api.inequalityopoly.www70-32-25-208.a2hosted.com/';
 let socket;
@@ -25,219 +26,6 @@ function App() {
 	//06-Black-Woman
 	//07-Hispanic-Woman
 	//08-White-Woman
-	let temp_identity = [
-			[
-				{ "name":"Inheritance", "value":"Roll less than 9 to receive inheritance" },
-				{ "name":"Employment", "value":"Roll less than 12 to become employed" },
-				{ "name":"Salary", "value":"Receive a base salary of $235" },
-				{ "name":"Promotion", "value":"Roll less than 10 to receive a promotion" },
-				{ "name":"Prison Industrial", "value":"Roll less than 11 to avoid a P.I.C" },
-				{ "name":"Bail", "value":"Pay $50" },
-				{ "name":"Voting", "value":"Roll less than 8 to keep right to vote" },
-				{ "name":"Mortgage", "value":"Roll less than 11 to get approval" },
-				{ "name":"Entrepreneurship", "value":"Roll less than 11 to own" },
-				{ "name":"Insurance", "value":"Roll less than 10 to receive health insurance" },
-				{ "name":"Violence", "value":"Roll less than 11 to avoid intimate partner violence" },
-				{ "name":"Disaster", "value":"Event for receive $100 and Odd for pay $50" },
-			],
-			[
-				{ "name":"Inheritance", "value":"Roll less than 6 to receive inheritance" },
-				{ "name":"Employment", "value":"Roll less than 6 to become employed" },
-				{ "name":"Salary", "value":"Receive a base salary of $145" },
-				{ "name":"Promotion", "value":"Roll less than 9 to receive a promotion" },
-				{ "name":"Prison Industrial", "value":"Roll less than 6 to avoid a P.I.C" },
-				{ "name":"Bail", "value":"Pay $75" },
-				{ "name":"Voting", "value":"Roll less than 6 to keep right to vote" },
-				{ "name":"Mortgage", "value":"Roll less than 8 to get approval" },
-				{ "name":"Entrepreneurship", "value":"Roll less than 6 to own" },
-				{ "name":"Insurance", "value":"Roll less than 8 to receive health insurance" },
-				{ "name":"Violence", "value":"Roll less than 6 to avoid intimate partner violence" },
-				{ "name":"Disaster", "value":"Event for receive $100 and Odd for pay $150" },
-			],
-			[
-				{ "name":"Inheritance", "value":"Roll less than 7 to receive inheritance" },
-				{ "name":"Employment", "value":"Roll less than 9 to become employed" },
-				{ "name":"Salary", "value":"Receive a base salary of $140" },
-				{ "name":"Promotion", "value":"Roll less than 9 to receive a promotion" },
-				{ "name":"Prison Industrial", "value":"Roll less than 7 to avoid a P.I.C" },
-				{ "name":"Bail", "value":"Pay $75" },
-				{ "name":"Voting", "value":"Roll less than 7 to keep right to vote" },
-				{ "name":"Mortgage", "value":"Roll less than 8 to get approval" },
-				{ "name":"Entrepreneurship", "value":"Roll less than 7 to own" },
-				{ "name":"Insurance", "value":"Roll less than 7 to receive health insurance" },
-				{ "name":"Violence", "value":"Roll less than 9 to avoid intimate partner violence" },
-				{ "name":"Disaster", "value":"Event for receive $350 and Odd for pay $150" },
-			],
-			[
-				{ "name":"Inheritance", "value":"Roll less than 11 to receive inheritance" },
-				{ "name":"Employment", "value":"Roll less than 10 to become employed" },
-				{ "name":"Salary", "value":"Receive a base salary of $200" },
-				{ "name":"Promotion", "value":"Roll less than 12 to receive a promotion" },
-				{ "name":"Prison Industrial", "value":"Roll less than 9 to avoid a P.I.C" },
-				{ "name":"Bail", "value":"Pay $50" },
-				{ "name":"Voting", "value":"Roll less than 9 to keep right to vote" },
-				{ "name":"Mortgage", "value":"Roll less than 12 to get approval" },
-				{ "name":"Entrepreneurship", "value":"Roll less than 9 to own" },
-				{ "name":"Insurance", "value":"Roll less than 11 to receive health insurance" },
-				{ "name":"Violence", "value":"Roll less than 9 to avoid intimate partner violence" },
-				{ "name":"Disaster", "value":"Event for receive $700 and Odd for receive $150" },
-			],
-			[
-				{ "name":"Inheritance", "value":"Roll less than 9 to receive inheritance" },
-				{ "name":"Employment", "value":"Roll less than 12 to become employed" },
-				{ "name":"Salary", "value":"Receive a base salary of $175" },
-				{ "name":"Promotion", "value":"Roll less than 10 to receive a promotion" },
-				{ "name":"Prison Industrial", "value":"Roll less than 11 to avoid a P.I.C" },
-				{ "name":"Bail", "value":"Pay $50" },
-				{ "name":"Voting", "value":"Roll less than 11 to keep right to vote" },
-				{ "name":"Mortgage", "value":"Roll less than 11 to get approval" },
-				{ "name":"Entrepreneurship", "value":"Roll less than 11 to own" },
-				{ "name":"Insurance", "value":"Roll less than 10 to receive health insurance" },
-				{ "name":"Violence", "value":"Roll less than 10 to avoid intimate partner violence" },
-				{ "name":"Disaster", "value":"Event for receive $100 and Odd for pay $50" },
-			],
-			[
-				{ "name":"Inheritance", "value":"Roll less than 6 to receive inheritance" },
-				{ "name":"Employment", "value":"Roll less than 7 to become employed" },
-				{ "name":"Salary", "value":"Receive a base salary of $130" },
-				{ "name":"Promotion", "value":"Roll less than 7 to receive a promotion" },
-				{ "name":"Prison Industrial", "value":"Roll less than 9 to avoid a P.I.C" },
-				{ "name":"Bail", "value":"Pay $75" },
-				{ "name":"Voting", "value":"Roll less than 9 to keep right to vote" },
-				{ "name":"Mortgage", "value":"Roll less than 8 to get approval" },
-				{ "name":"Entrepreneurship", "value":"Roll less than 6 to own" },
-				{ "name":"Insurance", "value":"Roll less than 8 to receive health insurance" },
-				{ "name":"Violence", "value":"Roll less than 5 to avoid intimate partner violence" },
-				{ "name":"Disaster", "value":"Event for receive $100 and Odd for pay $50" },
-			],
-			[
-				{ "name":"Inheritance", "value":"Roll less than 7 to receive inheritance" },
-				{ "name":"Employment", "value":"Roll less than 8 to become employed" },
-				{ "name":"Salary", "value":"Receive a base salary of $115" },
-				{ "name":"Promotion", "value":"Roll less than 7 to receive a promotion" },
-				{ "name":"Prison Industrial", "value":"Roll less than 9 to avoid a P.I.C" },
-				{ "name":"Bail", "value":"Pay $75" },
-				{ "name":"Voting", "value":"Roll less than 9 to keep right to vote" },
-				{ "name":"Mortgage", "value":"Roll less than 8 to get approval" },
-				{ "name":"Entrepreneurship", "value":"Roll less than 7 to own" },
-				{ "name":"Insurance", "value":"Roll less than 7 to receive health insurance" },
-				{ "name":"Violence", "value":"Roll less than 8 to avoid intimate partner violence" },
-				{ "name":"Disaster", "value":"Event for receive $350 and Odd for pay $150" },
-			],
-			[
-				{ "name":"Inheritance", "value":"Roll less than 11 to receive inheritance" },
-				{ "name":"Employment", "value":"Roll less than 11 to become employed" },
-				{ "name":"Salary", "value":"Receive a base salary of $165" },
-				{ "name":"Promotion", "value":"Roll less than 11 to receive a promotion" },
-				{ "name":"Prison Industrial", "value":"Roll less than 12 to avoid a P.I.C" },
-				{ "name":"Bail", "value":"Pay $50" },
-				{ "name":"Voting", "value":"Roll less than 12 to keep right to vote" },
-				{ "name":"Mortgage", "value":"Roll less than 12 to get approval" },
-				{ "name":"Entrepreneurship", "value":"Roll less than 9 to own" },
-				{ "name":"Insurance", "value":"Roll less than 11 to receive health insurance" },
-				{ "name":"Violence", "value":"Roll less than 7 to avoid intimate partner violence" },
-				{ "name":"Disaster", "value":"Event for receive $700 and Odd for receive $150" },
-			],
-		]
-
-	// let temp_card = [
-	// 	[
-	// 		{ "name":"Rental Income", "value":"Player pays  you $70 every time they land on this space" },
-	// 	],
-	// 	[
-	// 		{ "name":"Rental Income", "value":"Player pays  you $70 every time they land on this space" },
-	// 		{ "name":"Purchase Price", "value":"I no player purchase owns this property, it cost $900 to but." },
-	// 		{ "name":"Auction Roles", "value":"If a player can’t afford the purchase price, the property goes to the highest bidder."},
-	// 	],
-	// 	[
-	// 		{ "name":"Yellow Card", "value":"Yellow Card" },
-	// 	],
-	// 	[
-	// 		{ "name":"Rental Income", "value":"Player pays  you $5 every time they land on this space" },
-	// 		{ "name":"Purchase Price", "value":"I no player purchase owns this property, it cost $70 to but." },
-	// 		{ "name":"Auction Roles", "value":"If a player can’t afford the purchase price, the property goes to the highest bidder."},
-	// 	],
-		
-	// 	[
-	// 		{ "name":"Rental Income", "value":"Player pays  you $10 every time they land on this space" },
-	// 		{ "name":"Purchase Price", "value":"I no player purchase owns this property, it cost $80 to but." },
-	// 		{ "name":"Auction Roles", "value":"If a player can’t afford the purchase price, the property goes to the highest bidder."},
-	// 	],
-	// 	[
-	// 		{ "name":"Rental Income", "value":"Player pays  you $10 every time they land on this space" },
-	// 		{ "name":"Purchase Price", "value":"I no player purchase owns this property, it cost $90 to but." },
-	// 		{ "name":"Auction Roles", "value":"If a player can’t afford the purchase price, the property goes to the highest bidder."},
-	// 	],
-	// 	[
-	// 		{ "name":"Police", "value":"Police" },
-	// 	],
-	// 	[
-	// 		{ "name":"Rental Income", "value":"Player pays  you $10 every time they land on this space" },
-	// 		{ "name":"Purchase Price", "value":"I no player purchase owns this property, it cost $90 to but." },
-	// 		{ "name":"Auction Roles", "value":"If a player can’t afford the purchase price, the property goes to the highest bidder."},
-	// 	],
-	// 	[
-	// 		{ "name":"Pink Tax", "value":"Pink Tax" },
-	// 	],
-	// 	[
-	// 		{ "name":"Rental Income", "value":"Player pays  you $20 every time they land on this space" },
-	// 		{ "name":"Purchase Price", "value":"I no player purchase owns this property, it cost $110 to but." },
-	// 		{ "name":"Auction Roles", "value":"If a player can’t afford the purchase price, the property goes to the highest bidder."},
-	// 	],
-	// 	[
-	// 		{ "name":"Green Card", "value":"Green Card" },
-	// 	],
-	// 	[
-	// 		{ "name":"Rental Income", "value":"Player pays  you $20 every time they land on this space" },
-	// 		{ "name":"Purchase Price", "value":"I no player purchase owns this property, it cost $130 to but." },
-	// 		{ "name":"Auction Roles", "value":"If a player can’t afford the purchase price, the property goes to the highest bidder."},
-	// 	],
-	// 	[
-	// 		{ "name":"Yellow Card", "value":"Yellow Card" },
-	// 	],
-	// ]
-
-	/*let temp_card = [
-		[
-			{ "name":"Pay Day", "value":"Player pays  you $70 every time they land on this space" },
-		],
-		[
-			{ "name":"Red Park", "value":"Player pays  you $70 every time they land on this space" },
-		],
-		[
-			{ "name":"Yellow Life Event", "value":"Player pays  you $70 every time they land on this space" },
-		],
-		[
-			{ "name":"Red Road", "value":"Player pays  you $70 every time they land on this space" },
-		],
-		[
-			{ "name":"Tangerine Place", "value":"Player pays  you $70 every time they land on this space" },
-		],
-		[
-			{ "name":"Police Interaction", "value":"Player pays  you $70 every time they land on this space" },
-		],
-		[
-			{ "name":"Tangerine View", "value":"Player pays  you $70 every time they land on this space" },
-		],
-		[
-			{ "name":"Pin Tax", "value":"Player pays  you $70 every time they land on this space" },
-		],
-		[
-			{ "name":"Tangerine Towers", "value":"Player pays  you $70 every time they land on this space" },
-		],
-		[
-			{ "name":"Green Life Event", "value":"Player pays  you $70 every time they land on this space" },
-		],
-		[
-			{ "name":"PIC", "value":"Player pays  you $70 every time they land on this space" },
-		],
-		[
-			{ "name":"Lemon Center", "value":"Player pays  you $70 every time they land on this space" },
-		],
-		[
-			{ "name":"Yellow Life Event", "value":"Player pays  you $70 every time they land on this space" },
-		]
-	]*/
 
 	let srnumber2 = 0;
 	const [hostid, sethostid] = useState(JSON.parse(localStorage.getItem('room')).PlayerID);
@@ -260,11 +48,12 @@ function App() {
 	const [myidentity, setmyidentity] = useState(0);
 	const [dice1, setdice1] = useState(0);
 	const [dice2, setdice2] = useState(0);
-	const [identity_cards, setidentity_cards] = useState(temp_identity);
+	const [identity_cards, setidentity_cards] = useState(identity_assets);
 	const [board_cards, setitemp_card] = useState(gameboard_assets);
 	const [hostisonline, sethostisonline] = useState(1);
 	const [inheritance_id, setinheritance_id] = useState(0);
-	
+	const [player_assets, setplayer_assets] = useState([]);
+	const [player_identity_assests, setplayer_identity_assests] = useState([]);
 	
 	const invite_fucntion = (e) => {
 		if(invite_email == '' || invite_email == null){
@@ -327,10 +116,10 @@ function App() {
 			if(data.players != undefined){
 				setplayers(data.players);
 				setgamestart(data.text);
-				
 				data.players.forEach(function(element) {
 					if(element.PlayerID == current_user){
 						setmyidentity(element.IdentityID)
+						setplayer_assets(JSON.parse(element.assets))
 					}
 				});
 
@@ -339,13 +128,26 @@ function App() {
 						setdice1(element.dice1);
 						setdice2(element.dice2);
 						setinheritance_id(element.isinheritance);
+						setplayer_identity_assests(element.identity_assests);
 					}
 				});
 				setTimeout(() =>  setpickup_step(1),7000);
 				setTimeout(() =>  setpickup_step(2),12000);
 				setTimeout(() =>  setpickup_step(3),17000);
-				
 			}
+		});
+
+		socket.on("payouy_salary", (data) => {
+			if(data.players != undefined){
+				data.players.forEach(function(element) {
+					if(element.PlayerID == current_user){
+						setplayer_assets(JSON.parse(element.assets))
+					}
+				});
+			}
+		});
+		socket.on("game_stop", (data) => {
+			sethostisonline(2);
 		});
     }, [ENDPOINT, room,name]);
 	
@@ -357,6 +159,12 @@ function App() {
 			'srnumber' : srnumber
 		}
 		socket.emit('sendMessage', json_object, () => console.log(''));
+	}
+	const game_cancel = (e) => {
+		var json_object = {
+			'room_id' : room_id,
+		}
+		socket.emit('send_game_stop', json_object, () => console.log(''));
 	}
 
 	function removeNull(array) {
@@ -383,6 +191,23 @@ function App() {
 		  document.body.removeChild(script);
 		}
 	  }, []);
+
+	const full_salary_payout = (e) => {
+		var json_object = {
+			'room_id' : room_id,
+			'current_user' : current_user,
+			'amount' : player_identity_assests.Salary[0]
+		}
+		socket.emit('send_payouy_salary', json_object, () => console.log(''));
+	}
+	const full_half_payout = (e) => {
+		var json_object = {
+			'room_id' : room_id,
+			'current_user' : current_user,
+			'amount' : player_identity_assests.UnemploymentSalary
+		}
+		socket.emit('send_payouy_salary', json_object, () => console.log(''));
+	}
 	return (
 		gamestart == 1 ?
 			pickup_step == 0 ?
@@ -526,19 +351,23 @@ function App() {
 			:
 			pickup_step == 3 ?
 				<div>
-					Game Start {inheritance_id}
 					<br/>
-					Dice 1 {dice1}
+					Identity {player_identity_assests.Name}
 					<br/>
-					Dice 2 {dice2}
+					Balance {player_assets.balance}
 					<br/>
-					myidentity {myidentity}
+					Green Chip {player_assets.green_chip}
 					<br/>
-					inheritance_id {inheritance_id}
+					Red Chip {player_assets.red_chip}
+					<br/>
+					Blue Chip {player_assets.blue_chip}
+					<br /><br />
+					<button type="button" onClick={() => full_salary_payout()}>Payday full Day</button>
+					<br /><br />
+					<button type="button" onClick={() => full_half_payout()}>Payday Half Day</button>
 				</div>
 				
 			: ""
-			
 		: 
 		// sreen wappper
 		<div className="wapper">
@@ -564,7 +393,16 @@ function App() {
 						<h3>{JSON.parse(localStorage.getItem('room')).room_key}</h3>
 						<div className="how_would-join game-start-btn-main">
 							{ishostid == 1?
-								<button className="sign_in_btn go_premium game-start-btn" onClick={() => onMessageSubmit(0)}>PLAY</button>
+								<>
+								{users.length == 1 ?
+									<button className="sign_in_btn go_premium game-start-btn play_buton_hold">PLAY</button>
+									
+								:
+									<button className="sign_in_btn go_premium game-start-btn" onClick={() => onMessageSubmit(0)}>PLAY</button>
+								}
+								
+								<button className="sign_in_btn go_premium game-start-btn" onClick={() => game_cancel(0)}>CANCEL</button>
+								</>
 							:  'Wait for host for start the game'
 							}
 						</div>
@@ -602,7 +440,7 @@ function App() {
 			{isinvite == true ?
 				<div className="invaite_user" id='invaite_user'>
 					<div className="how_would enter_name enter_room  invaite_user_inner">
-						<div onClick={() => setisinvite(false)}  className="back_arrow back-email"><img src="img/Group_3325.png" alt="" /></div>
+						<div onClick={() => setisinvite(false)}  className="back_arrow"><img src="img/Group_3325.png" alt="" /></div>
 						<h3>SEND AN INVITE TO...</h3>
 						<div className="how_would-join join_or_login">
 							<div className="login_input">

@@ -45,7 +45,7 @@ export default function CardSection() {
                 </div>
             </div>
             <div className="login_input">
-                <input type="text" placeholder="BILLINH ZIP CODE"/>
+                <input type="text" placeholder="BILLING ZIP CODE"/>
             </div>
         </>
     )

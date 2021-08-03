@@ -92,7 +92,14 @@
 	#enter_name.enter_name h3, #enter_email h3, #enter_password h3, #payment h3,#how_would h3 {		font-size: 45px;	}
 	#enter_name.enter_name .login_input{    margin-bottom: 50px;}
 	/* payment */
-	.login_input_stripe {		border-radius: 13px;		padding: 0;		height: 50px;}
+	.login_input_stripe {
+		/* border-radius: 13px; */
+		/* padding: 0; */
+		height: 50px;
+		padding: 10px 0 18px 23px;
+		border: 2px solid #532e1f;
+		border-radius: 15px;
+	}
 	.ElementsApp, .ElementsApp .InputElement{    font-size: 30px !important;}
 	/* payment */
 	/* Create New account*/

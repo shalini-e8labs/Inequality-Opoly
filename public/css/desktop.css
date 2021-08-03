@@ -1411,8 +1411,12 @@
     .how_would-join .sign_in_btn {
         height: 70px !important;
         font-size: 28px;
-        border: none !important;
+        border: none;
     
+    }
+    .play_buton_hold{
+        background: #D8D8D8 !important;
+        border :4px solid #707070 !important;
     }
     #pricing–2 {
         width: 70%;
@@ -2215,11 +2219,10 @@
     /* Index page */
     /* login page */
     /*joing table as gaset*/
-    .how_would{
-        width: 274px;
-        padding: 5px;        
+    .how_would {
+        width: 400px;
+        padding: 50px;
     }
-
     /* login */
 
         .login_input input{
@@ -2289,7 +2292,7 @@
 
     #joing_or_create_account h3{font-size: 45px;}
     #joing_or_create_account .login_input input {        height: 50px;        font-size: 25px;        border-width: 2px;        border-radius: 10px;    }
-    #joing_or_create_account .how_would-join button{height: 50px !important; font-size: 20px; width: 70%}
+    #joing_or_create_account .how_would-join button{height: 50px !important; font-size: 20px; width: 80%}
     #joing_or_create_account .join_or_login a {        font-size: 18px;        margin-bottom: 15px;    }
     #joing_or_create_account.how_would{padding: 30px; width: 400px;}
     #joing_or_create_account .back_arrow {        top: 30px;        left: 30px;    }
@@ -2348,6 +2351,7 @@
         height: 70px !important;
         font-size: 20px;
     }
+    
     /* 12-07 */
     /* #pricing–2 {
         width: 70%;
@@ -2377,7 +2381,7 @@
     .tutorial-stap-text h1,.identity_cards-tutorial h3{font-size: 22px;}
     .tutorial-stap-text p, .identity_cards-tutorial p {
        font-size: 15px;
-       line-height: 10px;
+       line-height: 16px;
    }
 
     .identity_cards-tutorial {
@@ -2386,10 +2390,10 @@
 
     .tutorial-stap .button-stap button, .identity_cards-tutorial .button-stap button {
         padding: 14px 0px;
-        font-size: 13px;
-        width: 113px;
+        font-size: 16px !important;
+        width: 150px;
        background-size: 100% 100%;
-   }
+    }
     /* tutorial page */
     /*-bonesh start-*/
      .bg-board{        max-width: 1126px;        height: 1126px;    }
