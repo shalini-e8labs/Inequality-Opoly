@@ -307,6 +307,8 @@ class App extends React.Component {
             let data={
                 "room_key" : this.state.room_key,
                 "PlayerID" : JSON.parse(localStorage.getItem('user')).PlayerID,
+                "Name" : JSON.parse(localStorage.getItem('user')).Name,
+                "Email" : JSON.parse(localStorage.getItem('user')).Email,
             }
             this.setState({errors_room_key: ''});
             if(this.state.room_key == '' || this.state.room_key == null){

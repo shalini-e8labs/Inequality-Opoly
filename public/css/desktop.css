@@ -1903,7 +1903,10 @@
     .auction_property_card_pecification { height: 296px; margin-top: 0px; }
     .gameplay_select_card-first .select_card_first-inner { width: 55%; }
     .gameplay_select_card-first .select_card_fist_text_servies p { font-size: 14px; line-height: 16px;}
-    .playser_with_money {  height: 232px; }
+    .playser_with_money {
+        height: 232px;
+        display: block;
+    }
     /* auction_property */
     /* add_wen_auction */
     .add_wen_auction img { width: 250px; }
