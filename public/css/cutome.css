@@ -853,11 +853,15 @@ input:focus-visible{outline:0}
         .join_or_login .how_would-join button{
             height: 50px;
             background: transparent;
-            border: 2px solid #532e1f;
+            /* border: 2px solid #532e1f; */
+            border: none;
             padding: 0 10px;
             border-radius: 14px;
             color: #532e1f;
             font-family: 'Titan One';
+        }
+        .join_or_login .how_would-join button#login.sign_in_btn {
+            border: none;
         }
 
         .join_or_login .how_would-join button {
@@ -2386,4 +2390,32 @@ transform: scale(1.2);
 
 .payboard_user.payboard_user1 {
 	width: 100% !important;
+}
+.Gameboard-playboard-card img {
+    position: absolute;
+    z-index: 999;
+}
+
+/* Dice Slide Animation */
+#Gameboard_playboard_0 img{position:absolute;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
+
+
+.select_card_fist_text_servies h2 {
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: 26px;
+    text-align: left;
+    color: #342c24;
+    margin-bottom: 0;
+    opacity: 0.85;
+    line-height: 1.2em;
+  }
+  .select_card_fist_text_servies h3 {
+	font-family: Montserrat;
+	font-weight: 600;
+	font-size: 18px !important;
+	text-align: left;
+	color: #342c24;
+	opacity: 0.7;
+	line-height: 1.3em !important;
 }

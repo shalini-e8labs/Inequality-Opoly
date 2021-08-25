@@ -16,7 +16,6 @@ class App extends React.Component {
             temp_login = true;
         }
         if(localStorage.getItem('token') != '' && localStorage.getItem('token') != null){
-            // temp_IsSubscription = JSON.parse(localStorage.getItem('user')).IsSubscription;
             let temp_name = JSON.parse(localStorage.getItem('user')).Name;
         }
 
@@ -57,7 +56,11 @@ class App extends React.Component {
             errors_payment : ''
         };
         if(localStorage.getItem('token') != '' && localStorage.getItem('token') != null){
+            this.setState({singup_process_step: 4});
+            this.setState({IsSubscription: 0});
             if(this.state.room_key == ''){
+                this.setState({singup_process_step: 4});
+                this.setState({IsSubscription: 0});
                 let data={
                     "PlayerID" : JSON.parse(localStorage.getItem('user')).PlayerID,
                     "name" : JSON.parse(localStorage.getItem('user')).Name,
@@ -532,6 +535,8 @@ class App extends React.Component {
         if(error_log == 1){
             return false;
         }
+        this.setState({singup_process_step: 4});
+        this.setState({IsSubscription: 1});
         fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/login", {
             method: "POST",
             headers: {
@@ -570,7 +575,6 @@ class App extends React.Component {
                                         this.setState({ singup_process_step:0,IsSubscription:1}), 
                                         2000
                                     );
-                                    // this.setState({singup_process_step:0});
                                 }
                                 if(result[0][0].SUCCESS == 2){
                                     localStorage.removeItem('token');
@@ -663,27 +667,7 @@ class App extends React.Component {
 
                     {/* <!--  Pregame Waiting Room --> */}
                     {this.state.login == true && this.state.singup_process_step == 0 && this.state.IsSubscription == 1 ? 
-                        <div className="how_would" id='Pregame_Waiting_Room'>
-                            <Redirect to='/waitingroom' />
-                            <Link className="back_arrow back-name" to="/Join"><img src="img/Group_3325.png" alt="" /></Link>
-                            <div className="Pregame_Waiting_Room_main">
-                                <div className="Pregame_Waiting_Room_ID">
-                                    <p>ROOM</p>
-                                    <h3>{this.state.room_key}</h3>
-                                    <div className="how_would-join">
-                                        <button className="sign_in_btn go_premium ">PLAY</button>
-                                    </div>
-                                </div>
-                                <div className="Pregame_Waiting_joing_usere_list">
-                                    <div className="Pregame_Waiting_joing_usere_list-inner">
-                                        <p className="host"><img className="host_icon" src="img/Group3331.png" /><span className="user_name">{this.state.user} (host)</span></p>
-                                    </div>
-                                    <div className="how_would-join">
-                                        <button className="sign_in_btn enter_room_next" onClick={() => this.singup_next(5)}>INVITE PLAYERS</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <Redirect to='/waitingroom' />
                     : ""}
                     {/* <!--  Pregame Waiting Room --></div> */}
 

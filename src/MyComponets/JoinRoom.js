@@ -54,7 +54,8 @@ class App extends React.Component {
             error_invite_email : '',
             message : '',
             users : [],
-            errors_payment : ''
+            errors_payment : '',
+            forgot_password : 0
 
         };
 
@@ -79,6 +80,7 @@ class App extends React.Component {
         this.change_room_key = this.change_room_key.bind(this);
         this.change_invite_email = this.change_invite_email.bind(this);
         this.change_message = this.change_message.bind(this);
+        this.forgot_password_function = this.forgot_password_function.bind(this);
         // this.setUsers = this.setUsers.bind(this);
         // const [message, setMessage] = useState('');
         
@@ -144,6 +146,53 @@ class App extends React.Component {
     change_invite_email(e) {
         this.setState({invite_email: e.target.value});
         this.setState({error_invite_email: ''});
+    }
+
+    forgot_password_function(e){
+        if(e == 0){
+            this.setState({forgot_password: e});
+        }
+        if(e == 1){
+            let regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            let error_log = 0;
+            this.setState({errors_loginemail: ''});
+            let data={
+                "email" : this.state.loginemail,
+            }
+
+            if(this.state.loginemail == ''){
+                error_log = 1;
+                this.setState({errors_loginemail: 'Please enter Email'});
+            }else{
+                if (!regEmail.test(this.state.loginemail)) {
+                    error_log = 1;
+                    this.setState({errors_loginemail: 'Invalid Email Address'});
+                }
+            }
+            if(error_log == 1){
+                return false;
+            }
+            this.setState({forgot_password: e});
+        }
+        if(e == 2){
+            let data={
+                "email" : this.state.loginemail,
+            }
+
+            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/forgot_password", {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify(data)
+            }).then((resp)=>{
+                resp.json().then((result)=>{
+                    this.setState({forgot_password: e});
+                })
+            })
+            
+        }
     }
     
 
@@ -427,6 +476,9 @@ class App extends React.Component {
                             this.setState({login: true});
                             this.setState({IsSubscription: result[2][0].IsSubscription});
                             this.setState({singup_process_step: 6});
+                            setTimeout(() =>  
+                                this.setState({singup_process_step: 0})
+                            ,3000);
                         }else{
                             this.setState({errors_loginpassword: result[1][0].Message});
                         }
@@ -524,18 +576,40 @@ class App extends React.Component {
                                     <input type="password" placeholder="Password" value={this.state.loginpassword} onChange={this.change_loginpassword} />
                                     <span className="input_error" style={{color: "#FA303F"}}>{this.state.errors_loginpassword}</span>
                                 </div>
-                                <a class="create_account_or forget-password" href="javascript:void(0);">FORGOT YOUR PASSWORD?</a>
+                                <a class="create_account_or forget-password" onClick={() => this.forgot_password_function(1)} href="javascript:void(0);">FORGOT YOUR PASSWORD?</a>
                                 <div className="how_would-join">
                                     <button className="sign_in_btn" id="login" onClick={this.userlogin}>SIGN IN</button>
                                 </div>
                                 <a className="create_account_or create_new_account" href="javascript:void(0);" onClick={this.create_room} > CREATE AN ACCOUNT </a>
                                 <div className="how_would-join">
-                                    <button id="createaccount" onClick={() => this.singup_next(7)}>CONTINUE AS GUST</button>
+                                    <button id="createaccount" onClick={() => this.singup_next(7)}>CONTINUE AS GUEST</button>
                                 </div>   
                             </div>
                         </div>
                     : ""}
                     {/*  create and join Room */}
+                    
+                    {/*  Forgot Password */}
+                    {this.state.forgot_password == 1 ?
+                        <div className="forgot_password" id='forgot_password'>
+                            <div className="how_would enter_room forgot_password_inner">
+                                <div className="back_arrow"><img  onClick={() => this.forgot_password_function(0)} src="img/Group_3325.png" alt="" /></div>
+                                <h3>RESET YOUR<br/>PASSWORD?</h3>
+                                <p>We'll send a password reset link<br/>to your email</p>
+                                <div className="how_would-join join_or_login">
+                                    <div className="login_input">
+                                    </div>
+                                    <div className="how_would-join">
+                                        <button className="sign_in_btn enter_name_next" onClick={() => this.forgot_password_function(2)} >RESET PASSWORD</button>
+                                    </div>
+                                    <div class="how_would-join">
+                                        <br/>
+                                        <button id="createaccount" onClick={() => this.forgot_password_function(0)} >CANCEL</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    : ""}
 
                     {/* <!--  Pregame Waiting Room --> */}
                     {this.state.login == true && this.state.singup_process_step == 0 && this.state.room_id == '' ? 
@@ -691,8 +765,7 @@ class App extends React.Component {
                             <div className="how_would-join join_or_login">
                                 <div className="month-price">
                                     <p>
-                                        <span className="month-price-img"><img src="img/cannot.png" alt="" /></span>
-                                        <span className="month-price-text red-class">CANNOT Create Rooms</span>
+                                        <span className="month-price-text red-class month-price-text2" style={{color:'#6B8E0C'}}>PAYMENT SUCCESSFUL</span>
                                     </p>
                                 </div>
                             </div>        

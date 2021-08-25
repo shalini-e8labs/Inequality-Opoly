@@ -1450,7 +1450,7 @@
     }
 
     .select_card_fist_text {
-        width: 340PX;
+        width: 400px;
         height: 453px;
         padding: 61px 31px 44px;
     }
@@ -1684,7 +1684,7 @@
     .return_to_game-card .select_card_fist_text .title_card { font-size: 37px; line-height: 45px; 
         margin-top: -50px;}
     .return_to_game-card .select_card_fist_text .cards_text_inner{height: 350px;}
-    .select_card_fist_text_servies { margin-bottom: 12px;}
+    .select_card_fist_text_servies { margin-bottom: 30px;}
     .return_to_game-card .select_card_fist_text_servies p { font-size: 17px; line-height: 17px;}
     .return_to_game-card .select_card_fist_text_servies h3 {  font-size: 35px; line-height: 48px;}
     .return_to_game-card .select_box_bonus .select_card_fist_img img{width: 350px !important;}

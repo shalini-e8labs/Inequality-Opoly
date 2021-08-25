@@ -56,6 +56,8 @@ function App() {
 	const [game_play_position, set_game_play_position] = useState(1);
 	const [your_play_position, set_your_play_position] = useState(0);
 	const [your_last_position, set_your_last_position] = useState(0);
+	const [deci_roll_step, set_deci_roll_step] = useState(0);
+	const [game_instraction, set_game_instraction] = useState('');
 	
 	const invite_fucntion = (e) => {
 		if(invite_email == '' || invite_email == null){
@@ -65,7 +67,9 @@ function App() {
 
 		let data={
 			"room_id" : JSON.parse(localStorage.getItem('room')).room_id,
-			"email" : invite_email
+			"email" : invite_email,
+			"Name" : JSON.parse(localStorage.getItem('user')).Name,
+			"room_key" : JSON.parse(localStorage.getItem('room')).room_key
 		}
 		fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/invite_user", {
 			method: "POST",
@@ -137,17 +141,31 @@ function App() {
 				setTimeout(() =>  setpickup_step(1),7000);
 				setTimeout(() =>  setpickup_step(2),12000);
 				setTimeout(() =>  setpickup_step(3),17000);
+				setTimeout(() =>
+					data.players.forEach(function(element) {
+						document.getElementById(element.PlayerID+"_player").setAttribute("style", "left:"+(document.getElementById("Gameboard_playboard_0").offsetLeft+30)+"px;top:"+document.getElementById("Gameboard_playboard_0").offsetTop+"px")
+					})
+				,18000);
 			}
 		});
 
 		socket.on("dice_roll", (data) => {
-			set_game_play_position(data.game_play_position);
 			if(data.current_user == current_user){
+				setdice1(data.dice1);
+				setdice2(data.dice2);
 				set_your_last_position(data.player_posstion);
+				set_deci_roll_step(1);
+				setTimeout(() =>  set_deci_roll_step(2),1500);
+				setTimeout(() =>  set_deci_roll_step(3),3000);
+				setTimeout(() =>  set_deci_roll_step(0),4500);
 			}
-	        document.getElementById("Gameboard_playboard_"+data.player_posstion).append(document.getElementById(data.current_user+"_player"));
+			setTimeout(() => set_game_play_position(data.game_play_position) ,5000)
+			setTimeout(() => 
+				move_token(data.your_last_position,data.player_posstion,data.current_user)
+				// document.getElementById(data.current_user+"_player").setAttribute("style", "left:"+document.getElementById("Gameboard_playboard_"+data.player_posstion).offsetLeft+"px;top:"+document.getElementById("Gameboard_playboard_"+data.player_posstion).offsetTop+"px")
+			,5000)
 			if(data.Isupdate == 1){
-				all_player_assets_update();
+				setTimeout(() => all_player_assets_update() ,5000)
 			}
 		});
 
@@ -164,6 +182,16 @@ function App() {
 			sethostisonline(2);
 		});
     }, [ENDPOINT, room,name]);
+	const move_token = (last_position,postion_temp,current_userid) => {
+		if(postion_temp >= last_position){
+            var x;
+            var y;
+            x = document.getElementById("Gameboard_playboard_"+last_position).offsetLeft+30;
+            y = document.getElementById("Gameboard_playboard_"+last_position).offsetTop;
+            document.getElementById(current_userid+"_player").setAttribute("style", "left:"+x+"px;top:"+y+"px");
+            setTimeout(() => move_token(last_position+1,postion_temp,current_userid),300);
+        }
+	}
 	
 	const onMessageSubmit = (e) => {
 		var json_object = {
@@ -273,12 +301,15 @@ function App() {
 											</div>
 											<div className="select_card_fist_text">
 												<h3 className="title_card">PERCEIVED IDENTITY</h3>
-												{identity_cards[myidentity-1].map(function(identity_card, i){
-													return <div className="select_card_fist_text_servies">
-														<h3>{identity_card.name}</h3>
-														<h3>{identity_card.value}</h3>
-													</div>
-												})}
+												<div className="cards_text_inner" style={{overflow:'auto'}}>
+													<br></br>
+													{identity_cards[myidentity-1].map(function(identity_card, i){
+														return <div className="select_card_fist_text_servies">
+															<h2>{identity_card.name}</h2>
+															<h3>{identity_card.value}</h3>
+														</div>
+													})}
+												</div>
 											</div>
 										</div>
 									</div>
@@ -310,10 +341,10 @@ function App() {
 									</div>
 									<div className="select_card_fist_text">
 										<h3 className="title_card">{board_cards[inheritance_id].name}</h3>
-										<div className="cards_text_inner">
+										<div className="cards_text_inner" style={{overflow:'auto'}}>
 											{board_cards[inheritance_id].description.map(function(board_cards, i){
 												return <div className="select_card_fist_text_servies">
-														<h3>{board_cards.name}</h3>
+														<h2>{board_cards.name}</h2>
 														<h3>{board_cards.value}</h3>
 													</div>
 												})}
@@ -551,10 +582,36 @@ function App() {
 						{/* dice settiong ariay */}
 						{/* current user play */}
 						<div className="game-instraction">
-							<p></p>
+							<p>{game_instraction}</p>
 						</div>
 						{/* current user play */}
 					</div>
+					{deci_roll_step == 1?
+						<div className="dice_throw" style={{position:'absolute',background:'rgba(0,0,0,.5)',zIndex:'999'}}>
+							<img className="dice_throw-img" src="img/Image-4.png" alt="" />
+						</div>
+					: ""
+					}
+					{deci_roll_step == 2?
+						<div className="dice_throw" style={{position:'absolute',background:'rgba(0,0,0,.5)',zIndex:'999'}}>
+							<img className="dice_throw-img-inner" src="img/ScreenShot2021.png" alt="" />
+						</div>
+					: ""
+					}
+					{deci_roll_step == 3?
+						<div className="dice_throw" style={{position:'absolute',background:'rgba(0,0,0,.5)',zIndex:'999'}}>
+							<div class="pass-number">
+								<h3 class="title_pass_number">Dice Roll</h3>
+								<div class="pass_number-main">
+									<h3 class="pass_number">{dice1 + dice2}</h3>
+									<div class="pass_number-text">
+										<h3> You moved {dice1 + dice2} Space</h3>
+									</div>    
+								</div>
+							</div>
+						</div>
+					: ""
+					}
 				</div>  
 			: ""
 			: 
@@ -583,11 +640,10 @@ function App() {
 							<div className="how_would-join game-start-btn-main">
 								{ishostid == 1?
 									<>
-									{users.length == 1 ?
-										<button className="sign_in_btn go_premium game-start-btn play_buton_hold">PLAY</button>
-										
+									{users.length > 1 ?
+										<button className="sign_in_btn go_premium game-start-btn" onClick={() => onMessageSubmit(0)}>PLAY</button>									
 									:
-										<button className="sign_in_btn go_premium game-start-btn" onClick={() => onMessageSubmit(0)}>PLAY</button>
+										<button className="sign_in_btn go_premium game-start-btn play_buton_hold">PLAY</button>
 									}
 									
 									<button className="sign_in_btn go_premium game-start-btn" onClick={() => game_cancel(0)}>CANCEL</button>
