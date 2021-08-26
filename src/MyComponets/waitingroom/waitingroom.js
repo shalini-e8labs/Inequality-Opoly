@@ -13,6 +13,7 @@ let button_style = {
 	position: 'relative',
 		width: '100%'
 }
+let rotation_count = 0;
 function App() {
 	var image_opacitty = {
 		'opacity':0.5
@@ -58,7 +59,6 @@ function App() {
 	const [your_last_position, set_your_last_position] = useState(0);
 	const [deci_roll_step, set_deci_roll_step] = useState(0);
 	const [game_instraction, set_game_instraction] = useState('');
-	
 	const invite_fucntion = (e) => {
 		if(invite_email == '' || invite_email == null){
 			seterror_invite_email('Please enter the EmailID');
@@ -94,7 +94,7 @@ function App() {
 
 	useEffect(() => {
         socket = io(ENDPOINT);
-
+		
         socket.emit('join', {
             name,
             room
@@ -103,6 +103,7 @@ function App() {
                 console.log(error);
             }
         });
+		
 
 		socket.on("roomData", ({
             users
@@ -145,7 +146,7 @@ function App() {
 					data.players.forEach(function(element) {
 						document.getElementById(element.PlayerID+"_player").setAttribute("style", "left:"+(document.getElementById("Gameboard_playboard_0").offsetLeft+30)+"px;top:"+document.getElementById("Gameboard_playboard_0").offsetTop+"px")
 					})
-				,38000);
+				,40000);
 			}
 		});
 
@@ -184,12 +185,69 @@ function App() {
     }, [ENDPOINT, room,name]);
 	const move_token = (last_position,postion_temp,current_userid) => {
 		if(postion_temp >= last_position){
+			let temp_postion = last_position;
+            if(last_position > 39){
+                temp_postion = last_position % 40;
+            }
+			if(current_user == current_userid){
+				if(temp_postion == 10){
+					let temp_rotation_count = (rotation_count * 360) + 90;
+					document.getElementsByClassName("gameplay_game")[0].style.transform = 'rotate(-'+temp_rotation_count+'deg)';
+					
+					var player_token = document.getElementsByClassName("player_token");
+					var n = player_token.length;
+					for(var i = 0; i < n; i ++) {
+						player_token[i].style.transform = 'rotate('+temp_rotation_count+'deg)';
+					}
+					// document.getElementsByClassName("player_token")[0].style.transform = 'rotate('+temp_rotation_count+'deg)';
+				}
+				if(temp_postion == 20){
+					let temp_rotation_count = (rotation_count * 360) + 180;
+					document.getElementsByClassName("gameplay_game")[0].style.transform = 'rotate(-'+temp_rotation_count+'deg)';
+					var player_token = document.getElementsByClassName("player_token");
+					var n = player_token.length;
+					for(var i = 0; i < n; i ++) {
+						player_token[i].style.transform = 'rotate('+temp_rotation_count+'deg)';
+					}
+					// document.getElementsByClassName("player_token")[0].style.transform = 'rotate('+temp_rotation_count+'deg)';
+				}
+				if(temp_postion == 30){
+					let temp_rotation_count = (rotation_count * 360) + 270;
+					document.getElementsByClassName("gameplay_game")[0].style.transform = 'rotate(-'+temp_rotation_count+'deg)';
+					var player_token = document.getElementsByClassName("player_token");
+					var n = player_token.length;
+					for(var i = 0; i < n; i ++) {
+						player_token[i].style.transform = 'rotate('+temp_rotation_count+'deg)';
+					}
+					// document.getElementsByClassName("player_token")[0].style.transform = 'rotate('+temp_rotation_count+'deg)';
+				}
+				if(temp_postion = 0 && last_position != 0 ){
+					let temp_rotation_count = (rotation_count * 360) + 360;
+					document.getElementsByClassName("gameplay_game")[0].style.transform = 'rotate(-'+temp_rotation_count+'deg)';
+					var player_token = document.getElementsByClassName("player_token");
+					var n = player_token.length;
+					for(var i = 0; i < n; i ++) {
+						player_token[i].style.transform = 'rotate('+temp_rotation_count+'deg)';
+					}
+					//document.getElementsByClassName("player_token")[0].style.transform = 'rotate('+temp_rotation_count+'deg)';
+					rotation_count++;
+				}
+			}
+            var x;
+            var y;
+            x = document.getElementById("Gameboard_playboard_"+last_position).offsetLeft;
+            y = document.getElementById("Gameboard_playboard_"+last_position).offsetTop;
+
+			document.getElementById(current_userid+"_player").style.left = x+'px';
+			document.getElementById(current_userid+"_player").style.top = y+'px';
+			setTimeout(() => move_token(last_position+1,postion_temp,current_userid),300);
+			/*
             var x;
             var y;
             x = document.getElementById("Gameboard_playboard_"+last_position).offsetLeft+30;
             y = document.getElementById("Gameboard_playboard_"+last_position).offsetTop;
-            document.getElementById(current_userid+"_player").setAttribute("style", "left:"+x+"px;top:"+y+"px");
-            setTimeout(() => move_token(last_position+1,postion_temp,current_userid),300);
+            document.getElementById(current_userid+"_player").setAttribute("style", "left:"+x+"px;top:"+y+"px");*/
+            // setTimeout(() => move_token(last_position+1,postion_temp,current_userid),300);
         }
 	}
 	
@@ -250,6 +308,14 @@ function App() {
 			'room_id' : room_id
 		}
 		socket.emit('sent_all_players_assets_update', json_object, () => console.log(''));
+	}
+
+	function waiting_user_remove(player_user_id){
+		var json_object = {
+			'room_id' : room_id,
+			'player_user_id' : player_user_id
+		}
+		socket.emit('waiting_user_remove', json_object, () => console.log(''));
 	}
 	return (
 		gamestart == 1 ?
@@ -403,7 +469,7 @@ function App() {
 							<div className="player_cared_user">
 							{players.map(function(user, i){
 									return <div className="playser_with_money">
-												<img src={`img/indentity/${myidentity}_avtar.png`}></img>
+												<img src={`img/indentity/${user.IdentityID}_avtar.png`}></img>
 												<div className="Playser_data">
 													<h3 className="player_user_name">{user.Name}</h3>
 													<span>${JSON.parse(user.assets).balance}</span>
@@ -479,7 +545,7 @@ function App() {
 									<td className="Gameboard-playboard-card Gameboard-playboard-1 bottom" id="Gameboard_playboard_1"></td>
 									<td className="Gameboard-playboard-card Gameboard-playboard-start" id="Gameboard_playboard_0">
 										{players.map(function(user, i){
-											return <img src={`img/indentity/${user.IdentityID}_token.png`} id={`${user.PlayerID}_player`}/>;
+											return <img className="player_token" src={`img/indentity/${user.IdentityID}_token.png`} id={`${user.PlayerID}_player`}/>;
 										})}
 									</td>
 								</tr>
@@ -551,13 +617,13 @@ function App() {
 							{/* dice */}
 							{your_play_position == game_play_position? 
 								<div className=" gamepay-sreens-rolling">
-									<a href="#" onClick={() => dice_roll()}> 
+									<a href="javascript:void(0);" onClick={() => dice_roll()}> 
 										<img src="img/Component 16 – 3.png" alt="" /> 
 									</a>
 								</div>
 							:
 								<div style={{width: '100px'}}>
-									<a href="#">
+									<a href="javascript:void(0);">
 											<img src="img/Component 16 – 3.png" alt="" style={{opacity: '0.5',cursor:'none',pointerEvents:'none',width:'100%'}} />
 									</a>
 								</div>
@@ -663,7 +729,7 @@ function App() {
 									if(user.name.split("_")[0] == hostid) {
 										return <p className="host"><img className="host_icon" src="img/Group3331.png" /><span className="user_name">{user.name.split("_")[1]}(host)</span></p>;
 									}else{
-										return <p><span className="user_name" id={user.id}>{user.name.split("_")[1]}</span><span className="user_icon">
+										return <p><span className="user_name" id={user.id}>{user.name.split("_")[1]}</span><span className="user_icon" onClick={() => waiting_user_remove(user.id)} style={{cursor: "pointer"}}>
 											{ishostid == 1?
 												<img src="img/Group3333.png" alt="" />
 											: ''

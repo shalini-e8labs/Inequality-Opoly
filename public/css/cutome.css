@@ -2431,3 +2431,18 @@ transform: scale(1.2);
 .button_2px_border{
     border: 4px solid #342c24 !important;
 }
+.player_token {
+	position: absolute;
+	-webkit-transition: all 0.310s ease-in-out;
+	-moz-transition: all 0.310s ease-in-out;
+	-ms-transition: all 0.310s ease-in-out;
+	-o-transition: all 0.310s ease-in-out;
+	transition: all 0.310s ease-in-out;
+}
+.gameplay_game{
+    -webkit-transition: all 2s ease-in-out;
+	-moz-transition: all 2s ease-in-out;
+	-ms-transition: all 2s ease-in-out;
+	-o-transition: all 2s ease-in-out;
+	transition: all 2s ease-in-out;
+}

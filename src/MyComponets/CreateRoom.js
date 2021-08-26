@@ -56,39 +56,43 @@ class App extends React.Component {
             errors_payment : ''
         };
         if(localStorage.getItem('token') != '' && localStorage.getItem('token') != null){
-            if(this.state.room_key == ''){
-                this.setState({singup_process_step: 4});
-                this.setState({IsSubscription: 0});
-                let data={
-                    "PlayerID" : JSON.parse(localStorage.getItem('user')).PlayerID,
-                    "name" : JSON.parse(localStorage.getItem('user')).Name,
-                    "email" : JSON.parse(localStorage.getItem('user')).Email
-                }
-                fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/room_create", {
-                    method: "POST",
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'authorization': localStorage.getItem('token'),
-                    },
-                    body:JSON.stringify(data)
-                }).then((resp)=>{
-                    resp.json().then((result)=>{
-                        this.setState({singup_process_step: 6});
-                        if(result[0][0].SUCCESS == 1){
-                            localStorage.setItem('room', JSON.stringify(result[1][0]));
-                            localStorage.setItem('room_host', 1);
-                            setTimeout(() =>  
-                                this.setState({IsSubscription: 1,room_key: result[1][0].room_key,room_id:result[1][0].room_id,singup_process_step:0})
-                            ,3000);
-                        }
-                        if(result[0][0].SUCCESS == 2){
-                            localStorage.removeItem('token');
-                            localStorage.removeItem('user');
-                            this.setState({login: 'false'});
-                        }
+            if(JSON.parse(localStorage.getItem('user')).IsSubscription == 1){
+
+                // console.log()
+                if(this.state.room_key == ''){
+                    this.setState({singup_process_step: 4});
+                    this.setState({IsSubscription: 0});
+                    let data={
+                        "PlayerID" : JSON.parse(localStorage.getItem('user')).PlayerID,
+                        "name" : JSON.parse(localStorage.getItem('user')).Name,
+                        "email" : JSON.parse(localStorage.getItem('user')).Email
+                    }
+                    fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/room_create", {
+                        method: "POST",
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'authorization': localStorage.getItem('token'),
+                        },
+                        body:JSON.stringify(data)
+                    }).then((resp)=>{
+                        resp.json().then((result)=>{
+                            this.setState({singup_process_step: 6});
+                            if(result[0][0].SUCCESS == 1){
+                                localStorage.setItem('room', JSON.stringify(result[1][0]));
+                                localStorage.setItem('room_host', 1);
+                                setTimeout(() =>  
+                                    this.setState({IsSubscription: 1,room_key: result[1][0].room_key,room_id:result[1][0].room_id,singup_process_step:0})
+                                ,3000);
+                            }
+                            if(result[0][0].SUCCESS == 2){
+                                localStorage.removeItem('token');
+                                localStorage.removeItem('user');
+                                this.setState({login: 'false'});
+                            }
+                        })
                     })
-                })
+                }
             }
         }else{
             localStorage.removeItem('token');
@@ -540,8 +544,8 @@ class App extends React.Component {
         if(error_log == 1){
             return false;
         }
-        this.setState({singup_process_step: 4});
-        this.setState({IsSubscription: 1});
+        // this.setState({singup_process_step: 4});
+        // this.setState({IsSubscription: 1});
         fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/login", {
             method: "POST",
             headers: {
@@ -741,7 +745,10 @@ class App extends React.Component {
                     {/* payment */}
                     {(this.state.login == false && this.state.singup_process_step == 4) || (this.state.login == true && this.state.IsSubscription == 0) ? 
                         <div className="how_would enter_name" id='payment'>
-                            <div onClick={() => this.singup_process_step_back(3)}  className="back_arrow"><img src="img/Group_3325.png" alt="" /></div>
+                            {this.state.login == true && this.state.IsSubscription == 0 ?
+                                <Link className="back_arrow" to="/Join"><img src="img/Group_3325.png" alt="" /></Link>
+                            : <div onClick={() => this.singup_process_step_back(3)}  className="back_arrow"><img src="img/Group_3325.png" alt="" /></div>}
+                            
                             <h3>PAYMENT DETAILS</h3>
                             <div className="how_would-join join_or_login">
                                 <CardSection/>
