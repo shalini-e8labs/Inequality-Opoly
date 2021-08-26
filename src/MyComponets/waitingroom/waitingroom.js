@@ -7,7 +7,7 @@ import queryString from 'query-string';
 import {gameboard_assets} from "./gameboard_assets.js";
 import {identity_assets} from "./identity_assets.js"
 
-const ENDPOINT = 'http://api.inequalityopoly.www70-32-25-208.a2hosted.com/';
+const ENDPOINT = 'https://api.inequalityopoly.www70-32-25-208.a2hosted.com/';
 let socket;
 let button_style = {
 	position: 'relative',
@@ -71,7 +71,7 @@ function App() {
 			"Name" : JSON.parse(localStorage.getItem('user')).Name,
 			"room_key" : JSON.parse(localStorage.getItem('room')).room_key
 		}
-		fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/invite_user", {
+		fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/invite_user", {
 			method: "POST",
 			headers: {
 				'Accept': 'application/json',
@@ -86,7 +86,7 @@ function App() {
 					seterror_invite_email('INVITE SEND');
 					setinvite_email('');
 				}else{
-					this.setState({error_invite_email: result[1][0].Message});
+					seterror_invite_email(result[1][0].Message);
 				}
 			})
 		})
@@ -139,13 +139,13 @@ function App() {
 					}
 				});
 				setTimeout(() =>  setpickup_step(1),7000);
-				setTimeout(() =>  setpickup_step(2),12000);
-				setTimeout(() =>  setpickup_step(3),17000);
+				setTimeout(() =>  setpickup_step(2),22000);
+				setTimeout(() =>  setpickup_step(3),37000);
 				setTimeout(() =>
 					data.players.forEach(function(element) {
 						document.getElementById(element.PlayerID+"_player").setAttribute("style", "left:"+(document.getElementById("Gameboard_playboard_0").offsetLeft+30)+"px;top:"+document.getElementById("Gameboard_playboard_0").offsetTop+"px")
 					})
-				,18000);
+				,38000);
 			}
 		});
 

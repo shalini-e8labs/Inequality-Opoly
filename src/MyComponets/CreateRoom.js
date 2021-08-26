@@ -56,8 +56,6 @@ class App extends React.Component {
             errors_payment : ''
         };
         if(localStorage.getItem('token') != '' && localStorage.getItem('token') != null){
-            this.setState({singup_process_step: 4});
-            this.setState({IsSubscription: 0});
             if(this.state.room_key == ''){
                 this.setState({singup_process_step: 4});
                 this.setState({IsSubscription: 0});
@@ -66,7 +64,7 @@ class App extends React.Component {
                     "name" : JSON.parse(localStorage.getItem('user')).Name,
                     "email" : JSON.parse(localStorage.getItem('user')).Email
                 }
-                fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/room_create", {
+                fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/room_create", {
                     method: "POST",
                     headers: {
                         'Accept': 'application/json',
@@ -83,7 +81,6 @@ class App extends React.Component {
                             setTimeout(() =>  
                                 this.setState({IsSubscription: 1,room_key: result[1][0].room_key,room_id:result[1][0].room_id,singup_process_step:0})
                             ,3000);
-                            
                         }
                         if(result[0][0].SUCCESS == 2){
                             localStorage.removeItem('token');
@@ -93,6 +90,10 @@ class App extends React.Component {
                     })
                 })
             }
+        }else{
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            this.setState({login: 'false'});
         }
         
         // Function define
@@ -148,7 +149,7 @@ class App extends React.Component {
                 "email" : this.state.loginemail,
             }
 
-            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/forgot_password", {
+            fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/forgot_password", {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
@@ -256,7 +257,7 @@ class App extends React.Component {
                 "email" : this.state.signupemail
             }
 
-            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/emailcheck", {
+            fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/emailcheck", {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
@@ -319,7 +320,7 @@ class App extends React.Component {
                 "email" : this.state.invite_email
             }
             console.log(data);
-            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/invite_user", {
+            fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/invite_user", {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
@@ -367,7 +368,7 @@ class App extends React.Component {
                     "amount" : '1.00'
                 }
         
-                fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/registration", {
+                fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/registration", {
                     method: "POST",
                     headers: {
                         'Accept': 'application/json',
@@ -385,7 +386,7 @@ class App extends React.Component {
                                 "name" : JSON.parse(localStorage.getItem('user')).Name,
                                 "email" : JSON.parse(localStorage.getItem('user')).Email
                             }
-                            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/room_create", {
+                            fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/room_create", {
                                 method: "POST",
                                 headers: {
                                     'Accept': 'application/json',
@@ -414,6 +415,7 @@ class App extends React.Component {
                             this.setState({IsSubscription: result[2][0].IsSubscription});
                             this.setState({singup_process_step: 5});
                         }else{
+                            this.setState({errors_payment: 'Card Invalid'});
                             this.setState({errors_loginpassword: result[1][0].Message});
                         }
                     })
@@ -446,7 +448,7 @@ class App extends React.Component {
                     "token" : result.token.id
                 }
         
-                fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/subscription", {
+                fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/subscription", {
                     method: "POST",
                     headers: {
                         'Accept': 'application/json',
@@ -463,7 +465,7 @@ class App extends React.Component {
                                 "name" : JSON.parse(localStorage.getItem('user')).Name,
                                 "email" : JSON.parse(localStorage.getItem('user')).Email
                             }
-                            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/room_create", {
+                            fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/room_create", {
                                 method: "POST",
                                 headers: {
                                     'Accept': 'application/json',
@@ -482,8 +484,11 @@ class App extends React.Component {
                                             this.setState({ singup_process_step:0,IsSubscription:1}), 
                                             3000
                                         );
+                                    }else{
+                                        this.setState({errors_payment:'Card Invalid'});
                                     }
                                     if(result[0][0].SUCCESS == 2){
+                                        
                                         localStorage.removeItem('token');
                                         localStorage.removeItem('user');
                                         this.setState({login: 'false'});
@@ -537,7 +542,7 @@ class App extends React.Component {
         }
         this.setState({singup_process_step: 4});
         this.setState({IsSubscription: 1});
-        fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/login", {
+        fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/login", {
             method: "POST",
             headers: {
             'Accept': 'application/json',
@@ -556,7 +561,7 @@ class App extends React.Component {
                             "name" : JSON.parse(localStorage.getItem('user')).Name,
                             "email" : JSON.parse(localStorage.getItem('user')).Email
                         }
-                        fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/room_create", {
+                        fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/room_create", {
                             method: "POST",
                             headers: {
                                 'Accept': 'application/json',
@@ -624,11 +629,11 @@ class App extends React.Component {
                             <h3>Log in or <br/>Create Account</h3>
                             <div className="how_would-join join_or_login">
                                 <div className="login_input">
-                                    <input type="text" placeholder="Email" value={this.state.loginemail} onChange={this.change_loginemail} />
+                                    <input className="button_2px_border" type="text" placeholder="Email" value={this.state.loginemail} onChange={this.change_loginemail} />
                                     <span className="input_error" style={{color: "#FA303F"}}>{this.state.errors_loginemail}</span>
                                 </div>
                                 <div className="login_input passowrd_input">
-                                    <input type="password" placeholder="Password" value={this.state.loginpassword} onChange={this.change_loginpassword} />
+                                    <input className="button_2px_border" type="password" placeholder="Password" value={this.state.loginpassword} onChange={this.change_loginpassword} />
                                     <span className="input_error" style={{color: "#FA303F"}}>{this.state.errors_loginpassword}</span>
                                 </div>
                                 <a className="create_account_or forget-password" onClick={() => this.forgot_password_function(1)} href="javascript:void(0);">FORGOT YOUR PASSWORD?</a>
@@ -638,7 +643,7 @@ class App extends React.Component {
                                 
                                 <div className="how_would-join">
                                     <br/>
-                                    <button id="createaccount" onClick={this.create_room}>CREATE AN ACCOUNT</button>
+                                    <button id="createaccount" className="button_2px_border" onClick={this.create_room}>CREATE AN ACCOUNT</button>
                                 </div>   
                             </div>
                         </div>
@@ -658,7 +663,7 @@ class App extends React.Component {
                                     </div>
                                     <div class="how_would-join">
                                         <br/>
-                                        <button id="createaccount" onClick={() => this.forgot_password_function(0)} >CANCEL</button>
+                                        <button id="createaccount" className="button_2px_border" onClick={() => this.forgot_password_function(0)} >CANCEL</button>
                                     </div>
                                 </div>
                             </div>

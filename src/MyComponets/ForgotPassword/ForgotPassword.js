@@ -17,7 +17,7 @@ export default function Forgotpassword(props) {
         let data={
 			"key" : key
 		}
-		fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/forgot_password_key_check", {
+		fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/forgot_password_key_check", {
 			method: "POST",
 			headers: {
 				'Accept': 'application/json',
@@ -54,7 +54,7 @@ export default function Forgotpassword(props) {
 			"key" : key,
             "password" : password
 		}
-		fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/forgot_password_change", {
+		fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/forgot_password_change", {
 			method: "POST",
 			headers: {
 				'Accept': 'application/json',

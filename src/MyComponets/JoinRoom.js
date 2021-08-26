@@ -179,7 +179,7 @@ class App extends React.Component {
                 "email" : this.state.loginemail,
             }
 
-            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/forgot_password", {
+            fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/forgot_password", {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
@@ -236,7 +236,7 @@ class App extends React.Component {
             let data={
                 "email" : this.state.signupemail
             }
-            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/emailcheck", {
+            fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/emailcheck", {
                 method: "POST",
                 headers: {
                 'Accept': 'application/json',
@@ -299,7 +299,7 @@ class App extends React.Component {
                 "transactionkey" : ''
             }
 
-            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/registration", {
+            fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/registration", {
                 method: "POST",
                 headers: {
                 'Accept': 'application/json',
@@ -315,12 +315,14 @@ class App extends React.Component {
                         this.setState({IsSubscription: 0});
                         this.setState({singup_process_step: 0});
                     }else{
+                        this.setState({errors_payment:'Card Invalid Decline'});
                         this.setState({errors_loginpassword: result[1][0].Message});
                     }
                 })
             })
         }
         if(e == 9){
+            console.log('guest_registration 1');
             this.setState({errors_signupname_guest: ''});
             if(this.state.signupname_guest == ''){
                 this.setState({errors_signupname_guest: 'Please enter Name'});
@@ -330,8 +332,8 @@ class App extends React.Component {
             let data={
                 "name" : this.state.signupname_guest
             }
-
-            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/guest_registration", {
+            console.log('guest_registration 2');
+            fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/guest_registration", {
                 method: "POST",
                 headers: {
                 'Accept': 'application/json',
@@ -347,6 +349,7 @@ class App extends React.Component {
                         this.setState({IsSubscription: 0});
                         this.setState({singup_process_step: 0});
                     }else{
+                        this.setState({errors_payment:'Card Invalid Decline'});
                         this.setState({errors_loginpassword: result[1][0].Message});
                     }
                 })
@@ -365,7 +368,7 @@ class App extends React.Component {
                 return false;
             }
             console.log(data);
-            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/join_player", {
+            fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/join_player", {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
@@ -409,7 +412,7 @@ class App extends React.Component {
                 "email" : this.state.invite_email
             }
             console.log(data);
-            fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/invite_user", {
+            fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/invite_user", {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
@@ -461,7 +464,7 @@ class App extends React.Component {
                     "amount" : '1.00'
                 }
         
-                fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/registration", {
+                fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/registration", {
                     method: "POST",
                     headers: {
                         'Accept': 'application/json',
@@ -520,7 +523,7 @@ class App extends React.Component {
         if(error_log == 1){
             return false;
         }
-        fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/login", {
+        fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/login", {
             method: "POST",
             headers: {
             'Accept': 'application/json',
@@ -582,7 +585,7 @@ class App extends React.Component {
                                 </div>
                                 <a className="create_account_or create_new_account" href="javascript:void(0);" onClick={this.create_room} > CREATE AN ACCOUNT </a>
                                 <div className="how_would-join">
-                                    <button id="createaccount" onClick={() => this.singup_next(7)}>CONTINUE AS GUEST</button>
+                                    <button id="createaccount" className="button_2px_border" onClick={() => this.singup_next(7)}>CONTINUE AS GUEST</button>
                                 </div>   
                             </div>
                         </div>
@@ -604,7 +607,7 @@ class App extends React.Component {
                                     </div>
                                     <div class="how_would-join">
                                         <br/>
-                                        <button id="createaccount" onClick={() => this.forgot_password_function(0)} >CANCEL</button>
+                                        <button id="createaccount" className="button_2px_border" onClick={() => this.forgot_password_function(0)} >CANCEL</button>
                                     </div>
                                 </div>
                             </div>
@@ -700,7 +703,7 @@ class App extends React.Component {
                                     <div className="month-price">
                                         <p>
                                             <span className="month-price-img"><img src="img/invite.png" alt="" /></span>
-                                            <span className="month-price-text green-class">Create your oen Rooms</span>
+                                            <span className="month-price-text green-class">Create your own Rooms</span>
                                         </p>
                                         <p>
                                             <span className="month-price-img"><img src="img/invite.png" alt="" /></span>

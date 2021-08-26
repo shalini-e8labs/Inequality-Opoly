@@ -7,7 +7,7 @@ import queryString from 'query-string';
 import {gameboard_assets} from "./gameboard_assets.js";
 import {identity_assets} from "./identity_assets.js"
 
-const ENDPOINT = 'http://api.inequalityopoly.www70-32-25-208.a2hosted.com/';
+const ENDPOINT = 'https://api.inequalityopoly.www70-32-25-208.a2hosted.com/';
 let socket;
 let button_style = {
 	position: 'relative',
@@ -66,7 +66,7 @@ function App() {
 			"email" : invite_email
 		}
 		console.log(data);
-		fetch("http://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/invite_user", {
+		fetch("https://api.inequalityopoly.www70-32-25-208.a2hosted.com/api/invite_user", {
 			method: "POST",
 			headers: {
 				'Accept': 'application/json',
