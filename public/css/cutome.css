@@ -775,7 +775,9 @@ input:focus-visible{outline:0}
     .how_would-main{
         background-color:rgba(70,35,33,0.9) !important;
         z-index: inherit;
-        
+    }
+    .how_would-main1{
+        background-color:transparent !important;
     }
     .how_would {
         background-color: #f3ebce;

@@ -59,6 +59,11 @@ function App() {
 	const [your_last_position, set_your_last_position] = useState(0);
 	const [deci_roll_step, set_deci_roll_step] = useState(0);
 	const [game_instraction, set_game_instraction] = useState('');
+	const [PIC, set_PIC] = useState(0);
+	const [pic_turn, set_pic_turn] = useState(0);
+	const [yellow_card, set_yellow_card] = useState(0);
+	const [green_card, set_green_card] = useState(0);
+	const [life_event, set_life_event] = useState(0);
 	const invite_fucntion = (e) => {
 		if(invite_email == '' || invite_email == null){
 			seterror_invite_email('Please enter the EmailID');
@@ -136,17 +141,21 @@ function App() {
 						setdice2(element.dice2);
 						setinheritance_id(element.isinheritance);
 						setplayer_identity_assests(element.identity_assests);
-						
 					}
 				});
 				setTimeout(() =>  setpickup_step(1),7000);
-				setTimeout(() =>  setpickup_step(2),22000);
-				setTimeout(() =>  setpickup_step(3),37000);
+
+				setTimeout(() =>  setpickup_step(4),22000);
+				setTimeout(() =>  setpickup_step(5),25000);
+				setTimeout(() =>  setpickup_step(6),28000);
+
+				setTimeout(() =>  setpickup_step(2),31000);
+				setTimeout(() =>  setpickup_step(3),46000);
 				setTimeout(() =>
 					data.players.forEach(function(element) {
 						document.getElementById(element.PlayerID+"_player").setAttribute("style", "left:"+(document.getElementById("Gameboard_playboard_0").offsetLeft+30)+"px;top:"+document.getElementById("Gameboard_playboard_0").offsetTop+"px")
 					})
-				,40000);
+				,49000);
 			}
 		});
 
@@ -157,14 +166,91 @@ function App() {
 				set_your_last_position(data.player_posstion);
 				set_deci_roll_step(1);
 				setTimeout(() =>  set_deci_roll_step(2),1500);
-				setTimeout(() =>  set_deci_roll_step(3),3000);
-				setTimeout(() =>  set_deci_roll_step(0),4500);
+				setTimeout(() =>  set_deci_roll_step(3),4500);
+				setTimeout(() =>  set_deci_roll_step(0),7500);
+				
+				// PIC code
+				if((data.player_posstion == 5 && data.your_last_position != 5)
+				|| (data.player_posstion == 15 && data.your_last_position != 15)
+				|| (data.player_posstion == 25 && data.your_last_position != 25)){
+					setTimeout(() => set_PIC(1) ,12000);
+					setTimeout(() => set_PIC(2) ,15000);
+					set_pic_turn(1);
+				}
+
+				// Yellow Cards
+				if((data.player_posstion == 2 && data.your_last_position != 2)
+				|| (data.player_posstion == 12 && data.your_last_position != 12)
+				|| (data.player_posstion == 22 && data.your_last_position != 22)
+				|| (data.player_posstion == 33 && data.your_last_position != 33)){
+					setTimeout(() => set_life_event(1) ,10000);
+					setTimeout(() => set_life_event(0) ,12000);
+					setTimeout(() => set_yellow_card(data.yellow_card) ,12100);
+					if(data.yellow_card != 2 || data.yellow_card != 4 ){
+						setTimeout(() => set_yellow_card(0) ,16000);
+					}
+				}
+
+				// Green Cards
+				if((data.player_posstion == 9 && data.your_last_position != 9)
+				|| (data.player_posstion == 17 && data.your_last_position != 17)
+				|| (data.player_posstion == 28 && data.your_last_position != 28)
+				|| (data.player_posstion == 37 && data.your_last_position != 37)){
+					setTimeout(() => set_life_event(1) ,10000);
+					setTimeout(() => set_life_event(0) ,12000);
+					setTimeout(() => set_green_card(data.green_card) ,12100);
+					setTimeout(() => set_green_card(0) ,16000);
+				}
+			}else{
+				// PIC code
+				if((data.player_posstion == 5 && data.your_last_position != 5)
+				|| (data.player_posstion == 15 && data.your_last_position != 15)
+				|| (data.player_posstion == 25 && data.your_last_position != 25)){
+					setTimeout(() => set_PIC(1) ,12000);
+				}
 			}
-			setTimeout(() => set_game_play_position(data.game_play_position) ,5000)
-			setTimeout(() => 
-				move_token(data.your_last_position,data.player_posstion,data.current_user)
-				// document.getElementById(data.current_user+"_player").setAttribute("style", "left:"+document.getElementById("Gameboard_playboard_"+data.player_posstion).offsetLeft+"px;top:"+document.getElementById("Gameboard_playboard_"+data.player_posstion).offsetTop+"px")
-			,5000)
+			setTimeout(() => set_game_play_position(data.game_play_position) ,8000)
+			setTimeout(() => move_token(data.your_last_position,data.player_posstion,data.current_user) ,8000)
+			
+			
+			if(data.Isupdate == 1){
+				setTimeout(() => all_player_assets_update() ,5000)
+			}
+		});
+
+		socket.on("pic_dice_roll", (data) => {
+			if(data.current_user == current_user){
+				setdice1(data.dice1);
+				setdice2(data.dice2);
+				set_your_last_position(data.player_posstion);
+				set_deci_roll_step(1);
+				setTimeout(() =>  set_deci_roll_step(2),1500);
+				setTimeout(() =>  set_deci_roll_step(0),4500);
+				
+				if(data.is_jail == 0){
+					setTimeout(() => set_PIC(3) ,5000);
+					setTimeout(() => set_pic_turn(0) ,5000);
+					setTimeout(() => set_PIC(0) ,8000);
+					setTimeout(() => set_game_play_position(data.game_play_position) ,5000)
+				}else{
+					setTimeout(() => set_PIC(4) ,9000);
+					setTimeout(() => set_pic_turn(0) ,9000);
+					setTimeout(() => set_PIC(0) ,12000);
+					setTimeout(() => set_game_play_position(data.game_play_position) ,9000)
+					setTimeout(() => move_token(data.your_last_position,data.player_posstion,data.current_user) ,9000)
+				}
+			}else{
+				if(data.is_jail == 0){
+					setTimeout(() => set_PIC(5) ,5000);
+					setTimeout(() => set_PIC(0) ,8000);
+				}else{
+					setTimeout(() => set_PIC(6) ,5000);
+					setTimeout(() => set_PIC(0) ,8000);
+				}
+				setTimeout(() => set_game_play_position(data.game_play_position) ,8000)
+				setTimeout(() => move_token(data.your_last_position,data.player_posstion,data.current_user) ,8000)
+			}
+			
 			if(data.Isupdate == 1){
 				setTimeout(() => all_player_assets_update() ,5000)
 			}
@@ -183,74 +269,77 @@ function App() {
 			sethostisonline(2);
 		});
     }, [ENDPOINT, room,name]);
+
+
+	
+
+	// Token Move
 	const move_token = (last_position,postion_temp,current_userid) => {
-		if(postion_temp >= last_position){
-			let temp_postion = last_position;
-            if(last_position > 39){
-                temp_postion = last_position % 40;
-            }
-			if(current_user == current_userid){
-				if(temp_postion == 10){
-					let temp_rotation_count = (rotation_count * 360) + 90;
-					document.getElementsByClassName("gameplay_game")[0].style.transform = 'rotate(-'+temp_rotation_count+'deg)';
-					
-					var player_token = document.getElementsByClassName("player_token");
-					var n = player_token.length;
-					for(var i = 0; i < n; i ++) {
-						player_token[i].style.transform = 'rotate('+temp_rotation_count+'deg)';
-					}
-					// document.getElementsByClassName("player_token")[0].style.transform = 'rotate('+temp_rotation_count+'deg)';
-				}
-				if(temp_postion == 20){
-					let temp_rotation_count = (rotation_count * 360) + 180;
-					document.getElementsByClassName("gameplay_game")[0].style.transform = 'rotate(-'+temp_rotation_count+'deg)';
-					var player_token = document.getElementsByClassName("player_token");
-					var n = player_token.length;
-					for(var i = 0; i < n; i ++) {
-						player_token[i].style.transform = 'rotate('+temp_rotation_count+'deg)';
-					}
-					// document.getElementsByClassName("player_token")[0].style.transform = 'rotate('+temp_rotation_count+'deg)';
-				}
-				if(temp_postion == 30){
-					let temp_rotation_count = (rotation_count * 360) + 270;
-					document.getElementsByClassName("gameplay_game")[0].style.transform = 'rotate(-'+temp_rotation_count+'deg)';
-					var player_token = document.getElementsByClassName("player_token");
-					var n = player_token.length;
-					for(var i = 0; i < n; i ++) {
-						player_token[i].style.transform = 'rotate('+temp_rotation_count+'deg)';
-					}
-					// document.getElementsByClassName("player_token")[0].style.transform = 'rotate('+temp_rotation_count+'deg)';
-				}
-				if(temp_postion = 0 && last_position != 0 ){
-					let temp_rotation_count = (rotation_count * 360) + 360;
-					document.getElementsByClassName("gameplay_game")[0].style.transform = 'rotate(-'+temp_rotation_count+'deg)';
-					var player_token = document.getElementsByClassName("player_token");
-					var n = player_token.length;
-					for(var i = 0; i < n; i ++) {
-						player_token[i].style.transform = 'rotate('+temp_rotation_count+'deg)';
-					}
-					//document.getElementsByClassName("player_token")[0].style.transform = 'rotate('+temp_rotation_count+'deg)';
-					rotation_count++;
+		let temp_postion = last_position;
+		if(last_position > 39){
+			temp_postion = last_position % 40;
+		}
+		if(current_user == current_userid){
+			if(temp_postion == 10){
+				let temp_rotation_count = (rotation_count * 360) + 90;
+				document.getElementsByClassName("gameplay_game")[0].style.transform = 'rotate(-'+temp_rotation_count+'deg)';
+				
+				var player_token = document.getElementsByClassName("player_token");
+				var n = player_token.length;
+				for(var i = 0; i < n; i ++) {
+					player_token[i].style.transform = 'rotate('+temp_rotation_count+'deg)';
 				}
 			}
-            var x;
-            var y;
-            x = document.getElementById("Gameboard_playboard_"+last_position).offsetLeft;
-            y = document.getElementById("Gameboard_playboard_"+last_position).offsetTop;
+			if(temp_postion == 20){
+				let temp_rotation_count = (rotation_count * 360) + 180;
+				document.getElementsByClassName("gameplay_game")[0].style.transform = 'rotate(-'+temp_rotation_count+'deg)';
+				var player_token = document.getElementsByClassName("player_token");
+				var n = player_token.length;
+				for(var i = 0; i < n; i ++) {
+					player_token[i].style.transform = 'rotate('+temp_rotation_count+'deg)';
+				}
+			}
+			if(temp_postion == 30){
+				let temp_rotation_count = (rotation_count * 360) + 270;
+				document.getElementsByClassName("gameplay_game")[0].style.transform = 'rotate(-'+temp_rotation_count+'deg)';
+				var player_token = document.getElementsByClassName("player_token");
+				var n = player_token.length;
+				for(var i = 0; i < n; i ++) {
+					player_token[i].style.transform = 'rotate('+temp_rotation_count+'deg)';
+				}
+			}
+			if((temp_postion = 0 && last_position != 0) || last_position == 40){
+				let temp_rotation_count = (rotation_count * 360) + 360;
+				document.getElementsByClassName("gameplay_game")[0].style.transform = 'rotate(-'+temp_rotation_count+'deg)';
+				var player_token = document.getElementsByClassName("player_token");
+				var n = player_token.length;
+				for(var i = 0; i < n; i ++) {
+					player_token[i].style.transform = 'rotate('+temp_rotation_count+'deg)';
+				}
+				rotation_count++;
+			}
+		}
+		var x;
+		var y;
+		if(last_position == 40){
+			last_position = 0;
+		}
 
-			document.getElementById(current_userid+"_player").style.left = x+'px';
-			document.getElementById(current_userid+"_player").style.top = y+'px';
+		// Find X AND Y Position
+		x = document.getElementById("Gameboard_playboard_"+last_position).offsetLeft;
+		y = document.getElementById("Gameboard_playboard_"+last_position).offsetTop;
+
+		console.log(current_userid+"_player");
+		document.getElementById(current_userid+"_player").style.left = x+'px';
+		document.getElementById(current_userid+"_player").style.top = y+'px';
+		if(postion_temp != last_position ){
+
+			// Move token again
 			setTimeout(() => move_token(last_position+1,postion_temp,current_userid),300);
-			/*
-            var x;
-            var y;
-            x = document.getElementById("Gameboard_playboard_"+last_position).offsetLeft+30;
-            y = document.getElementById("Gameboard_playboard_"+last_position).offsetTop;
-            document.getElementById(current_userid+"_player").setAttribute("style", "left:"+x+"px;top:"+y+"px");*/
-            // setTimeout(() => move_token(last_position+1,postion_temp,current_userid),300);
-        }
+		}
 	}
 	
+	// Game Start
 	const onMessageSubmit = (e) => {
 		var json_object = {
 			'room_id' : room_id,
@@ -260,28 +349,15 @@ function App() {
 		}
 		socket.emit('sendMessage', json_object, () => console.log(''));
 	}
+
+	// Game Cancel by Admin
 	const game_cancel = (e) => {
 		var json_object = {
 			'room_id' : room_id,
 		}
 		socket.emit('send_game_stop', json_object, () => console.log(''));
 	}
-
-	function removeNull(array) {
-		return array.filter(x => x !== null)
-	};
-
-	function randomArrayShuffle(array) {
-		var currentIndex = array.length, temporaryValue, randomIndex;
-		while (0 !== currentIndex) {
-		  randomIndex = Math.floor(Math.random() * currentIndex);
-		  currentIndex -= 1;
-		  temporaryValue = array[currentIndex];
-		  array[currentIndex] = array[randomIndex];
-		  array[randomIndex] = temporaryValue;
-		}
-		return array;
-	}
+	
 	useEffect(() => {
 		const script = document.createElement('script');
 		script.src = "./js/loader.js";
@@ -292,6 +368,8 @@ function App() {
 		}
 	}, []);
 	
+
+	// Regualr Dice Roll
 	const dice_roll = (e) => {
 		var json_object = {
 			'room_id' : room_id,
@@ -300,7 +378,53 @@ function App() {
 			'game_play_position' : game_play_position,
 			'players' : players.length
 		}
+		set_PIC(0);
+		set_game_play_position(-1);
 		socket.emit('send_dice_roll', json_object, () => console.log(''));
+	}
+
+	// PIC check Dice Roll
+	const pic_dice_roll = (e) => {
+		var json_object = {
+			'room_id' : room_id,
+			'current_user' : current_user,
+			'your_last_position' : your_last_position,
+			'game_play_position' : game_play_position,
+			'players' : players.length
+		}
+		set_game_play_position(-1);
+		set_PIC(0);
+		socket.emit('send_pic_dice_roll', json_object, () => console.log(''));
+	}
+
+	// Sexual Assault Dice Roll
+	const sexual_assault_dice_roll = (e) => {
+		/*
+		var json_object = {
+			'room_id' : room_id,
+			'current_user' : current_user,
+			'your_last_position' : your_last_position,
+			'game_play_position' : game_play_position,
+			'players' : players.length
+		}
+		set_game_play_position(-1);
+		set_PIC(0);
+		socket.emit('send_pic_dice_roll', json_object, () => console.log(''));*/
+	}
+
+	// Raise Assault Dice Roll
+	const raise_dice_roll = (e) => {
+		/*
+		var json_object = {
+			'room_id' : room_id,
+			'current_user' : current_user,
+			'your_last_position' : your_last_position,
+			'game_play_position' : game_play_position,
+			'players' : players.length
+		}
+		set_game_play_position(-1);
+		set_PIC(0);
+		socket.emit('send_pic_dice_roll', json_object, () => console.log(''));*/
 	}
 
 	function all_player_assets_update(){
@@ -360,26 +484,26 @@ function App() {
 							{/* Pick in identity card screen */}
 							{/* select identity card image */}
 							<div className="select_card_first" id="select_card_first">
-									<div className="select_card_first-inner">
-										<div className="select_box_bonus">
-											<div className="select_card_fist_img">
-												<img src={`img/indentity/${myidentity}.png`}></img>
-											</div>
-											<div className="select_card_fist_text">
-												<h3 className="title_card">PERCEIVED IDENTITY</h3>
-												<div className="cards_text_inner" style={{overflow:'auto'}}>
-													<br></br>
-													{identity_cards[myidentity-1].map(function(identity_card, i){
-														return <div className="select_card_fist_text_servies">
-															<h2>{identity_card.name}</h2>
-															<h3>{identity_card.value}</h3>
-														</div>
-													})}
-												</div>
+								<div className="select_card_first-inner">
+									<div className="select_box_bonus">
+										<div className="select_card_fist_img">
+											<img src={`img/indentity/${myidentity}.png`}></img>
+										</div>
+										<div className="select_card_fist_text">
+											<h3 className="title_card">PERCEIVED IDENTITY</h3>
+											<div className="cards_text_inner" style={{overflow:'auto'}}>
+												<br></br>
+												{identity_cards[myidentity-1].map(function(identity_card, i){
+													return <div className="select_card_fist_text_servies">
+														<h2>{identity_card.name}</h2>
+														<h3>{identity_card.value}</h3>
+													</div>
+												})}
 											</div>
 										</div>
 									</div>
 								</div>
+							</div>
 							{/* details about selected  identity card screen- */}
 						</div>
 						{/* Pick in identity card  */}
@@ -400,23 +524,23 @@ function App() {
 							{/* details about selected Inheritence screen */}
 							<div className="select_card_first " id="first-card-inheritance">
 								<div className="select_card_first-inner">
-								<div className="select_box_bonus">
-									<div className="select_card_fist_img">
-										{/* <img src="img/red_park.png" /> */}
-										<img src={board_cards[inheritance_id].url}></img>
-									</div>
-									<div className="select_card_fist_text">
-										<h3 className="title_card">{board_cards[inheritance_id].name}</h3>
-										<div className="cards_text_inner" style={{overflow:'auto'}}>
-											{board_cards[inheritance_id].description.map(function(board_cards, i){
-												return <div className="select_card_fist_text_servies">
-														<h2>{board_cards.name}</h2>
-														<h3>{board_cards.value}</h3>
-													</div>
-												})}
+									<div className="select_box_bonus">
+										<div className="select_card_fist_img">
+											{/* <img src="img/red_park.png" /> */}
+											<img src={board_cards[inheritance_id].url}></img>
+										</div>
+										<div className="select_card_fist_text">
+											<h3 className="title_card">{board_cards[inheritance_id].name}</h3>
+											<div className="cards_text_inner" style={{overflow:'auto'}}>
+												{board_cards[inheritance_id].description.map(function(board_cards, i){
+													return <div className="select_card_fist_text_servies">
+															<h2>{board_cards.name}</h2>
+															<h3>{board_cards.value}</h3>
+														</div>
+													})}
+											</div>
 										</div>
 									</div>
-								</div>
 								</div>
 							</div>
 							{/* details about selected Inheritence screen */}
@@ -426,38 +550,23 @@ function App() {
 				</div>
 			:
 			pickup_step == 2 && inheritance_id == 0 ?
+
 				<div className="wapper gamepay-wapper">
 					<div className="gamebordPaass_main gamebordPaass_main-1">
-						{/* background gamedoard img */}
 						<div className="bg-board">
 							<img src="img/December2020-Gameboard.png" alt="" />
 						</div>
-						{/* background gamedoard img */}
-						{/* Pick in identity card  */}
 						<div className="show_cardt" id="oner_id">
-							{/* Pick in identity card screen */}
-							{/* select identity card image */}
-							<div className="select_card_first" id="select_card_first">
-									<div className="select_card_first-inner">
-										<div className="select_box_bonus">
-											<div className="select_card_fist_img">
-												<img src={`img/indentity/${myidentity}.png`}></img>
-											</div>
-											<div className="select_card_fist_text">
-												<h3 className="title_card">PERCEIVED IDENTITY</h3>
-												{identity_cards[myidentity].map(function(identity_card, i){
-													return <div className="select_card_fist_text_servies">
-														<h3>{identity_card.name}</h3>
-														<h3>{identity_card.value}</h3>
-													</div>
-												})}
-											</div>
+							<div className="how_would-main how_would-main1">
+								<div className="how_would" id="send-payment" >
+									<div className="how_would-join join_or_login">
+										<div className="month-price">
+											<p style={{color:'#6B8E0C',fontSize:'30px',textTransform:'uppercase',marginLeft:'18px',marginBottom:'0px',fontFamily: 'Bangers'}} className="month-price-text red-class">Sorry, you have not received Inheritance</p>
 										</div>
-									</div>
+									</div>        
 								</div>
-							{/* details about selected  identity card screen- */}
+							</div>
 						</div>
-						{/* Pick in identity card  */}
 					</div>
 				</div>
 			:
@@ -652,18 +761,21 @@ function App() {
 						</div>
 						{/* current user play */}
 					</div>
+
 					{deci_roll_step == 1?
 						<div className="dice_throw" style={{position:'absolute',background:'rgba(0,0,0,.5)',zIndex:'999'}}>
 							<img className="dice_throw-img" src="img/Image-4.png" alt="" />
 						</div>
 					: ""
 					}
+
 					{deci_roll_step == 2?
 						<div className="dice_throw" style={{position:'absolute',background:'rgba(0,0,0,.5)',zIndex:'999'}}>
 							<img className="dice_throw-img-inner" src="img/ScreenShot2021.png" alt="" />
 						</div>
 					: ""
 					}
+
 					{deci_roll_step == 3?
 						<div className="dice_throw" style={{position:'absolute',background:'rgba(0,0,0,.5)',zIndex:'999'}}>
 							<div class="pass-number">
@@ -678,9 +790,225 @@ function App() {
 						</div>
 					: ""
 					}
+
+					{PIC == 1?
+						<div className="select_card_first" id="select_card_first" style={{position:'absolute',width:'100%',backgroundColor:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div className="select_card_first-inner">
+								<div className="select_box_bonus">
+								<img style={{width:'100%'}} src={`img/pi.png`}></img>
+								</div>
+							</div>
+						</div>
+					: ""
+					}
+
+					{PIC == 2?
+						<div className="select_card_first" id="select_card_first" style={{position:'absolute',width:'100%',backgroundColor:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div className="select_card_first-inner">
+								<div className="select_box_bonus">
+									<div className="select_card_fist_img">
+										<img src={`img/indentity/${myidentity}.png`}></img>
+									</div>
+									<div className="select_card_fist_text">
+										<h3 className="title_card">PERCEIVED IDENTITY</h3>
+										<div className="cards_text_inner" style={{overflow:'auto'}}>
+											<br></br>
+											{identity_cards[myidentity-1].map(function(identity_card, i){
+												return <div className="select_card_fist_text_servies">
+													<h2>{identity_card.name}</h2>
+													<h3>{identity_card.value}</h3>
+												</div>
+											})}
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="Roll_inheritance-main" style={{top:'-50px'}}>
+								<button className="sign_in_btn Roll_inheritance" onClick={() => pic_dice_roll()}>ROLL TO AVOID PRISON</button>
+							</div>
+						</div>
+					: ""
+					}
+
+					{PIC == 3?
+						<div className="dice_throw" style={{position:'absolute',background:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div class="pass-number">
+								<h3 class="title_pass_number">Avoid prison?</h3>
+								<div class="pass_number-main">
+									<h3 class="pass_number">{dice1 + dice2}</h3>
+									<div class="pass_number-text">
+										<h3> ✔ you avoided the prison Industrial complex</h3>
+									</div>    
+								</div>
+							</div>
+						</div>
+					: ""
+					}
+
+					{PIC == 4?
+						<div className="dice_throw" style={{position:'absolute',background:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div class="pass-number">
+								<h3 class="title_pass_number">Avoid prison?</h3>
+								<div class="pass_number-main">
+									<h3 class="pass_number">{dice1 + dice2}</h3>
+									<div class="pass_number-text">
+										<h3> ✖ you are going to prison</h3>
+									</div>    
+								</div>
+							</div>
+						</div>
+					: ""
+					}
+
+					{PIC == 5?
+						<div className="select_card_first" id="select_card_first" style={{position:'absolute',width:'100%',backgroundColor:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div className="select_card_first-inner">
+								<div className="select_box_bonus">
+								<img style={{width:'100%'}} src={`img/go_jail_way.png`}></img>
+								</div>
+							</div>
+						</div>
+					: ""
+					}
+
+					{PIC == 6?
+						<div className="select_card_first" id="select_card_first" style={{position:'absolute',width:'100%',backgroundColor:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div className="select_card_first-inner">
+								<div className="select_box_bonus">
+								<img style={{width:'100%'}} src={`img/go_jail.png`}></img>
+								</div>
+							</div>
+						</div>
+					: ""
+					}
+
+					{life_event == 1?
+						<div className="select_card_first" id="select_card_first" style={{position:'absolute',width:'100%',backgroundColor:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div className="select_card_first-inner">
+								<div className="select_box_bonus">
+								<img style={{width:'100%'}} src={`img/life_event.png`}></img>
+								</div>
+							</div>
+						</div>
+					: ""
+					}
+
+					{yellow_card != 0?
+						<div className="select_card_first" id="select_card_first" style={{position:'absolute',width:'100%',backgroundColor:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div className="select_card_first-inner">
+								<div className="select_box_bonus">
+									<div className="select_card_fist_img">
+										<img src={`img/cards/yellow_${yellow_card}.png`}></img>
+									</div>
+									<div className="select_card_fist_text">
+										<h3 className="title_card">Yellow Event</h3>
+										<div className="cards_text_inner" style={{overflow:'auto'}}>
+											<br></br>
+											{identity_cards[myidentity-1].map(function(identity_card, i){
+												return <div className="select_card_fist_text_servies">
+													<h2>{identity_card.name}</h2>
+													<h3>{identity_card.value}</h3>
+												</div>
+											})}
+										</div>
+									</div>
+								</div>
+							</div>
+							{yellow_card == 2?
+								<div className="Roll_inheritance-main" style={{top:'-50px'}}>
+									<button className="sign_in_btn Roll_inheritance" onClick={() => sexual_assault_dice_roll()}>ROLL TO AVOID PRISON</button>
+								</div>
+							:""
+							}
+							{yellow_card == 4?
+								<div className="Roll_inheritance-main" style={{top:'-50px'}}>
+									<button className="sign_in_btn Roll_inheritance" onClick={() => raise_dice_roll()}>ROLL TO AVOID PRISON</button>
+								</div>
+							:""
+							}
+						</div>
+					: ""
+					}
+
+					{green_card != 0?
+						<div className="select_card_first" id="select_card_first" style={{position:'absolute',width:'100%',backgroundColor:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div className="select_card_first-inner">
+								<div className="select_box_bonus">
+									<div className="select_card_fist_img">
+										<img src={`img/cards/yellow_${green_card}.png`}></img>
+									</div>
+									<div className="select_card_fist_text">
+										<h3 className="title_card">Green Event</h3>
+										<div className="cards_text_inner" style={{overflow:'auto'}}>
+											<br></br>
+											{identity_cards[myidentity-1].map(function(identity_card, i){
+												return <div className="select_card_fist_text_servies">
+													<h2>{identity_card.name}</h2>
+													<h3>{identity_card.value}</h3>
+												</div>
+											})}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					: ""
+					}
 				</div>  
+			:
+			pickup_step == 4 ?
+				<div className="wapper gamepay-wapper">
+					<div className="gamebordPaass_main gamebordPaass_main-1">
+						<div className="bg-board">
+							<img src="img/December2020-Gameboard.png" alt="" />
+						</div>
+						<div className="show_cardt" id="oner_id">
+							<div className="dice_throw" style={{position:'absolute',background:'rgba(0,0,0,.5)',zIndex:'999'}}>
+								<img className="dice_throw-img" src="img/Image-4.png" alt="" />
+							</div>
+						</div>
+					</div>
+				</div>
+			:
+			pickup_step == 5 ?
+				<div className="wapper gamepay-wapper">
+					<div className="gamebordPaass_main gamebordPaass_main-1">
+						<div className="bg-board">
+							<img src="img/December2020-Gameboard.png" alt="" />
+						</div>
+						<div className="show_cardt" id="oner_id">
+							<div className="dice_throw" style={{position:'absolute',background:'rgba(0,0,0,.5)',zIndex:'999'}}>
+								<img className="dice_throw-img-inner" src="img/ScreenShot2021.png" alt="" />
+							</div>
+						</div>
+					</div>
+				</div>
+			:
+			pickup_step == 6 ?
+				<div className="wapper gamepay-wapper">
+					<div className="gamebordPaass_main gamebordPaass_main-1">
+						<div className="bg-board">
+							<img src="img/December2020-Gameboard.png" alt="" />
+						</div>
+						<div className="show_cardt" id="oner_id">
+							<div className="dice_throw" style={{position:'absolute',background:'rgba(0,0,0,.5)',zIndex:'999'}}>
+								<div class="pass-number">
+									<h3 class="title_pass_number">Dice Roll</h3>
+									<div class="pass_number-main">
+										<h3 class="pass_number">{dice1 + dice2}</h3>
+										<div class="pass_number-text">
+											{/* <h3> You moved {dice1 + dice2} Space</h3> */}
+										</div>    
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			: ""
-			: 
+			:
+			
+			
 			// sreen wappper
 			<div className="wapper">
 			{/*  gameboard image animation */}
