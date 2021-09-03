@@ -5,7 +5,11 @@ import io from "socket.io-client"
 import DOMPurify from "dompurify";
 import queryString from 'query-string';
 import {gameboard_assets} from "./gameboard_assets.js";
-import {identity_assets} from "./identity_assets.js"
+import {identity_assets} from "./identity_assets.js";
+import {yellow_cars_assets} from "./yellow_cards_assets.js";
+import {green_cards_assets} from "./green_cards_assets.js";
+
+
 
 const ENDPOINT = 'https://api.inequalityopoly.www70-32-25-208.a2hosted.com/';
 let socket;
@@ -49,6 +53,8 @@ function App() {
 	const [dice1, setdice1] = useState(0);
 	const [dice2, setdice2] = useState(0);
 	const [identity_cards, setidentity_cards] = useState(identity_assets);
+	const [yellows_cards, set_yellows_cards] = useState(yellow_cars_assets);
+	const [greens_cards, set_greens_cards] = useState(green_cards_assets);
 	const [board_cards, setitemp_card] = useState(gameboard_assets);
 	const [hostisonline, sethostisonline] = useState(1);
 	const [inheritance_id, setinheritance_id] = useState(0);
@@ -62,8 +68,11 @@ function App() {
 	const [PIC, set_PIC] = useState(0);
 	const [pic_turn, set_pic_turn] = useState(0);
 	const [yellow_card, set_yellow_card] = useState(0);
+	const [sexual_assault, set_sexual_assault] = useState(0);
+	const [raise, set_raise] = useState(0);
 	const [green_card, set_green_card] = useState(0);
 	const [life_event, set_life_event] = useState(0);
+
 	const invite_fucntion = (e) => {
 		if(invite_email == '' || invite_email == null){
 			seterror_invite_email('Please enter the EmailID');
@@ -86,7 +95,6 @@ function App() {
 			body:JSON.stringify(data)
 		}).then((resp)=>{
 			resp.json().then((result)=>{
-				console.warn("result",result)
 				if(result[0][0].SUCCESS == 1){
 					seterror_invite_email('INVITE SEND');
 					setinvite_email('');
@@ -186,8 +194,9 @@ function App() {
 					setTimeout(() => set_life_event(1) ,10000);
 					setTimeout(() => set_life_event(0) ,12000);
 					setTimeout(() => set_yellow_card(data.yellow_card) ,12100);
-					if(data.yellow_card != 2 || data.yellow_card != 4 ){
-						setTimeout(() => set_yellow_card(0) ,16000);
+					console.log(data.yellow_card);
+					if(data.yellow_card != 2 && data.yellow_card != 4 ){
+						setTimeout(() => set_yellow_card(0) ,17000);
 					}
 				}
 
@@ -249,6 +258,46 @@ function App() {
 				}
 				setTimeout(() => set_game_play_position(data.game_play_position) ,8000)
 				setTimeout(() => move_token(data.your_last_position,data.player_posstion,data.current_user) ,8000)
+			}
+			
+			if(data.Isupdate == 1){
+				setTimeout(() => all_player_assets_update() ,5000)
+			}
+		});
+
+		socket.on("sexual_assault_dice_roll", (data) => {
+			if(data.current_user == current_user){
+				setdice1(data.dice1);
+				setdice2(data.dice2);
+				set_your_last_position(data.player_posstion);
+				set_deci_roll_step(1);
+				setTimeout(() =>  set_deci_roll_step(2),1500);
+				setTimeout(() =>  set_deci_roll_step(0),4500);
+				setTimeout(() =>  set_sexual_assault(data.sexual_assault),4600);
+				setTimeout(() =>  set_sexual_assault(0),7000);
+				setTimeout(() => set_game_play_position(data.game_play_position) ,8000)
+			}else{
+				setTimeout(() => set_game_play_position(data.game_play_position) ,8000)
+			}
+			
+			if(data.Isupdate == 1){
+				setTimeout(() => all_player_assets_update() ,5000)
+			}
+		});
+
+		socket.on("raise_dice_roll", (data) => {
+			if(data.current_user == current_user){
+				setdice1(data.dice1);
+				setdice2(data.dice2);
+				set_your_last_position(data.player_posstion);
+				set_deci_roll_step(1);
+				setTimeout(() =>  set_deci_roll_step(2),1500);
+				setTimeout(() =>  set_deci_roll_step(0),4500);
+				setTimeout(() =>  set_raise(data.raise),4600);
+				setTimeout(() =>  set_raise(0),7000);
+				setTimeout(() => set_game_play_position(data.game_play_position) ,8000)
+			}else{
+				setTimeout(() => set_game_play_position(data.game_play_position) ,8000)
 			}
 			
 			if(data.Isupdate == 1){
@@ -329,11 +378,9 @@ function App() {
 		x = document.getElementById("Gameboard_playboard_"+last_position).offsetLeft;
 		y = document.getElementById("Gameboard_playboard_"+last_position).offsetTop;
 
-		console.log(current_userid+"_player");
 		document.getElementById(current_userid+"_player").style.left = x+'px';
 		document.getElementById(current_userid+"_player").style.top = y+'px';
 		if(postion_temp != last_position ){
-
 			// Move token again
 			setTimeout(() => move_token(last_position+1,postion_temp,current_userid),300);
 		}
@@ -399,7 +446,6 @@ function App() {
 
 	// Sexual Assault Dice Roll
 	const sexual_assault_dice_roll = (e) => {
-		/*
 		var json_object = {
 			'room_id' : room_id,
 			'current_user' : current_user,
@@ -408,13 +454,12 @@ function App() {
 			'players' : players.length
 		}
 		set_game_play_position(-1);
-		set_PIC(0);
-		socket.emit('send_pic_dice_roll', json_object, () => console.log(''));*/
+		set_yellow_card(0);
+		socket.emit('send_sexual_assault_dice_roll', json_object, () => console.log(''));
 	}
 
 	// Raise Assault Dice Roll
 	const raise_dice_roll = (e) => {
-		/*
 		var json_object = {
 			'room_id' : room_id,
 			'current_user' : current_user,
@@ -423,8 +468,8 @@ function App() {
 			'players' : players.length
 		}
 		set_game_play_position(-1);
-		set_PIC(0);
-		socket.emit('send_pic_dice_roll', json_object, () => console.log(''));*/
+		set_yellow_card(0);
+		socket.emit('send_raise_dice_roll', json_object, () => console.log(''));
 	}
 
 	function all_player_assets_update(){
@@ -763,26 +808,26 @@ function App() {
 					</div>
 
 					{deci_roll_step == 1?
-						<div className="dice_throw" style={{position:'absolute',background:'rgba(0,0,0,.5)',zIndex:'999'}}>
+						<div className="dice_throw" style={{position:'absolute',background:'rgba(70,35,33,0.9)',zIndex:'999'}}>
 							<img className="dice_throw-img" src="img/Image-4.png" alt="" />
 						</div>
 					: ""
 					}
 
 					{deci_roll_step == 2?
-						<div className="dice_throw" style={{position:'absolute',background:'rgba(0,0,0,.5)',zIndex:'999'}}>
+						<div className="dice_throw" style={{position:'absolute',background:'rgba(70,35,33,0.9)',zIndex:'999'}}>
 							<img className="dice_throw-img-inner" src="img/ScreenShot2021.png" alt="" />
 						</div>
 					: ""
 					}
 
 					{deci_roll_step == 3?
-						<div className="dice_throw" style={{position:'absolute',background:'rgba(0,0,0,.5)',zIndex:'999'}}>
-							<div class="pass-number">
-								<h3 class="title_pass_number">Dice Roll</h3>
-								<div class="pass_number-main">
-									<h3 class="pass_number">{dice1 + dice2}</h3>
-									<div class="pass_number-text">
+						<div className="dice_throw" style={{position:'absolute',background:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div className="pass-number">
+								<h3 className="title_pass_number">Dice Roll</h3>
+								<div className="pass_number-main">
+									<h3 className="pass_number">{dice1 + dice2}</h3>
+									<div className="pass_number-text">
 										<h3> You moved {dice1 + dice2} Space</h3>
 									</div>    
 								</div>
@@ -832,32 +877,36 @@ function App() {
 
 					{PIC == 3?
 						<div className="dice_throw" style={{position:'absolute',background:'rgba(70,35,33,0.9)',zIndex:'999'}}>
-							<div class="pass-number">
-								<h3 class="title_pass_number">Avoid prison?</h3>
-								<div class="pass_number-main">
-									<h3 class="pass_number">{dice1 + dice2}</h3>
-									<div class="pass_number-text">
-										<h3> ✔ you avoided the prison Industrial complex</h3>
+							<div className="pass-number">
+								<h3 className="title_pass_number">Avoid prison?</h3>
+								<div className="pass_number-main">
+									<h3 className="pass_number">{dice1 + dice2}</h3>
+									<div className="pass_number-text">
+										<p style={{fontFamily:'Bangers',color:'#6B8E0C',fontSize:'30px'}}>
+											<span className="month-price-text red-class month-price-text2" style={{color:'#6B8E0C',fontSize:'30px'}}>you avoided the <br />prison Industrial complex</span>
+										</p>
 									</div>    
 								</div>
 							</div>
 						</div>
-					: ""
+					 : ""
 					}
 
 					{PIC == 4?
 						<div className="dice_throw" style={{position:'absolute',background:'rgba(70,35,33,0.9)',zIndex:'999'}}>
-							<div class="pass-number">
-								<h3 class="title_pass_number">Avoid prison?</h3>
-								<div class="pass_number-main">
-									<h3 class="pass_number">{dice1 + dice2}</h3>
-									<div class="pass_number-text">
-										<h3> ✖ you are going to prison</h3>
+							<div className="pass-number">
+								<h3 className="title_pass_number">Avoid prison?</h3>
+								<div className="pass_number-main">
+									<h3 className="pass_number">{dice1 + dice2}</h3>
+									<div className="pass_number-text">
+										<p>
+											<span className="month-price-text red-class input_error" style={{fontFamily:'Bangers',color:'#E53F40',fontSize:'30px',textAlign:'center',width:'100%'}}>you are going to prison</span>
+										</p>
 									</div>    
 								</div>
 							</div>
 						</div>
-					: ""
+					 : ""
 					}
 
 					{PIC == 5?
@@ -901,10 +950,10 @@ function App() {
 										<img src={`img/cards/yellow_${yellow_card}.png`}></img>
 									</div>
 									<div className="select_card_fist_text">
-										<h3 className="title_card">Yellow Event</h3>
+										<h3 className="title_card">Life Event</h3>
 										<div className="cards_text_inner" style={{overflow:'auto'}}>
 											<br></br>
-											{identity_cards[myidentity-1].map(function(identity_card, i){
+											{yellows_cards[myidentity-1].map(function(identity_card, i){
 												return <div className="select_card_fist_text_servies">
 													<h2>{identity_card.name}</h2>
 													<h3>{identity_card.value}</h3>
@@ -916,16 +965,84 @@ function App() {
 							</div>
 							{yellow_card == 2?
 								<div className="Roll_inheritance-main" style={{top:'-50px'}}>
-									<button className="sign_in_btn Roll_inheritance" onClick={() => sexual_assault_dice_roll()}>ROLL TO AVOID PRISON</button>
+									<button className="sign_in_btn Roll_inheritance" onClick={() => sexual_assault_dice_roll()}>ROLL TO AVOID ASSAULT</button>
 								</div>
 							:""
 							}
 							{yellow_card == 4?
 								<div className="Roll_inheritance-main" style={{top:'-50px'}}>
-									<button className="sign_in_btn Roll_inheritance" onClick={() => raise_dice_roll()}>ROLL TO AVOID PRISON</button>
+									<button className="sign_in_btn Roll_inheritance" onClick={() => raise_dice_roll()}>ROLL TO GET RAISE</button>
 								</div>
 							:""
 							}
+						</div>
+					: ""
+					}
+
+					{sexual_assault == 1?
+						<div className="dice_throw" style={{position:'absolute',background:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div className="pass-number">
+								<h3 className="title_pass_number">Avoid Sexual Assault?</h3>
+								<div className="pass_number-main">
+									<h3 className="pass_number">{dice1 + dice2}</h3>
+									<div className="pass_number-text">
+										<p style={{fontFamily:'Bangers',color:'#6B8E0C',fontSize:'30px'}}>
+											<span className="month-price-text red-class month-price-text2" style={{color:'#6B8E0C',fontSize:'30px'}}>you avoided the Sexual Assault</span>
+										</p>
+									</div>    
+								</div>
+							</div>
+						</div>
+					: ""
+					}
+
+					{sexual_assault == 2?
+						<div className="dice_throw" style={{position:'absolute',background:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div className="pass-number">
+								<h3 className="title_pass_number">Avoid Sexual Assault?</h3>
+								<div className="pass_number-main">
+									<h3 className="pass_number">{dice1 + dice2}</h3>
+									<div className="pass_number-text">
+										<p>
+											<span className="month-price-text red-class input_error" style={{fontFamily:'Bangers',color:'#E53F40',fontSize:'30px',textAlign:'center',width:'100%'}}>you are Sexual Assault assaulted</span>
+										</p>
+									</div>    
+								</div>
+							</div>
+						</div>
+					: ""
+					}
+
+					{raise == 1?
+						<div className="dice_throw" style={{position:'absolute',background:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div className="pass-number">
+								<h3 className="title_pass_number">Raise?</h3>
+								<div className="pass_number-main">
+									<h3 className="pass_number">{dice1 + dice2}</h3>
+									<div className="pass_number-text">
+										<p style={{fontFamily:'Bangers',color:'#6B8E0C',fontSize:'30px'}}>
+											<span className="month-price-text red-class month-price-text2" style={{color:'#6B8E0C',fontSize:'30px'}}>you have received raise</span>
+										</p>
+									</div>    
+								</div>
+							</div>
+						</div>
+					: ""
+					}
+
+					{raise == 2?
+						<div className="dice_throw" style={{position:'absolute',background:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div className="pass-number">
+								<h3 className="title_pass_number">Raise?</h3>
+								<div className="pass_number-main">
+									<h3 className="pass_number">{dice1 + dice2}</h3>
+									<div className="pass_number-text">
+										<p>
+											<span className="month-price-text red-class input_error" style={{fontFamily:'Bangers',color:'#E53F40',fontSize:'30px',textAlign:'center',width:'100%'}}>you didn't have received raise</span>
+										</p>
+									</div>    
+								</div>
+							</div>
 						</div>
 					: ""
 					}
@@ -941,7 +1058,7 @@ function App() {
 										<h3 className="title_card">Green Event</h3>
 										<div className="cards_text_inner" style={{overflow:'auto'}}>
 											<br></br>
-											{identity_cards[myidentity-1].map(function(identity_card, i){
+											{greens_cards[myidentity-1].map(function(identity_card, i){
 												return <div className="select_card_fist_text_servies">
 													<h2>{identity_card.name}</h2>
 													<h3>{identity_card.value}</h3>
@@ -992,11 +1109,11 @@ function App() {
 						</div>
 						<div className="show_cardt" id="oner_id">
 							<div className="dice_throw" style={{position:'absolute',background:'rgba(0,0,0,.5)',zIndex:'999'}}>
-								<div class="pass-number">
-									<h3 class="title_pass_number">Dice Roll</h3>
-									<div class="pass_number-main">
-										<h3 class="pass_number">{dice1 + dice2}</h3>
-										<div class="pass_number-text">
+								<div className="pass-number">
+									<h3 className="title_pass_number">Dice Roll</h3>
+									<div className="pass_number-main">
+										<h3 className="pass_number">{dice1 + dice2}</h3>
+										<div className="pass_number-text">
 											{/* <h3> You moved {dice1 + dice2} Space</h3> */}
 										</div>    
 									</div>
