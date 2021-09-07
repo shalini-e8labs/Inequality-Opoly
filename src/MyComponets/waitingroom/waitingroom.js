@@ -71,6 +71,10 @@ function App() {
 	const [sexual_assault, set_sexual_assault] = useState(0);
 	const [raise, set_raise] = useState(0);
 	const [green_card, set_green_card] = useState(0);
+	const [x_entrepreneurship, set_x_entrepreneurship] = useState(0);
+	const [pic_interection_green_card, set_pic_interection_green_card] = useState(0);
+	const [student_loan, set_student_loan] = useState(0);
+	const [inheritance_green_card, set_inheritance_green_card] = useState(0);
 	const [life_event, set_life_event] = useState(0);
 
 	const invite_fucntion = (e) => {
@@ -191,12 +195,11 @@ function App() {
 				|| (data.player_posstion == 12 && data.your_last_position != 12)
 				|| (data.player_posstion == 22 && data.your_last_position != 22)
 				|| (data.player_posstion == 33 && data.your_last_position != 33)){
-					setTimeout(() => set_life_event(1) ,10000);
-					setTimeout(() => set_life_event(0) ,12000);
-					setTimeout(() => set_yellow_card(data.yellow_card) ,12100);
-					console.log(data.yellow_card);
+					setTimeout(() => set_life_event(1) ,11000);
+					setTimeout(() => set_life_event(0) ,13000);
+					setTimeout(() => set_yellow_card(data.yellow_card) ,13100);
 					if(data.yellow_card != 2 && data.yellow_card != 4 ){
-						setTimeout(() => set_yellow_card(0) ,17000);
+						setTimeout(() => set_yellow_card(0) ,18000);
 					}
 				}
 
@@ -205,10 +208,12 @@ function App() {
 				|| (data.player_posstion == 17 && data.your_last_position != 17)
 				|| (data.player_posstion == 28 && data.your_last_position != 28)
 				|| (data.player_posstion == 37 && data.your_last_position != 37)){
-					setTimeout(() => set_life_event(1) ,10000);
-					setTimeout(() => set_life_event(0) ,12000);
-					setTimeout(() => set_green_card(data.green_card) ,12100);
-					setTimeout(() => set_green_card(0) ,16000);
+					setTimeout(() => set_life_event(1) ,11000);
+					setTimeout(() => set_life_event(0) ,13000);
+					setTimeout(() => set_green_card(data.green_card) ,13100);
+					if(data.green_card == 1 ){
+						setTimeout(() => set_green_card(0) ,18000);
+					}
 				}
 			}else{
 				// PIC code
@@ -217,10 +222,21 @@ function App() {
 				|| (data.player_posstion == 25 && data.your_last_position != 25)){
 					setTimeout(() => set_PIC(1) ,12000);
 				}
+
+				// Green Cards
+				if((data.player_posstion == 9 && data.your_last_position != 9)
+				|| (data.player_posstion == 17 && data.your_last_position != 17)
+				|| (data.player_posstion == 28 && data.your_last_position != 28)
+				|| (data.player_posstion == 37 && data.your_last_position != 37)){
+					if(data.green_card != 1 ){
+						setTimeout(() => set_life_event(1) ,11000);
+						setTimeout(() => set_life_event(0) ,13000);
+						setTimeout(() => set_green_card(data.green_card) ,13100);
+					}
+				}
 			}
 			setTimeout(() => set_game_play_position(data.game_play_position) ,8000)
 			setTimeout(() => move_token(data.your_last_position,data.player_posstion,data.current_user) ,8000)
-			
 			
 			if(data.Isupdate == 1){
 				setTimeout(() => all_player_assets_update() ,5000)
@@ -300,6 +316,81 @@ function App() {
 				setTimeout(() => set_game_play_position(data.game_play_position) ,8000)
 			}
 			
+			if(data.Isupdate == 1){
+				setTimeout(() => all_player_assets_update() ,5000)
+			}
+		});
+
+		socket.on("entrepreneurship_dice_roll", (data) => {
+			if(data.current_user == current_user){
+				set_green_card(0);
+				setdice1(data.dice1);
+				setdice2(data.dice2);
+				setTimeout(() =>  set_deci_roll_step(2),1500);
+				setTimeout(() =>  set_deci_roll_step(0),4500);
+				setTimeout(() =>  set_x_entrepreneurship(data.x_entrepreneurship),4600);
+				setTimeout(() =>  set_x_entrepreneurship(0),7600);
+			}
+			if(data.Isupdate == 1){
+				setTimeout(() =>  all_player_assets_update(0),7600)
+			}
+		});
+
+		socket.on("pic_interection_green_card_dice_roll", (data) => {
+			if(data.current_user == current_user){
+				set_green_card(0);
+				setdice1(data.dice1);
+				setdice2(data.dice2);
+				set_deci_roll_step(1);
+				setTimeout(() =>  set_deci_roll_step(2),1500);
+				setTimeout(() =>  set_deci_roll_step(0),4500);
+				
+				if(data.is_jail == 0){
+					setTimeout(() => set_PIC(3) ,5000);
+					setTimeout(() => set_pic_turn(0) ,5000);
+					setTimeout(() => set_PIC(0) ,8000);
+				}else{
+					setTimeout(() => set_PIC(4) ,9000);
+					setTimeout(() => set_pic_turn(0) ,9000);
+					setTimeout(() => set_PIC(0) ,12000);
+				}
+			}
+			if(data.Isupdate == 1){
+				setTimeout(() => all_player_assets_update() ,5000)
+			}
+			if(data.is_jail == 1){
+				setTimeout(() => move_token(data.your_last_position,data.player_posstion,data.current_user) ,8000)
+			}
+		});
+
+		socket.on("student_loan_dice_roll", (data) => {
+			if(data.current_user == current_user){
+				set_green_card(0);
+				setdice1(data.dice1);
+				setdice2(data.dice2);
+				setTimeout(() =>  set_deci_roll_step(2),1500);
+				setTimeout(() =>  set_deci_roll_step(0),4500);
+				setTimeout(() =>  set_student_loan(data.student_loan),4500);
+				setTimeout(() =>  set_student_loan(0),7600);
+			}
+			if(data.Isupdate == 1){
+				setTimeout(() => all_player_assets_update() ,5000)
+			}
+		});
+
+		socket.on("inheritance_green_card_dice_roll", (data) => {
+			console.log('inheritance_green_card_dice_roll');
+			console.log(data);
+			if(data.current_user == current_user){
+				set_green_card(0);
+				setdice1(data.dice1);
+				setdice2(data.dice2);
+				setTimeout(() =>  set_deci_roll_step(2),1500);
+				setTimeout(() =>  set_deci_roll_step(0),4500);
+				setTimeout(() =>  setinheritance_id(data.inheritance_id),4500);
+				setTimeout(() =>  set_inheritance_green_card(data.inheritance),4500);
+				setTimeout(() =>  set_inheritance_green_card(0),14500);
+			}
 			if(data.Isupdate == 1){
 				setTimeout(() => all_player_assets_update() ,5000)
 			}
@@ -470,6 +561,54 @@ function App() {
 		set_game_play_position(-1);
 		set_yellow_card(0);
 		socket.emit('send_raise_dice_roll', json_object, () => console.log(''));
+	}
+
+	// 2x Entrepreneurship Dice Roll
+	const x_entrepreneurship_dice_roll = (e) => {
+		var json_object = {
+			'room_id' : room_id,
+			'current_user' : current_user,
+			'your_last_position' : your_last_position,
+			'game_play_position' : game_play_position,
+			'players' : players.length
+		}
+		socket.emit('send_x_entrepreneurship_dice_roll', json_object, () => console.log(''));
+	}
+
+	// 2x Entrepreneurship Dice Roll
+	const pic_interection_green_card_dice_roll = (e) => {
+		var json_object = {
+			'room_id' : room_id,
+			'current_user' : current_user,
+			'your_last_position' : your_last_position,
+			'game_play_position' : game_play_position,
+			'players' : players.length
+		}
+		socket.emit('send_pic_interection_green_card_dice_roll', json_object, () => console.log(''));
+	}
+
+	// Student Loan Dice Roll
+	const student_loan_dice_roll = (e) => {
+		var json_object = {
+			'room_id' : room_id,
+			'current_user' : current_user,
+			'your_last_position' : your_last_position,
+			'game_play_position' : game_play_position,
+			'players' : players.length
+		}
+		socket.emit('send_student_loan_dice_roll', json_object, () => console.log(''));
+	}
+
+	// Inheritance Green Card Dice Roll
+	const inheritance_green_card_dice_roll = (e) => {
+		var json_object = {
+			'room_id' : room_id,
+			'current_user' : current_user,
+			'your_last_position' : your_last_position,
+			'game_play_position' : game_play_position,
+			'players' : players.length
+		}
+		socket.emit('send_inheritance_green_card_dice_roll', json_object, () => console.log(''));
 	}
 
 	function all_player_assets_update(){
@@ -935,7 +1074,7 @@ function App() {
 						<div className="select_card_first" id="select_card_first" style={{position:'absolute',width:'100%',backgroundColor:'rgba(70,35,33,0.9)',zIndex:'999'}}>
 							<div className="select_card_first-inner">
 								<div className="select_box_bonus">
-								<img style={{width:'100%'}} src={`img/life_event.png`}></img>
+								<img src={`img/life_event.png`}></img>
 								</div>
 							</div>
 						</div>
@@ -1038,7 +1177,7 @@ function App() {
 									<h3 className="pass_number">{dice1 + dice2}</h3>
 									<div className="pass_number-text">
 										<p>
-											<span className="month-price-text red-class input_error" style={{fontFamily:'Bangers',color:'#E53F40',fontSize:'30px',textAlign:'center',width:'100%'}}>you didn't have received raise</span>
+											<span className="month-price-text red-class input_error" style={{fontFamily:'Bangers',color:'#E53F40',fontSize:'30px',textAlign:'center',width:'100%'}}>Sorry, you havr not received a raise</span>
 										</p>
 									</div>    
 								</div>
@@ -1052,7 +1191,7 @@ function App() {
 							<div className="select_card_first-inner">
 								<div className="select_box_bonus">
 									<div className="select_card_fist_img">
-										<img src={`img/cards/yellow_${green_card}.png`}></img>
+										<img src={`img/cards/green_${green_card}.png`}></img>
 									</div>
 									<div className="select_card_fist_text">
 										<h3 className="title_card">Green Event</h3>
@@ -1068,9 +1207,138 @@ function App() {
 									</div>
 								</div>
 							</div>
+							{green_card == 2?
+								<div className="Roll_inheritance-main" style={{top:'-50px'}}>
+									<button className="sign_in_btn Roll_inheritance" onClick={() => x_entrepreneurship_dice_roll()}>ROLL TO GET ENTREPRENEURSHIIP</button>
+								</div>
+							: ""
+							}
+							{green_card == 3?
+								<div className="Roll_inheritance-main" style={{top:'-50px'}}>
+									<button className="sign_in_btn Roll_inheritance" onClick={() => pic_interection_green_card_dice_roll()}>ROLL TO AVOICE PIC</button>
+								</div>
+							: ""
+							}
+							{green_card == 4?
+								<div className="Roll_inheritance-main" style={{top:'-50px'}}>
+									<button className="sign_in_btn Roll_inheritance" onClick={() => student_loan_dice_roll()}>ROLL TO GET STUDENT LOAN</button>
+								</div>
+							: ""
+							}
+							{green_card == 5?
+								<div className="Roll_inheritance-main" style={{top:'-50px'}}>
+									<button className="sign_in_btn Roll_inheritance" onClick={() => inheritance_green_card_dice_roll()}>ROLL TO GET INHERITANCE</button>
+								</div>
+							: ""
+							}
 						</div>
 					: ""
 					}
+
+					{x_entrepreneurship != 0?
+						<div className="dice_throw" style={{position:'absolute',background:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div className="pass-number">
+								<h3 className="title_pass_number">2X Entrepreneurship ?</h3>
+								<div className="pass_number-main">
+									<h3 className="pass_number">{dice1 + dice2}</h3>
+									<div className="pass_number-text">
+										{x_entrepreneurship == 1?
+											<p>
+												<span className="month-price-text red-class input_error" style={{fontFamily:'Bangers',color:'#E53F40',fontSize:'30px',textAlign:'center',width:'100%'}}>you are not Entrepreneurship</span>
+											</p>
+										: "" }
+										{x_entrepreneurship == 2?
+											<p style={{fontFamily:'Bangers',color:'#6B8E0C',fontSize:'30px'}}>
+												<span className="month-price-text red-class month-price-text2" style={{color:'#6B8E0C',fontSize:'30px'}}>you got the profit</span>
+											</p>
+										: "" }
+										{x_entrepreneurship == 3?
+											<p>
+												<span className="month-price-text red-class input_error" style={{fontFamily:'Bangers',color:'#E53F40',fontSize:'30px',textAlign:'center',width:'100%'}}>you got the loss</span>
+											</p>
+										: "" }
+									</div>    
+								</div>
+							</div>
+						</div>
+					: ""
+					}
+
+					{student_loan != 0?
+						<div className="dice_throw" style={{position:'absolute',background:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div className="pass-number">
+								<h3 className="title_pass_number">Student Loan ?</h3>
+								<div className="pass_number-main">
+									<h3 className="pass_number">{dice1 + dice2}</h3>
+									<div className="pass_number-text">
+										{student_loan == 1?
+											<p style={{fontFamily:'Bangers',color:'#6B8E0C',fontSize:'30px'}}>
+												<span className="month-price-text red-class month-price-text2" style={{color:'#6B8E0C',fontSize:'30px'}}>you avoid the student loan</span>
+											</p>
+										: "" }
+										{student_loan == 2?
+											<p>
+												<span className="month-price-text red-class input_error" style={{fontFamily:'Bangers',color:'#E53F40',fontSize:'30px',textAlign:'center',width:'100%'}}>you got the student loan</span>
+											</p>
+										: "" }
+									</div>    
+								</div>
+							</div>
+						</div>
+					: ""
+					}
+					{inheritance_id == 0 && inheritance_green_card == 2?
+						<div className="show_cardt" id="oner_id" style={{zIndex:'999'}}>
+							<div className="how_would-main how_would-main1">
+								<div className="how_would" id="send-payment" >
+									<div className="how_would-join join_or_login">
+										<div className="month-price">
+											<p style={{color:'#6B8E0C',fontSize:'30px',textTransform:'uppercase',marginLeft:'18px',marginBottom:'0px',fontFamily: 'Bangers'}} className="month-price-text red-class">Sorry, you have not received Inheritance</p>
+										</div>
+									</div>        
+								</div>
+							</div>
+						</div>
+					: ""}
+
+					{inheritance_id == 0 && inheritance_green_card == 1?
+						<div className="show_cardt" id="oner_id"  style={{zIndex:'999'}}>
+							<div className="how_would-main how_would-main1">
+								<div className="how_would" id="send-payment" >
+									<div className="how_would-join join_or_login">
+										<div className="month-price">
+											<p style={{color:'#6B8E0C',fontSize:'30px',textTransform:'uppercase',marginLeft:'18px',marginBottom:'0px',fontFamily: 'Bangers'}} className="month-price-text red-class">Sorry, you have not received Inheritance, but you received the bonus.</p>
+										</div>
+									</div>        
+								</div>
+							</div>
+						</div>
+					: ""}
+
+					{inheritance_id != 0 && inheritance_green_card == 1?
+						<div className="show_cardt" id="oner_inheritance" style={{zIndex:'999'}}>
+							<div className="select_card_first " id="first-card-inheritance">
+								<div className="select_card_first-inner">
+									<div className="select_box_bonus">
+										<div className="select_card_fist_img">
+											<img src={board_cards[inheritance_id].url}></img>
+										</div>
+										<div className="select_card_fist_text">
+											<h3 className="title_card">{board_cards[inheritance_id].name}</h3>
+											<div className="cards_text_inner" style={{overflow:'auto'}}>
+												{board_cards[inheritance_id].description.map(function(board_cards, i){
+													return <div className="select_card_fist_text_servies">
+															<h2>{board_cards.name}</h2>
+															<h3>{board_cards.value}</h3>
+														</div>
+													})}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					: ""}
 				</div>  
 			:
 			pickup_step == 4 ?
