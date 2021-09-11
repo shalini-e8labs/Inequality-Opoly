@@ -76,6 +76,9 @@ function App() {
 	const [student_loan, set_student_loan] = useState(0);
 	const [inheritance_green_card, set_inheritance_green_card] = useState(0);
 	const [life_event, set_life_event] = useState(0);
+	const [pink_tax, set_pink_tax] = useState(0);
+	const [direct_pic, set_direct_pic] = useState(0);
+
 
 	const invite_fucntion = (e) => {
 		if(invite_email == '' || invite_email == null){
@@ -234,6 +237,12 @@ function App() {
 						setTimeout(() => set_green_card(data.green_card) ,13100);
 					}
 				}
+			}
+			if(data.player_posstion == 8){
+				setTimeout(() => set_pink_tax(data.pink_tax) ,11000);
+			}
+			if(data.player_posstion == 10){
+				setTimeout(() => set_direct_pic(1) ,11000);
 			}
 			setTimeout(() => set_game_play_position(data.game_play_position) ,8000)
 			setTimeout(() => move_token(data.your_last_position,data.player_posstion,data.current_user) ,8000)
@@ -405,6 +414,23 @@ function App() {
 			});
 		});
 
+		socket.on("pink_tax_dice_roll", (data) => {
+			set_pink_tax(0);
+			setTimeout(() => set_game_play_position(data.game_play_position) ,1000)
+		});
+		socket.on("direct_pic_dice_roll", (data) => {
+			set_direct_pic(0);
+			set_deci_roll_step(1);
+			setTimeout(() =>  set_deci_roll_step(2),1500);
+			setTimeout(() =>  set_deci_roll_step(0),4500);
+			setTimeout(() => set_game_play_position(data.game_play_position) ,45000)
+			if(data.Isupdate == 1){
+				setTimeout(() => all_player_assets_update() ,4500)
+			}
+		});
+		
+
+		
 		socket.on("game_stop", (data) => {
 			sethostisonline(2);
 		});
@@ -611,6 +637,34 @@ function App() {
 		socket.emit('send_inheritance_green_card_dice_roll', json_object, () => console.log(''));
 	}
 
+	// Inheritance Green Card Dice Roll
+	const pink_tax_dice_roll = (e) => {
+		var json_object = {
+			'room_id' : room_id,
+			'current_user' : current_user,
+			'your_last_position' : your_last_position,
+			'game_play_position' : game_play_position,
+			'players' : players.length
+		}
+		socket.emit('send_pink_tax_dice_roll', json_object, () => console.log(''));
+	}
+
+	// Inheritance Green Card Dice Roll
+	const direct_pic_dice_roll = (e) => {
+		var json_object = {
+			'room_id' : room_id,
+			'current_user' : current_user,
+			'your_last_position' : your_last_position,
+			'game_play_position' : game_play_position,
+			'players' : players.length
+		}
+		socket.emit('send_direct_pic_dice_roll', json_object, () => console.log(''));
+	}
+
+
+	
+	
+
 	function all_player_assets_update(){
 		var json_object = {
 			'room_id' : room_id
@@ -625,6 +679,7 @@ function App() {
 		}
 		socket.emit('waiting_user_remove', json_object, () => console.log(''));
 	}
+	
 	return (
 		gamestart == 1 ?
 			pickup_step == 0 ?
@@ -1339,6 +1394,36 @@ function App() {
 							</div>
 						</div>
 					: ""}
+
+					{pink_tax != 0?
+						<div class="select_card_first" style={{zIndex:'999',position:'absolute',width:'100%',backgroundColor:'rgba(70, 35, 33, 0.9)'}} id="select_card_first">
+							<div class="select_card_first-inner" style={{marginTop:"50px"}}>
+								<div className="select_box_bonus">
+									<img src="img/pink_tax.png" style={{margin:'0 auto'}} />
+								</div>
+							</div>
+							<div className="Roll_inheritance-main" style={{top:'-50px'}}>
+								{your_play_position == game_play_position? 
+									<button className="sign_in_btn Roll_inheritance" onClick={() => pink_tax_dice_roll()}>MUST PAY ${pink_tax}</button>
+								:
+									<button className="sign_in_btn Roll_inheritance">MUST PAY ${pink_tax}</button>
+								}
+							</div>
+						</div>
+					: ""}
+
+					{direct_pic != 0?
+						<div class="select_card_first" style={{zIndex:'999',position:'absolute',width:'100%',backgroundColor:'rgba(70, 35, 33, 0.9)'}} id="select_card_first">
+							<div class="select_card_first-inner" style={{marginTop:"50px"}}>
+								<div className="select_box_bonus">
+									<img src="img/pink_tax.png" style={{margin:'0 auto'}} />
+								</div>
+							</div>
+							<div className="Roll_inheritance-main" style={{top:'-50px'}}>
+								<button className="sign_in_btn Roll_inheritance" onClick={() => direct_pic_dice_roll()}>ROLL TO PIC</button>
+							</div>
+						</div>
+					: "" }
 				</div>  
 			:
 			pickup_step == 4 ?
