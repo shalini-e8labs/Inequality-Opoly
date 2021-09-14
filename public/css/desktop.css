@@ -624,7 +624,7 @@
      .select_card_fist_text {
         width: 1000px;
         padding: 127px 87px 44px;
-        animation: 7s select_card_fist_text ease-in-out;
+        animation: 3s select_card_fist_text ease-in-out;
         /*height: 752px;*/
     }
 

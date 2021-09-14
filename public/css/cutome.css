@@ -111,408 +111,102 @@ input:focus-visible{outline:0}
     to {transform:scale(1);transform:rotate(36deg);top:-777px;left:-56px;}
     from {transform:scale(1);transform:rotate(0deg);top:-885px;left:-56px;opacity:1;}
 }
-    /* gameboard image animation */
-    /* gameboard image */
+/* gameboard image animation */
+/* gameboard image */
 
-    /* gameboard price */
-    .gameboard_price {
-        position: absolute;
-        right: 0px;
-        top: 30px;
-        width: 147px;
-        height: 320px;
-        transform: rotateZ(0deg);
-        animation: 2s gameboard_price_animation ease-in-out ;
-    }
-    .gameboard_price img {
-        width: 10rem;
-    }
-    /*  gameboard price animation */
-    @keyframes gameboard_price_animation {
-        from {
-            transform: rotateZ(20deg);
-            right: -84px;
-            top: 0px;
-        }
+/* gameboard price */
+.gameboard_price{position:absolute;right:0;top:30px;width:147px;height:320px;transform:rotateZ(0);animation:2s gameboard_price_animation ease-in-out}
+.gameboard_price img{width:10rem}
 
-        to {
-            transform: rotateZ(0deg);
-            right: 0px;
-            top: 30px;
-        }
-    }
-    /*  gameboard price animation */
-    /* gameboard price */
+/*  gameboard price animation */
+@keyframes gameboard_price_animation{from{transform:rotateZ(20deg);right:-84px;top:0}to{transform:rotateZ(0);right:0;top:30px}}
+/*  gameboard price animation */
+/* gameboard price */
 
-    /* gameboard property card */
-    .gameboard_property_card{
-        width: 250px;
-        position: absolute;
-        animation: 2s card ease-in-out;
-        left: 0px;
-        bottom: 0px;
-    }
-    .gameboard_property_card > img {
-        max-width: 16rem;
-        width: 16rem;
-        height: auto;
-    }
-    /* gameboard property card animation */
-    @keyframes card {
-        from {
-            transform: rotateZ(-12deg);
-            left: -130px;
-            bottom: -142px;
-        }
+/* gameboard property card */
+.gameboard_property_card{width:250px;position:absolute;animation:2s card ease-in-out;left:0;bottom:0}
+.gameboard_property_card>img{max-width:16rem;width:16rem;height:auto}
+/* gameboard property card animation */
+@keyframes card{from{transform:rotateZ(-12deg);left:-130px;bottom:-142px}to{transform:rotateZ(0);left:0;bottom:0}}
+/* gameboard property card animation */
+/* gameboard property card */
 
-        to {
-            transform: rotateZ(0deg);
-            left: 0px;
-            bottom: 0px;
-        }
-    }
-    /* gameboard property card animation */
-    /* gameboard property card */
+/* gameboard dice */
+.gameboard_dice{width:250px;height:164px;position:absolute;bottom:0;right:0;animation:2s passws ease-in-out}
+.gameboard_dice img{width:100%}
+/* gameboard dice animation */
+@keyframes passws{from{transform:rotateZ(18deg);bottom:-77px;right:-72px}to{transform:rotateZ(0);bottom:0;right:0}}
+/* gameboard dice animation */
+/* gameboard dice */
 
-    /* gameboard dice */
-    .gameboard_dice {
-        width: 250px;
-        height: 164px;
-        position: absolute;
-        bottom: 0px;
-        right: 0px;
-        animation: 2s passws ease-in-out;
-    }
+/* gameboard index content  */
+.gameboardPaass_main{display:flex;flex-direction:column;height:100vh;justify-content:center;background-color:rgba(70,35,33,.9)}
+.gameboardPaass{max-width:767px;margin:auto;clear:both;text-align:center}
+.gameboardPaass union_icon{position:relative;top:-8px;left:0;animation:2s titelimg ease-in-out;width:100px}
 
-    .gameboard_dice img {
-        width: 100%;
-    }
-    /* gameboard dice animation */
-    @keyframes passws {
-        from {
-            transform: rotateZ(18deg);
-            bottom: -77px;
-            right: -72px;
-        }
+/* gameboard index content logo animation  */
+@keyframes titelimg{from{top:-110%;left:-50%}to{top:-8px;left:0}}
 
-        to {
-            transform: rotateZ(0deg);
-            bottom: 0px;
-            right: 0px;
-        }
-    }
-    /* gameboard dice animation */
-    /* gameboard dice */
+/* gameboard index content logo animation  */
+.gameboardPaass h1{position:relative;float:left;width:100%;font-size:60px;color:#feead8;text-transform:uppercase;top:0;line-height:1;animation:1s title_text_top ease-in-out;font-family:Bangers}
+/* gameboard index content title animation  */
+@keyframes title_text_top{from{top:-100%}to{top:0}}
+/* gameboard index content title animation  */
+.gameboardPaass p{font-size:12px;color:#feead8;float:left;width:100%;margin:12px 0;opacity:1;animation:1s titel_p_text ease-in-out;font-family:Montserrat;font-weight:600}
+.button{float:left;width:100%;opacity:1;animation:1s titel_p_text ease-in-out}
+.play-btn{background:url('../img/Group\ 4913.png');background-repeat:repeat;background-size:auto;background-repeat:no-repeat;border:none;color:#fff;padding:0;background-size:cover;text-align:center;font-size:19px;width:100px;padding:13px 19px;line-height:.3;text-shadow:-1px 3px 0 #b19f23;font-family:"Titan One";font-weight:400;color:#fff}    
+.gameboardPaass .button button{position:relative;top:0;transition:.3s ease-in-out all}
+.gameboardPaass .button .Learn-More{border:4px solid #feead8}
+.gameboardPaass .button button:hover{top:-19px}
+.gameboardPaass .button .play_index_btn{font-family:"Titan One";font-weight:400!important;font-size:30px!important}
+.Learn-More{padding:8px 9px;line-height:.3;background:0 0;border:2px solid #fff;border-radius:8px;margin-left:20px;text-align:center;font-family:"Titan One"!important;font-weight:400!important;font-size:19px;color:#feead8!important;text-shadow:-3px 3px 6px rgba(0,0,0,.25)!important}
+.forget-password{color:rgba(255,0,0,.5)!important}
 
-    /* gameboard index content  */
-   
-    .gameboardPaass_main {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        justify-content: center;
-        background-color:rgba(70,35,33,0.9);
-        
-    }
-   
-    .gameboardPaass {
-        max-width: 767px;
-        margin: auto;
-        clear: both;
-        text-align: center;
-    }
-
-    .gameboardPaass union_icon {
-        position: relative;
-        top: -8px;
-        left: 0%;
-        animation: 2s titelimg ease-in-out;
-        width: 100px
-    }
-
-    /* gameboard index content logo animation  */
-    @keyframes titelimg {
-        from {
-            top: -110%;
-            left: -50%;
-        }
-
-        to {
-            top: -8px;
-            left: 0%;
-        }
-    }
-    /* gameboard index content logo animation  */
-
-    .gameboardPaass h1 {
-        position: relative;
-        float: left;
-        width: 100%;
-        font-size: 60px;
-        color: #FEEAD8;
-        text-transform: uppercase;
-        top:0;
-        line-height: 1;
-        animation: 1s title_text_top ease-in-out;
-        font-family: 'Bangers';
-    }
-    /* gameboard index content title animation  */
-    @keyframes title_text_top {
-        from {
-            top: -100%;
-        }
-
-        to {
-            top: 0;
-        }
-    }
-    /* gameboard index content title animation  */
-   
-    .gameboardPaass p {
-        font-size: 12px;
-        color: #FEEAD8;
-        float: left;
-        width: 100%;
-        margin: 12px 0;
-        opacity: 1;
-        animation: 1s titel_p_text ease-in-out;
-        font-family: 'Montserrat';
-        font-weight: 600;
-    }
-  
-    .button {
-        float: left;
-        width: 100%;
-        opacity: 1;
-        animation: 1s titel_p_text ease-in-out;
-    }
-
-    .play-btn {
-        background: url(../img/Group\ 4913.png);
-        background-repeat: repeat;
-        background-size: auto;
-        background-repeat: no-repeat;
-        border: none;
-        color: #fff;
-        padding: 0;
-        background-size: cover;
-        text-align: center;
-        font-size: 19px;
-        width: 100px;
-        padding: 13px 19px;
-        line-height: 0.3;
-        text-shadow: -1px 3px 0px #B19F23;
-        font-family: "Titan One";
-        font-weight: normal;
-        color: #fff;
-
-    }
-
-   
-     /* 12-07-2021 */
-    .gameboardPaass .button button{
-        position: relative;
-        top: 0;
-        transition: 300ms ease-in-out all;
-    }
-    .gameboardPaass .button .Learn-More{
-        border: 4px solid #FEEAD8;
-    }
-
-    .gameboardPaass .button button:hover{
-        top:-19px
-    }
-
-
-    .gameboardPaass .button .play_index_btn{
-        font-family: "Titan One";
-        font-weight: normal !important;
-        font-size: 30px !important;
-    }
-    /* 12-07-2021 */
-
-    /* 12-07-2021 */
-    .Learn-More {
-        padding: 8px 9px;
-        line-height: 0.3;
-        background: transparent;
-        border: 2px solid #fff;
-        border-radius: 8px;
-        margin-left: 20px;
-        text-align: center;
-        font-family: "Titan One" !important;
-        font-weight: normal !important;
-        font-size: 19px;
-        color: #feead8 !important;
-        text-shadow: -3px 3px 6px rgba(0, 0, 0, 0.25) !important;
-    }
-
-    .forget-password {        color: rgba(255,0,0,.5) !important;    }
-    /* 12-07-2021 */
-
-    /* gameboard index content button and subtext animation  */
-    @keyframes titel_p_text {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
-    }
-    /* gameboard index content title animation  */
+/* gameboard index content button and subtext animation  */
+@keyframes titel_p_text{from{opacity:0}to{opacity:1}}
+/* gameboard index content title animation  */
 
 /* index */
 
 /* Lodding page */
-.lodding-fills {
-    display: inline-block;
-    width: 700px;
-    position: relative;
-    clear: both;
-    height: 27px;
-    background-color:rgba(255,255,255,0.59);
-    border-radius: 30px;
-    margin: auto;
-    display:block;
-}
-.lodding-fills_child{
-    height: 100%;
-    width: 100%;
-    background: #95c11f;
-    border-radius: 30px;
-    animation: 5s lodding_fills_child_animation ease-in-out;
-}
-@keyframes lodding_fills_child_animation {
-    0% {
-        width: 0%;
-    }
-
-    100% {
-        width: 100%;
-    }
-}
+.lodding-fills{display:inline-block;width:700px;position:relative;clear:both;height:27px;background-color:rgba(255,255,255,.59);border-radius:30px;margin:auto;display:block}
+.lodding-fills_child{height:100%;width:100%;background:#95c11f;border-radius:30px;animation:5s lodding_fills_child_animation ease-in-out}
+@keyframes lodding_fills_child_animation{0%{width:0%}100%{width:100%}}
 /* Lodding page */
 
 /* tutorial page */
     /* tutorial stap 1 */
-    .tutorial-playariya {
-        width: 1200px;
-        margin: auto;
-        height: 1200px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        left: -28%;
-        top: -65%;
-        position: relative;
-        /* animation: 3s color-me-in ease-in-out; */
-    }
-    /* .tutorial-stap.tutorial-stap-1{
-        animation-delay: 10s!important;
-    } */
+    .tutorial-playariya{width:1200px;margin:auto;height:1200px;display:flex;flex-direction:column;justify-content:center;left:-28%;top:-65%;position:relative}
     .tutorial-playariya,.wapper_child{background-color: rgba(70,35,33,0.9);}
-    .tutorial-playariya img {
-        width: 100%;
-        /*height: 100vh;*/
-    }
+    .tutorial-playariya img{width:100%}
     
     /* tutorial stap 1 text */
-    .tutorial-stap {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 34%;
-        height: 40vh;
-        display: flex;
-        /* animation: 4s tutorial-stap ease-in-out;   */
-    }
-
-    .tutorial-stap-img {
-        width: 10%;
-        
-    }
-    .tutorial-stap-img img {
-        width: 90%;
-        transform: rotate(-90deg);
-
-    }
-    .tutorial-stap-text {
-        width: 90%;
-        padding: 0px 10px;
-    }
-    /*.tutorial-stap{background-color: rgba(70,35,33,0.9) !important;}*/
-    /* .tutorial-stap-text{background-color: rgba(70,35,33,0.9) !important;} */
-    .tutorial-stap-text h1 {
-        color: #fff;
-        font-size: 35px;
-        line-height: 1;
-        font-family: 'Bangers';
-    }
-    .tutorial-stap-text  p {
-        font-size: 12px;
-        line-height: 0.5;
-        color: #fff;
-        font-family: 'Montserrat';
-        font-weight: 400;
-    }
+    .tutorial-stap{position:absolute;bottom:0;right:0;width:34%;height:40vh;display:flex}
+    .tutorial-stap-img{width:10%}
+    .tutorial-stap-img img{width:90%;transform:rotate(-90deg)}
+    .tutorial-stap-text{width:90%;padding:0 10px}
+    .tutorial-stap-text h1{color:#fff;font-size:35px;line-height:1;font-family:Bangers}
+    .tutorial-stap-text p{font-size:12px;line-height:.5;color:#fff;font-family:Montserrat;font-weight:400}
 
     /* tutorial stap 1 text animation */
-    @keyframes tutorial-stap {
-        0% {
-            opacity: 0;
-        }
-    
-        50% {
-            opacity: 0;    
-        }
-    
-        75% {
-            opacity: 0;    
-        }
-    
-        85% {
-            opacity: 0.5;    
-        }
-    
-        100% {
-            opacity: 1;
-        }
-    }
+    @keyframes tutorial-stap{0%{opacity:0}50%{opacity:0}75%{opacity:0}85%{opacity:.5}100%{opacity:1}}
     /* tutorial stap 1 text animation */
     /* tutorial stap 1 text */
     /* tutorial stap 1 */
 
     /* tutorial stap 2 */
-    .tutorial-playariya.Gameboard-id-2{
-        top: -90%;
-        animation: 2s Gameboard-id-2 ease-in-out;
-    }
-    
+    .tutorial-playariya.Gameboard-id-2{top:-90%;animation:2s Gameboard-id-2 ease-in-out}
     .tutorial-stap.tutorial-stap-2,
     .tutorial-stap.tutorial-stap-3,
     .tutorial-stap.tutorial-stap-4,
     .tutorial-stap.tutorial-stap-5,
     .tutorial-stap.tutorial-stap-6,
     .tutorial-stap.tutorial-stap-7,
-    .tutorial-stap.tutorial-stap-8 {
-        right: 22%;
-        flex-direction: column;
-        bottom: 3%;
-        animation: 2s tutorial-stap-2 ease-in-out;
-    }
+    .tutorial-stap.tutorial-stap-8 {right:22%;flex-direction:column;bottom:3%;animation:2s tutorial-stap-2 ease-in-out;}
 
     /* tutorial stap 1, 2, 3, 4, 5, 6, 7, 8 text animation */
 
-    @keyframes tutorial-stap-2 {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
-    }
+    @keyframes tutorial-stap-2{from{opacity:0}to{opacity:1}}
 
     /* tutorial stap 1, 2, 3, 4, 5, 6, 7, 8 text animation */
 
@@ -522,22 +216,7 @@ input:focus-visible{outline:0}
     .tutorial-stap.tutorial-stap-5 .tutorial-stap-img,
     .tutorial-stap.tutorial-stap-6 .tutorial-stap-img,
     .tutorial-stap.tutorial-stap-7 .tutorial-stap-img,
-    .tutorial-stap.tutorial-stap-8 .tutorial-stap-img {
-        width: 10%;
-        padding: 5px 0px;
-        position: relative;
-        left: 10%;
-    }
-
-    .tutorial-stap.tutorial-stap-2 .tutorial-stap-img,
-    .tutorial-stap.tutorial-stap-3 .tutorial-stap-img,
-    .tutorial-stap.tutorial-stap-4 .tutorial-stap-img,
-    .tutorial-stap.tutorial-stap-5 .tutorial-stap-img,
-    .tutorial-stap.tutorial-stap-6 .tutorial-stap-img,
-    .tutorial-stap.tutorial-stap-7 .tutorial-stap-img,
-    .tutorial-stap.tutorial-stap-8 .tutorial-stap-img{
-        transform: rotate(0deg);
-    }
+    .tutorial-stap.tutorial-stap-8 .tutorial-stap-img{width:10%;padding:5px 0;position:relative;left:10%;transform: rotate(0deg);}
 
     .tutorial-stap.tutorial-stap-2 .tutorial-stap-img img,
     .tutorial-stap.tutorial-stap-3 .tutorial-stap-img img,
@@ -545,37 +224,16 @@ input:focus-visible{outline:0}
     .tutorial-stap.tutorial-stap-5 .tutorial-stap-img img,
     .tutorial-stap.tutorial-stap-6 .tutorial-stap-img img,
     .tutorial-stap.tutorial-stap-7 .tutorial-stap-img img,
-    .tutorial-stap.tutorial-stap-8 .tutorial-stap-img img{
-        transform: rotate(0deg);
-    }
+    .tutorial-stap.tutorial-stap-8 .tutorial-stap-img img{transform: rotate(0deg);}
     /* tutorial stap 2 */
     /* tutorial stap 3 */
-    .tutorial-playariya.Gameboard-id-3{
-        top: -90%;
-        left: -21%;
-        animation: 2s Gameboard-id-3 ease-in-out;
-    }
-   
-    .tutorial-stap.tutorial-stap-3 {
-        right: 22%;
-        flex-direction: column;
-        animation: 2s tutorial-stap-2 ease-in-out;
-    }
+    .tutorial-playariya.Gameboard-id-3{top:-90%;left:-21%;animation:2s Gameboard-id-3 ease-in-out}
+    .tutorial-stap.tutorial-stap-3{right:22%;flex-direction:column;animation:2s tutorial-stap-2 ease-in-out}
 
     /* tutorial stap 3 */
     /* tutorial stap 4 */
-    .tutorial-playariya.Gameboard-id-4{
-        /* top: -90%;
-        left: 0%; */
-        animation: 2s Gameboard-id-4 ease-in-out;
-    }
-
-    .tutorial-stap.tutorial-stap-4 {
-        right: 22%;
-        flex-direction: column;
-        /* bottom: 15%; */
-        animation: 2s tutorial-stap-2 ease-in-out;
-    }
+    .tutorial-playariya.Gameboard-id-4{animation:2s Gameboard-id-4 ease-in-out}
+    .tutorial-stap.tutorial-stap-4{right:22%;flex-direction:column;animation:2s tutorial-stap-2 ease-in-out}
 
     /* tutorial stap 4 */
     /* tutorial stap 5 */
@@ -1304,7 +962,7 @@ input:focus-visible{outline:0}
         background-size: 100% 100%;
         background-repeat: no-repeat;
         padding: 65px 25px 44px;
-        animation: 5s select_card_fist_text ease-in-out;
+        animation: 3s select_card_fist_text ease-in-out;
         position: relative;
     }
 
@@ -1443,7 +1101,7 @@ input:focus-visible{outline:0}
     .Roll_inheritance-main {
         position: relative;
         top: 0%;
-        animation: 5s select_card_fist_text ease-in-out;
+        animation: 3s select_card_fist_text ease-in-out;
         float: left;
         width: 100%;
         text-align: center;
@@ -2022,72 +1680,10 @@ input:focus-visible{outline:0}
 /* Brodher dath */
 
 /* economic boom */
-.economic_boom-card {  width: 35%;  margin: auto;}
-.economic_boom-card .select_card_fist_text {
-    background-image: none;
-    background-color: #f3ebce;
-    width: 320px;
-    height: 250px;
-    padding: 45px 15px 34px;
-    text-align: left;
-    border-radius: 10px;
-}
-.economic_boom-card .select_card_fist_text_servies h3{ font-size: 24px;  line-height: 35px;}
-.economic_boom-card .select_card_fist_text_servies p{font-size: 15px;}
-
-.economic_boom-card .select_card_fist_text .cards_text_inner{height: auto;}
-.economic_boom-card .select_card_fist_text .title_card {
-    background-image: url("../img/Group\ 4911-green.png");
-    font-size: 30px;
-    line-height: 38px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top center;
-    float: left;
-    width: 100%;
-    padding: 14px 0;
-    margin-top: -30px;
-}
-.economic_boom-card .select_card_fist_text_servies p { font-size: 18px; line-height: 23px; 
-   margin-top: 10px;}
-.economic_boom-card > h3 {  margin: 50px 0 0; font-size: 33px; color: #14d138; font-family: 'Titan One';}
+.economic_boom-card{width:35%;margin:auto}.economic_boom-card .select_card_fist_text{background-image:none;background-color:#f3ebce;width:320px;height:250px;padding:45px 15px 34px;text-align:left;border-radius:10px}.economic_boom-card .select_card_fist_text_servies h3{font-size:24px;line-height:35px}.economic_boom-card .select_card_fist_text_servies p{font-size:15px}.economic_boom-card .select_card_fist_text .cards_text_inner{height:auto}.economic_boom-card .select_card_fist_text .title_card{background-image:url("../img/Group\ 4911-green.png");font-size:30px;line-height:38px;background-repeat:no-repeat;background-size:cover;background-position:top center;float:left;width:100%;padding:14px 0;margin-top:-30px}.economic_boom-card .select_card_fist_text_servies p{font-size:18px;line-height:23px;margin-top:10px}.economic_boom-card>h3{margin:50px 0 0;font-size:33px;color:#14d138;font-family:'Titan One'}
 /* economic boom */
 /* go_to_pricon */
-.go_to_pricon-card { width: 42%; margin: auto;}
-.go_to_pricon-card .select_card_fist_text {
-    position: relative;
-    background-image: none;
-    background-color: #f3ebce;
-    padding: 45px 15px 34px;
-    text-align: left;
-    border-radius: 10px;
-    width: 487px;
-    height: 360px;
-}
-.go_to_pricon-card .select_card_fist_text_servies h3{ font-size: 22px;  line-height: 18px;}
-.go_to_pricon-card .select_card_fist_text_servies p{font-size: 15px;}
-
-.go_to_pricon-card .select_card_fist_text .cards_text_inner{height: 220px; margin-top: 30px;}
-.go_to_pricon-card .select_card_fist_text .title_card {
-    background-image: url("../img/Group\ 4910-red.png");
-    font-size: 30px;
-    line-height: 38px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top center;
-    float: left;
-    width: 100%;
-    padding: 25px 0;
-    margin-top: -30px;
-}
-
-.go_to_pricon-card .select_card_fist_text_servies{position: relative;}
-.go_to_pricon-card .select_card_fist_text_servies p { font-size: 18px; line-height: 23px;
-    margin-top: 10px;}
-.go_to_pricon-card > h3 {  margin: 50px 0 0; font-size: 33px; color: #14d138; font-family: 'Titan One';}
-.go_to_pricon-card .Roll_inheritance-main .sign_in_btn {  position: relative;
-  height: 75px !important;  font-size: 25px; padding: 10px 48px;}
-.staricon {  position: absolute; left: -34px; top: 30px; width: 65px; animation: 5s staricon ease-in-out; }
+.go_to_pricon-card{width:42%;margin:auto}.go_to_pricon-card .select_card_fist_text{position:relative;background-image:none;background-color:#f3ebce;padding:45px 15px 34px;text-align:left;border-radius:10px;width:487px;height:360px}.go_to_pricon-card .select_card_fist_text_servies h3{font-size:22px;line-height:18px}.go_to_pricon-card .select_card_fist_text_servies p{font-size:15px}.go_to_pricon-card .select_card_fist_text .cards_text_inner{height:220px;margin-top:30px}.go_to_pricon-card .select_card_fist_text .title_card{background-image:url("../img/Group\ 4910-red.png");font-size:30px;line-height:38px;background-repeat:no-repeat;background-size:cover;background-position:top center;float:left;width:100%;padding:25px 0;margin-top:-30px}.go_to_pricon-card .select_card_fist_text_servies{position:relative}.go_to_pricon-card .select_card_fist_text_servies p{font-size:18px;line-height:23px;margin-top:10px}.go_to_pricon-card>h3{margin:50px 0 0;font-size:33px;color:#14d138;font-family:'Titan One'}.go_to_pricon-card .Roll_inheritance-main .sign_in_btn{position:relative;height:75px!important;font-size:25px;padding:10px 48px}.staricon{position:absolute;left:-34px;top:30px;width:65px;animation:5s staricon ease-in-out}
 @keyframes staricon {
     0% {
         left: -400px;
@@ -2109,265 +1705,32 @@ input:focus-visible{outline:0}
 .staricon > img { width: 100%;  }
 /* go_to_pricon */
 
-.get_out_pricon .get_out_pricon_card{margin: auto;} 
-.get_out_pricon .select_card_fist_text { width: 465px; height: 476px; padding: 65px 50px 44px;}
-
-.get_out_pricon .Roll_inheritance-main .sign_in_btn {
-    height: 70px !important;
-    font-size: 25px;
-    padding: 12px 42px;
-}
-.get_out_pricon .cards_text_inner{height: 440px;}
-.get_out_pricon .select_card_fist_text_servies h3 {
-    font-size: 36px;
-    line-height: 40px;
-    margin-bottom: 20px;
-    margin-top: 15px;
-}
-.get_out_pricon .select_card_fist_text_servies p {
-    font-size: 25px;
-    line-height: 36px;
-    color: #e53f40;
-    margin-bottom: 15px;
-}
+.get_out_pricon .get_out_pricon_card{margin:auto}.get_out_pricon .select_card_fist_text{width:465px;height:476px;padding:65px 50px 44px}.get_out_pricon .Roll_inheritance-main .sign_in_btn{height:70px!important;font-size:25px;padding:12px 42px}.get_out_pricon .cards_text_inner{height:440px}.get_out_pricon .select_card_fist_text_servies h3{font-size:36px;line-height:40px;margin-bottom:20px;margin-top:15px}.get_out_pricon .select_card_fist_text_servies p{font-size:25px;line-height:36px;color:#e53f40;margin-bottom:15px}
 /* go_to_pricon */
 
 /* Return to game */
-.return_to_game-card { width: 42%; margin: auto;}
-.return_to_game-card .select_card_fist_text {
-    position: relative;
-    background-image: none;
-    background-color: #f3ebce;
-    padding: 45px 15px 34px;
-    text-align: left;
-    border-radius: 10px;
-    width: 487px;
-    height: 360px;
-}
-.return_to_game-card .select_card_fist_text_servies h3{ font-size: 22px;  line-height: 18px;}
-.return_to_game-card .select_card_fist_text_servies p{font-size: 15px;}
-
-.return_to_game-card .select_card_fist_text .cards_text_inner{height: 220px; margin-top: 30px;}
-.return_to_game-card .select_card_fist_text .title_card {
-    background-image: url("../img/Group\ 4910-red.png");
-    font-size: 30px;
-    line-height: 38px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top center;
-    float: left;
-    width: 100%;
-    padding: 25px 0;
-    margin-top: -30px;
-}
-
-.return_to_game-card .select_card_fist_text_servies{position: relative;}
-.return_to_game-card .select_card_fist_text_servies p { font-size: 18px; line-height: 23px;
-    margin-top: 10px;}
-.return_to_game-card > h3 { margin: 50px 0 0; font-size: 33px; color: #14d138; font-family: 'Titan One';}
-.return_to_game-card .Roll_inheritance-main .sign_in_btn {  position: relative;  height: 75px !important;    font-size: 25px;    padding: 10px 48px;}
+.return_to_game-card{width:42%;margin:auto}.return_to_game-card .select_card_fist_text{position:relative;background-image:none;background-color:#f3ebce;padding:45px 15px 34px;text-align:left;border-radius:10px;width:487px;height:360px}.return_to_game-card .select_card_fist_text_servies h3{font-size:22px;line-height:18px}.return_to_game-card .select_card_fist_text_servies p{font-size:15px}.return_to_game-card .select_card_fist_text .cards_text_inner{height:220px;margin-top:30px}.return_to_game-card .select_card_fist_text .title_card{background-image:url("../img/Group\ 4910-red.png");font-size:30px;line-height:38px;background-repeat:no-repeat;background-size:cover;background-position:top center;float:left;width:100%;padding:25px 0;margin-top:-30px}.return_to_game-card .select_card_fist_text_servies{position:relative}.return_to_game-card .select_card_fist_text_servies p{font-size:18px;line-height:23px;margin-top:10px}.return_to_game-card>h3{margin:50px 0 0;font-size:33px;color:#14d138;font-family:'Titan One'}.return_to_game-card .Roll_inheritance-main .sign_in_btn{position:relative;height:75px!important;font-size:25px;padding:10px 48px}
 /* return to game */
 
 /* back to game */
-
-.back_to_game-card {  width: 48%; margin: auto;}
-.back_to_game-card .select_card_fist_text {
-    position: relative;
-    background-image: none;
-    background-color: #f3ebce;
-    padding: 45px 15px 34px;
-    text-align: left;
-    border-radius: 10px;
-    width: 487px;
-    height: 500px;
-}
-.back_to_game-card .select_card_fist_text_servies h3{ font-size: 22px;  line-height: 18px;}
-.back_to_game-card .select_card_fist_text_servies p{font-size: 15px;}
-
-.back_to_game-card .select_card_fist_text .cards_text_inner{height: 400px; margin-top: 30px;}
-.back_to_game-card .select_card_fist_text .title_card {
-    background-image: url("../img/Group\ 4912-purple.png");
-    font-size: 30px;
-    line-height: 38px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top center;
-    float: left;
-    width: 100%;
-    padding: 25px 0;
-    margin-top: -30px;
-}
-
-.back_to_game-card .select_card_fist_text_servies{position: relative;}
-.back_to_game-card .select_card_fist_text_servies p { font-size: 18px; line-height: 23px; 
-   margin-top: 10px;}
-.back_to_game-card > h3 {  margin: 50px 0 0; font-size: 33px; color: #14d138; font-family: 'Titan One';}
-.back_to_game-card .Rll_inheritance-main .sign_in_btn {  position: relative;  height: 75px !important;
-    font-size: 25px; padding: 10px 48px;}
-
-
-.back_to_game { display: flex;  margin-top: 30px;}
-.back_to_gam .user_data li a .user_data_icon_text{font-size: 14px;}
-.back_to_gam  .user_data li a {
-    padding: 3px 0px;
-}
-.back_to_game .user_data { padding: 0 0;  margin: 0px 10px; width: 152px;  }
-.back_to_game  .user_data li{background-color: #8686d9;}
-.back_to_game  .user_data li a .user_data_icon > img{width:18px !important;
- height: 18px!important; margin-right: 5px;}
-.back_to_game .user_data li a{padding: 3px 0;}
-.back_to_game .user_data li a .user_data_icon_text{font-size: 12px;}
-.back_to_game .user_data li a .user_data_icon{margin-right: 2px;}
-.back_to_game .Roll_inheritance-main .sign_in_btn {  position: relative; 
- height: 75px !important; font-size: 25px; padding: 10px 48px;}
+.back_to_game-card{width:48%;margin:auto}.back_to_game-card .select_card_fist_text{position:relative;background-image:none;background-color:#f3ebce;padding:45px 15px 34px;text-align:left;border-radius:10px;width:487px;height:500px}.back_to_game-card .select_card_fist_text_servies h3{font-size:22px;line-height:18px}.back_to_game-card .select_card_fist_text_servies p{font-size:15px}.back_to_game-card .select_card_fist_text .cards_text_inner{height:400px;margin-top:30px}.back_to_game-card .select_card_fist_text .title_card{background-image:url("../img/Group\ 4912-purple.png");font-size:30px;line-height:38px;background-repeat:no-repeat;background-size:cover;background-position:top center;float:left;width:100%;padding:25px 0;margin-top:-30px}.back_to_game-card .select_card_fist_text_servies{position:relative}.back_to_game-card .select_card_fist_text_servies p{font-size:18px;line-height:23px;margin-top:10px}.back_to_game-card>h3{margin:50px 0 0;font-size:33px;color:#14d138;font-family:'Titan One'}.back_to_game-card .Rll_inheritance-main .sign_in_btn{position:relative;height:75px!important;font-size:25px;padding:10px 48px}.back_to_game{display:flex;margin-top:30px}.back_to_gam .user_data li a .user_data_icon_text{font-size:14px}.back_to_gam .user_data li a{padding:3px 0}.back_to_game .user_data{padding:0 0;margin:0 10px;width:152px}.back_to_game .user_data li{background-color:#8686d9}.back_to_game .user_data li a .user_data_icon>img{width:18px!important;height:18px!important;margin-right:5px}.back_to_game .user_data li a{padding:3px 0}.back_to_game .user_data li a .user_data_icon_text{font-size:12px}.back_to_game .user_data li a .user_data_icon{margin-right:2px}.back_to_game .Roll_inheritance-main .sign_in_btn{position:relative;height:75px!important;font-size:25px;padding:10px 48px}
 
 /* back to game */
 
 
 /* red parck card game */
-.red_park_sreen-card { width: 42%; margin: auto;}
-.red_park_sreen-card .select_card_fist_text {
-    position: relative;
-    background-image: none;
-    background-color: #f3ebce;
-    padding: 45px 15px 34px;
-    text-align: left;
-    border-radius: 10px;
-    width: 450px;
-    height: 314px
-}
-.red_park_sreen-card .select_card_fist_text_servies h3{ font-size: 22px;  line-height: 18px;}
-.red_park_sreen-card .select_card_fist_text_servies p{font-size: 15px;}
-
-.red_park_sreen-card .select_card_fist_text .cards_text_inner{height: 220px; margin-top: 30px;}
-.red_park_sreen-card .select_card_fist_text .title_card {
-    background-image: url("../img/Group\ 4910-red.png");
-    font-size: 30px;
-    line-height: 38px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top center;
-    float: left;
-    width: 100%;
-    padding: 25px 0;
-    margin-top: -30px;
-}
-.red_park_sreen-card .select_card_fist_text_servies{position: relative;}
-.red_park_sreen-card .select_card_fist_text_servies p { font-size: 18px; line-height: 23px; 
-   margin-top: 10px;}
-.red_park_sreen-card > h3 { margin: 50px 0 0; font-size: 33px; color: #14d138; font-family: 'Titan One';}
-.red_park_sreen-card .Roll_inheritance-main .sign_in_btn {  position: relative;  height: 75px !important;    font-size: 25px;    padding: 10px 48px;}
-
-.arrow-red-park .arrow-red-park-button{
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    background-color: transparent;
-    border: none;
-    width: 50px;
-  }
-  .arrow-red-park .arrow-red-park-button img {
-    width: 100% !important;
-  }
-  .arrow-red-park .left-button {
-    left: -35px;
-  }
-  .arrow-red-park .right-button {
-    right: -35px;
-  }
-  .red_park_sreen-card .arrow-red-park .arrow-red-park-button img{width:100% !important; }
+.red_park_sreen-card{width:42%;margin:auto}.red_park_sreen-card .select_card_fist_text{position:relative;background-image:none;background-color:#f3ebce;padding:45px 15px 34px;text-align:left;border-radius:10px;width:450px;height:314px}.red_park_sreen-card .select_card_fist_text_servies h3{font-size:22px;line-height:18px}.red_park_sreen-card .select_card_fist_text_servies p{font-size:15px}.red_park_sreen-card .select_card_fist_text .cards_text_inner{height:220px;margin-top:30px}.red_park_sreen-card .select_card_fist_text .title_card{background-image:url("../img/Group\ 4910-red.png");font-size:30px;line-height:38px;background-repeat:no-repeat;background-size:cover;background-position:top center;float:left;width:100%;padding:25px 0;margin-top:-30px}.red_park_sreen-card .select_card_fist_text_servies{position:relative}.red_park_sreen-card .select_card_fist_text_servies p{font-size:18px;line-height:23px;margin-top:10px}.red_park_sreen-card>h3{margin:50px 0 0;font-size:33px;color:#14d138;font-family:'Titan One'}.red_park_sreen-card .Roll_inheritance-main .sign_in_btn{position:relative;height:75px!important;font-size:25px;padding:10px 48px}.arrow-red-park .arrow-red-park-button{position:absolute;top:50%;width:100%;background-color:transparent;border:none;width:50px}.arrow-red-park .arrow-red-park-button img{width:100%!important}.arrow-red-park .left-button{left:-35px}.arrow-red-park .right-button{right:-35px}.red_park_sreen-card .arrow-red-park .arrow-red-park-button img{width:100%!important}
 /* red parck card game */
 
 /* landed_no_pick */
-.landed_no_pick-card { width: 50%; margin: auto;}
-.landed_no_pick-card .select_box_bonus > img { width: 100%;  }
-.landed_no_pick-card p {    margin: 0; font-size: 47px; font-weight: bold;
-  color: #f7aeea;  font-family: 'Titan One'; margin-top:30px  }
-.landed_no_pick-card .Roll_inheritance-main .sign_in_btn {
-    position: relative;
-    height: 70px !important;
-    font-size: 23px;
-    padding: 15px 67px;
-}
-.play_buton_hold{
-    background: #D8D8D8 !important;
-    border :4px solid #707070 !important;
-}
+.landed_no_pick-card{width:50%;margin:auto}.landed_no_pick-card .select_box_bonus>img{width:100%}.landed_no_pick-card p{margin:0;font-size:47px;font-weight:700;color:#f7aeea;font-family:'Titan One';margin-top:30px}.landed_no_pick-card .Roll_inheritance-main .sign_in_btn{position:relative;height:70px!important;font-size:23px;padding:15px 67px}.play_buton_hold{background:#d8d8d8!important;border:4px solid #707070!important}
 /* landed_no_pick */
 
 /* Game play end */
 
 /* admin dashboard page */
-.admin-dashboard {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: space-between;
-}
+.admin-dashboard{display:flex;width:100%;flex-direction:column;justify-content:space-between}.user_list_main{width:80%;margin:auto;height:100vh;display:flex;align-items:center;flex-direction:column}.user_list{height:80%;width:100%;background-color:#f3ebce;border-radius:30px;padding:30px 100px 80px}.user_list_functions{height:20%;margin:auto}.user_list h3{text-align:center;font-size:40px;margin-bottom:30px;font-family:'Titan One'}.table-head-main{padding:30px 50px}.table-body-main{clear:both;width:100%;border:1px solid#d7cfb5;border-radius:30px;padding:30px 50px}.user-email{width:30%}.date{width:30%}.amount{width:20%}.status{width:20%}.table-body tr td{border-bottom:1px solid #d7cfb5;padding-top:10px;font-size:20px;color:#5d5548}.table-header tr td{font-size:20px;color:#5d5548}.table-body{width:100%;height:500px;overflow:auto}.table-body table,.table-header table{width:100%}.user_inner_list table tr:hover{background-color:rgba(0,0,0,.2)}.user_inner_list table tr:hover td:first-child span{border-radius:10px}.user_inner_list table tr:hover td:last-child span{border-radius:10px}.user_detels .user_list h3{font-family:'Titan One'}.user_detels{position:fixed;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,.5)}.user_detels .user_list_main{width:40%;display:flex;align-items:center}.user_detels .user_list{height:auto;padding:30px;position:relative}.users_detels-partion{margin-bottom:30px}.users_detels-partion{border:2px solid #dfd6bc;padding:15px;border-radius:15px;margin-bottom:30px}.users_detels-partion .input-form{display:flex;align-items:center;margin-bottom:14px;position:relative}.input-form label{width:30%}.input-form label .inut-form-text{color:#4d453a;font-weight:400;font-size:18px}.input-form input{background:0 0;border:none;font-size:15px;border-bottom:1px solid #dfd6bc;width:70%;color:#4d453a}.select-text{position:absolute;right:0;bottom:0}.input-form label .input-form-text{font-size:15px}.select-text a{display:inline-block;font-size:12px;color:#4d453a}.paument_method .input-form{float:left;width:100%;display:flex;margin-bottom:15px}.paument_method{float:left;width:100%;border:2px solid #dfd6bc;border-radius:15px;padding:15px}.paument_method .payment_method-input{float:left;width:100%;margin-bottom:18px;flex-direction:column}.paument_method .input-form label{width:50%}.paument_method .input-form input{width:50%}.paument_method .payment_method-input label{width:100%;margin-bottom:10px}.paument_method .payment_method-input input{font-size:15px;width:100%}.account_back{position:absolute;top:15px;right:20px}.account_back button{background-color:transparent;border:none;padding:0}.user_detels .buttons{max-width:500px;margin:auto;display:flex}.buttons .admin_button button{width:100%;height:70px;background:0 0;border:none;margin:0 15px}.buttons .admin_button{width:50%;margin:0 15px}.buttons .admin_button .delete_btn{background-image:url(../img/radbutton.png)!important}.table-head-main .table-header{width:100%}
 
-.user_list_main { width: 80%; margin: auto; height: 100vh; display: flex;
- align-items: center; flex-direction: column;}
-.user_list {
-    height: 80%;
-    width: 100%;
-    background-color: #f3ebce;
-    border-radius: 30px;
-    padding: 30px 100px 80px;
-}
-.user_list_functions { height: 20%; margin: auto;  }
-.user_list h3 {    text-align: center; font-size: 40px; margin-bottom: 30px; font-family: 'Titan One';}
-.table-head-main{ padding: 30px 50px; }
-.table-body-main {  clear: both; width: 100%; border: 1px solid#d7cfb5; border-radius: 30px; 
-   padding: 30px 50px;  }
-.user-email {  width: 30%;  }
-.date { width: 30%;  }
-.amount { width: 20%;  }
-.status { width: 20%;  }
-.table-body tr td { border-bottom: 1px solid #d7cfb5; padding-top: 10px; font-size: 20px; 
-   color: #5d5548;  }
-.table-header tr td { font-size: 20px; color: #5d5548;  }
-.table-body { width: 100%; height: 500px;  overflow: auto;  }
-.table-body table,.table-header table{  width: 100%;  }
-.user_inner_list table tr:hover {    background-color:rgba(0,0,0,0.2);}
-.user_inner_list table tr:hover td:first-child span{border-radius: 10px;}
-.user_inner_list table tr:hover td:last-child span{border-radius: 10px;}
-/*  */
-.user_detels .user_list h3{font-family: 'Titan One';}
-.user_detels { position: fixed; top: 0; left: 0;  right: 0;  bottom: 0; background-color: rgba(0,0,0,0.5);}
-.user_detels .user_list_main{width:40%; display: flex; align-items: center;}
-.user_detels .user_list{height: auto; padding: 30px; position: relative;} 
-.users_detels-partion {margin-bottom: 30px;  }
-.users_detels-partion {  border: 2px solid #dfd6bc; padding: 15px; border-radius: 15px;
- margin-bottom: 30px;  }
-.users_detels-partion .input-form{display: flex; align-items: center;margin-bottom: 14px;
- position: relative;}
-.input-form label {width: 30%;} 
-
-.input-form label .inut-form-text {  color: #4d453a; font-weight: 400; font-size: 18px;  }
-.input-form input { background: transparent; border: none; font-size: 15px; 
-    border-bottom: 1px solid #dfd6bc;  width: 70%; color:#4d453a;}
-.select-text { position: absolute; right: 0; bottom:0;}
-.input-form label .input-form-text{font-size: 15px;}
-.select-text a { display: inline-block; font-size: 12px;color: #4d453a;   }
-.paument_method .input-form { float: left; width: 100%; display: flex;  margin-bottom: 15px;} 
-.paument_method { float: left;  width: 100%; border: 2px solid #dfd6bc; border-radius: 15px; 
-    padding: 15px;  }
-.paument_method .payment_method-input { float: left; width: 100%; margin-bottom: 18px;
- flex-direction: column;}
-.paument_method .input-form label{width: 50%;}
-.paument_method .input-form input{width: 50%;}
-.paument_method .payment_method-input label { width: 100%; margin-bottom: 10px;  }
-.paument_method .payment_method-input input { font-size: 15px;   width: 100%;  }
-.account_back { position: absolute; top: 15px; right: 20px;  }
-.account_back button { background-color: transparent; border: none; padding: 0;  }
-.user_detels .buttons { max-width: 500px; margin: auto; display: flex;  }
-.buttons .admin_button button { width: 100%; height: 70px; background: transparent; border: none;
-    margin: 0 15px;  }
-.buttons .admin_button {  width: 50%; margin: 0 15px;}
-.buttons .admin_button .delete_btn{background-image: url("../img/radbutton.png") !important;}
-.table-head-main .table-header {
-    width: 100%;
-  }
 /*  */
 /* admin logout */
 .bg-logout_user{display: flex;}
@@ -2383,68 +1746,17 @@ input:focus-visible{outline:0}
 
 
 /*Game Start*/
-.gamepay-sreens-rolling img{
-    transition: 0.5s all ease-in-out;
-}
-.gamepay-sreens-rolling :hover img{
-transform: scale(1.2);
-}
-
-.payboard_user.payboard_user1 {
-	width: 100% !important;
-}
-.Gameboard-playboard-card img {
-    position: absolute;
-    z-index: 999;
-}
+.gamepay-sreens-rolling img{transition:.5s all ease-in-out}
+.gamepay-sreens-rolling :hover img{transform:scale(1.2)}
+.payboard_user.payboard_user1{width:100%!important}
+.Gameboard-playboard-card img{position:absolute;z-index:999}
 
 /* Dice Slide Animation */
 #Gameboard_playboard_0 img{position:absolute;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
-
-
-.select_card_fist_text_servies h2 {
-    font-family: Montserrat;
-    font-weight: 600;
-    font-size: 26px;
-    text-align: left;
-    color: #342c24;
-    margin-bottom: 0;
-    opacity: 0.85;
-    line-height: 1.2em;
-  }
-  .select_card_fist_text_servies h3 {
-	font-family: Montserrat;
-	font-weight: 600;
-	font-size: 18px !important;
-	text-align: left;
-	color: #342c24;
-	opacity: 0.7;
-	line-height: 1.3em !important;
-}
-.invaite_user_inner h3 {
-	font-size: 50px !important;
-}
-.invaite_user_inner input {
-	font-size: 30px !important;
-	height: 70px !important;
-	border: 4px solid #342c24 !important;
-}
-
-.button_2px_border{
-    border: 4px solid #342c24 !important;
-}
-.player_token {
-	position: absolute;
-	-webkit-transition: all 0.310s ease-in-out;
-	-moz-transition: all 0.310s ease-in-out;
-	-ms-transition: all 0.310s ease-in-out;
-	-o-transition: all 0.310s ease-in-out;
-	transition: all 0.310s ease-in-out;
-}
-.gameplay_game{
-    -webkit-transition: all 2s ease-in-out;
-	-moz-transition: all 2s ease-in-out;
-	-ms-transition: all 2s ease-in-out;
-	-o-transition: all 2s ease-in-out;
-	transition: all 2s ease-in-out;
-}
+.select_card_fist_text_servies h2{font-family:Montserrat;font-weight:600;font-size:26px;text-align:left;color:#342c24;margin-bottom:0;opacity:.85;line-height:1.2em}
+.select_card_fist_text_servies h3{font-family:Montserrat;font-weight:600;font-size:18px!important;text-align:left;color:#342c24;opacity:.7;line-height:1.3em!important}
+.invaite_user_inner h3{font-size:50px!important}
+.invaite_user_inner input{font-size:30px!important;height:70px!important;border:4px solid #342c24!important}
+.button_2px_border{border:4px solid #342c24!important}
+.player_token{position:absolute;-webkit-transition:all 310ms ease-in-out;-moz-transition:all 310ms ease-in-out;-ms-transition:all 310ms ease-in-out;-o-transition:all 310ms ease-in-out;transition:all 310ms ease-in-out}
+.gameplay_game{-webkit-transition:all 2s ease-in-out;-moz-transition:all 2s ease-in-out;-ms-transition:all 2s ease-in-out;-o-transition:all 2s ease-in-out;transition:all 2s ease-in-out}

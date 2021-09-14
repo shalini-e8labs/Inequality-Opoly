@@ -39,6 +39,7 @@ function App() {
     const [room, setRoom] = useState(JSON.parse(localStorage.getItem('room')).room_key);
 	const [room_id, setroom_id] = useState(JSON.parse(localStorage.getItem('room')).room_id);
 	const [IsSubscription, setIsSubscription] = useState(JSON.parse(localStorage.getItem('user')).IsSubscription);
+	const [player_name, set_player_name] = useState(JSON.parse(localStorage.getItem('user')).Name);
 	const [users, setUsers] = useState([]);
 	const [isinvite, setisinvite] = useState(false);
 	const [invite_email, setinvite_email] = useState('');
@@ -62,6 +63,7 @@ function App() {
 	const [player_identity_assests, setplayer_identity_assests] = useState([]);
 	const [game_play_position, set_game_play_position] = useState(1);
 	const [your_play_position, set_your_play_position] = useState(0);
+	const [current_player_name, set_current_player_name] = useState('');
 	const [your_last_position, set_your_last_position] = useState(0);
 	const [deci_roll_step, set_deci_roll_step] = useState(0);
 	const [game_instraction, set_game_instraction] = useState('');
@@ -78,6 +80,7 @@ function App() {
 	const [life_event, set_life_event] = useState(0);
 	const [pink_tax, set_pink_tax] = useState(0);
 	const [direct_pic, set_direct_pic] = useState(0);
+	const [current_property, set_current_property] = useState([]);
 
 
 	const invite_fucntion = (e) => {
@@ -175,21 +178,23 @@ function App() {
 		});
 
 		socket.on("dice_roll", (data) => {
+			var token_move_time = 7500+((data.dice1+data.dice2)*310);
+			set_current_player_name(data.current_player_name)
+			set_deci_roll_step(1);
+			setTimeout(() =>  set_deci_roll_step(2),1500);
+			setTimeout(() =>  set_deci_roll_step(3),4500);
+			setTimeout(() =>  set_deci_roll_step(0),7500);
+			setdice1(data.dice1);
+			setdice2(data.dice2);
+
 			if(data.current_user == current_user){
-				setdice1(data.dice1);
-				setdice2(data.dice2);
 				set_your_last_position(data.player_posstion);
-				set_deci_roll_step(1);
-				setTimeout(() =>  set_deci_roll_step(2),1500);
-				setTimeout(() =>  set_deci_roll_step(3),4500);
-				setTimeout(() =>  set_deci_roll_step(0),7500);
-				
 				// PIC code
 				if((data.player_posstion == 5 && data.your_last_position != 5)
 				|| (data.player_posstion == 15 && data.your_last_position != 15)
 				|| (data.player_posstion == 25 && data.your_last_position != 25)){
-					setTimeout(() => set_PIC(1) ,12000);
-					setTimeout(() => set_PIC(2) ,15000);
+					setTimeout(() => set_PIC(1) ,token_move_time);
+					setTimeout(() => set_PIC(2) ,token_move_time+3000);
 					set_pic_turn(1);
 				}
 
@@ -198,11 +203,11 @@ function App() {
 				|| (data.player_posstion == 12 && data.your_last_position != 12)
 				|| (data.player_posstion == 22 && data.your_last_position != 22)
 				|| (data.player_posstion == 33 && data.your_last_position != 33)){
-					setTimeout(() => set_life_event(1) ,11000);
-					setTimeout(() => set_life_event(0) ,13000);
-					setTimeout(() => set_yellow_card(data.yellow_card) ,13100);
+					setTimeout(() => set_life_event(1) ,token_move_time+1000);
+					setTimeout(() => set_life_event(0) ,token_move_time+4000);
+					setTimeout(() => set_yellow_card(data.yellow_card) ,token_move_time+4100);
 					if(data.yellow_card != 2 && data.yellow_card != 4 ){
-						setTimeout(() => set_yellow_card(0) ,18000);
+						setTimeout(() => set_yellow_card(0) ,token_move_time+14000);
 					}
 				}
 
@@ -211,12 +216,20 @@ function App() {
 				|| (data.player_posstion == 17 && data.your_last_position != 17)
 				|| (data.player_posstion == 28 && data.your_last_position != 28)
 				|| (data.player_posstion == 37 && data.your_last_position != 37)){
-					setTimeout(() => set_life_event(1) ,11000);
-					setTimeout(() => set_life_event(0) ,13000);
-					setTimeout(() => set_green_card(data.green_card) ,13100);
+					setTimeout(() => set_life_event(1) ,token_move_time+1000);
+					setTimeout(() => set_life_event(0) ,token_move_time+4000);
+					setTimeout(() => set_green_card(data.green_card) ,token_move_time+4100);
 					if(data.green_card == 1 ){
-						setTimeout(() => set_green_card(0) ,18000);
+						setTimeout(() => set_green_card(0) ,token_move_time+14000);
 					}
+				}
+				if(data.player_posstion == 1 || data.player_posstion == 3 || data.player_posstion == 4 || data.player_posstion == 6
+					|| data.player_posstion == 8 || data.player_posstion == 11 || data.player_posstion == 13 || data.player_posstion == 14
+					|| data.player_posstion == 16 || data.player_posstion == 18 || data.player_posstion == 19 || data.player_posstion == 21
+					|| data.player_posstion == 23 || data.player_posstion == 24 || data.player_posstion == 26 || data.player_posstion == 27
+					|| data.player_posstion == 29 || data.player_posstion == 31 || data.player_posstion == 32 || data.player_posstion == 34 || data.player_posstion == 36 || data.player_posstion == 39){
+						console.log(data);
+						setTimeout(() => set_current_property(data.property) ,token_move_time+1000);
 				}
 			}else{
 				// PIC code
@@ -239,23 +252,24 @@ function App() {
 				}
 			}
 			if(data.player_posstion == 8){
-				setTimeout(() => set_pink_tax(data.pink_tax) ,11000);
+				setTimeout(() => set_pink_tax(data.pink_tax) ,token_move_time+1000);
 			}
 			if(data.player_posstion == 10){
-				setTimeout(() => set_direct_pic(1) ,11000);
+				setTimeout(() => set_direct_pic(1) ,token_move_time+1000);
 			}
-			setTimeout(() => set_game_play_position(data.game_play_position) ,8000)
-			setTimeout(() => move_token(data.your_last_position,data.player_posstion,data.current_user) ,8000)
+			setTimeout(() => set_game_play_position(data.game_play_position) ,token_move_time)
+			setTimeout(() => move_token(data.your_last_position,data.player_posstion,data.current_user) ,7500)
 			
 			if(data.Isupdate == 1){
-				setTimeout(() => all_player_assets_update() ,5000)
+				setTimeout(() => all_player_assets_update() ,token_move_time+1000)
 			}
 		});
 
 		socket.on("pic_dice_roll", (data) => {
+			setdice1(data.dice1);
+			setdice2(data.dice2);
+
 			if(data.current_user == current_user){
-				setdice1(data.dice1);
-				setdice2(data.dice2);
 				set_your_last_position(data.player_posstion);
 				set_deci_roll_step(1);
 				setTimeout(() =>  set_deci_roll_step(2),1500);
@@ -274,15 +288,20 @@ function App() {
 					setTimeout(() => move_token(data.your_last_position,data.player_posstion,data.current_user) ,9000)
 				}
 			}else{
+				set_PIC(0);
+				set_deci_roll_step(1);
+				setTimeout(() =>  set_deci_roll_step(2),1500);
+				setTimeout(() =>  set_deci_roll_step(3),4500);
+				setTimeout(() =>  set_deci_roll_step(0),7500);
 				if(data.is_jail == 0){
-					setTimeout(() => set_PIC(5) ,5000);
-					setTimeout(() => set_PIC(0) ,8000);
+					setTimeout(() => set_PIC(5) ,7500);
+					setTimeout(() => set_PIC(0) ,9500);
 				}else{
-					setTimeout(() => set_PIC(6) ,5000);
-					setTimeout(() => set_PIC(0) ,8000);
+					setTimeout(() => set_PIC(6) ,7500);
+					setTimeout(() => set_PIC(0) ,9500);
 				}
-				setTimeout(() => set_game_play_position(data.game_play_position) ,8000)
-				setTimeout(() => move_token(data.your_last_position,data.player_posstion,data.current_user) ,8000)
+				setTimeout(() => set_game_play_position(data.game_play_position) ,9500)
+				setTimeout(() => move_token(data.your_last_position,data.player_posstion,data.current_user) ,9500)
 			}
 			
 			if(data.Isupdate == 1){
@@ -388,8 +407,6 @@ function App() {
 		});
 
 		socket.on("inheritance_green_card_dice_roll", (data) => {
-			console.log('inheritance_green_card_dice_roll');
-			console.log(data);
 			if(data.current_user == current_user){
 				set_green_card(0);
 				setdice1(data.dice1);
@@ -418,15 +435,22 @@ function App() {
 			set_pink_tax(0);
 			setTimeout(() => set_game_play_position(data.game_play_position) ,1000)
 		});
+
 		socket.on("direct_pic_dice_roll", (data) => {
 			set_direct_pic(0);
 			set_deci_roll_step(1);
 			setTimeout(() =>  set_deci_roll_step(2),1500);
 			setTimeout(() =>  set_deci_roll_step(0),4500);
-			setTimeout(() => set_game_play_position(data.game_play_position) ,45000)
+			setTimeout(() => set_game_play_position(data.game_play_position) ,4500)
 			if(data.Isupdate == 1){
 				setTimeout(() => all_player_assets_update() ,4500)
 			}
+		});
+
+		socket.on("buy_property_dice_roll", (data) => {
+			set_game_play_position(data.game_play_position);
+			all_player_assets_update();
+			set_current_property([]);
 		});
 		
 
@@ -540,7 +564,8 @@ function App() {
 			'current_user' : current_user,
 			'your_last_position' : your_last_position,
 			'game_play_position' : game_play_position,
-			'players' : players.length
+			'players' : players.length,
+			'player_name' : player_name
 		}
 		set_PIC(0);
 		set_game_play_position(-1);
@@ -554,7 +579,8 @@ function App() {
 			'current_user' : current_user,
 			'your_last_position' : your_last_position,
 			'game_play_position' : game_play_position,
-			'players' : players.length
+			'players' : players.length,
+			'player_name' : player_name
 		}
 		set_game_play_position(-1);
 		set_PIC(0);
@@ -568,7 +594,8 @@ function App() {
 			'current_user' : current_user,
 			'your_last_position' : your_last_position,
 			'game_play_position' : game_play_position,
-			'players' : players.length
+			'players' : players.length,
+			'player_name' : player_name
 		}
 		set_game_play_position(-1);
 		set_yellow_card(0);
@@ -582,7 +609,8 @@ function App() {
 			'current_user' : current_user,
 			'your_last_position' : your_last_position,
 			'game_play_position' : game_play_position,
-			'players' : players.length
+			'players' : players.length,
+			'player_name' : player_name
 		}
 		set_game_play_position(-1);
 		set_yellow_card(0);
@@ -596,19 +624,21 @@ function App() {
 			'current_user' : current_user,
 			'your_last_position' : your_last_position,
 			'game_play_position' : game_play_position,
-			'players' : players.length
+			'players' : players.length,
+			'player_name' : player_name
 		}
 		socket.emit('send_x_entrepreneurship_dice_roll', json_object, () => console.log(''));
 	}
 
-	// 2x Entrepreneurship Dice Roll
+	// PIC Green Card Dice Roll
 	const pic_interection_green_card_dice_roll = (e) => {
 		var json_object = {
 			'room_id' : room_id,
 			'current_user' : current_user,
 			'your_last_position' : your_last_position,
 			'game_play_position' : game_play_position,
-			'players' : players.length
+			'players' : players.length,
+			'player_name' : player_name
 		}
 		socket.emit('send_pic_interection_green_card_dice_roll', json_object, () => console.log(''));
 	}
@@ -620,7 +650,8 @@ function App() {
 			'current_user' : current_user,
 			'your_last_position' : your_last_position,
 			'game_play_position' : game_play_position,
-			'players' : players.length
+			'players' : players.length,
+			'player_name' : player_name
 		}
 		socket.emit('send_student_loan_dice_roll', json_object, () => console.log(''));
 	}
@@ -632,7 +663,8 @@ function App() {
 			'current_user' : current_user,
 			'your_last_position' : your_last_position,
 			'game_play_position' : game_play_position,
-			'players' : players.length
+			'players' : players.length,
+			'player_name' : player_name
 		}
 		socket.emit('send_inheritance_green_card_dice_roll', json_object, () => console.log(''));
 	}
@@ -644,7 +676,8 @@ function App() {
 			'current_user' : current_user,
 			'your_last_position' : your_last_position,
 			'game_play_position' : game_play_position,
-			'players' : players.length
+			'players' : players.length,
+			'player_name' : player_name
 		}
 		socket.emit('send_pink_tax_dice_roll', json_object, () => console.log(''));
 	}
@@ -656,14 +689,25 @@ function App() {
 			'current_user' : current_user,
 			'your_last_position' : your_last_position,
 			'game_play_position' : game_play_position,
-			'players' : players.length
+			'players' : players.length,
+			'player_name' : player_name
 		}
 		socket.emit('send_direct_pic_dice_roll', json_object, () => console.log(''));
 	}
 
+	//Buy Property Dice Roll
+	const buy_property_dice_roll = (e) => {
+		var json_object = {
+			'room_id' : room_id,
+			'current_user' : current_user,
+			'your_last_position' : your_last_position,
+			'game_play_position' : game_play_position,
+			'players' : players.length,
+			'player_name' : player_name
+		}
+		socket.emit('send_buy_property_dice_roll', json_object, () => console.log(''));
+	}
 
-	
-	
 
 	function all_player_assets_update(){
 		var json_object = {
@@ -1022,7 +1066,11 @@ function App() {
 								<div className="pass_number-main">
 									<h3 className="pass_number">{dice1 + dice2}</h3>
 									<div className="pass_number-text">
+									{player_name == current_player_name?
 										<h3> You moved {dice1 + dice2} Space</h3>
+									: 
+									<h3> {current_player_name} moved {dice1 + dice2} Space</h3>
+									}
 									</div>    
 								</div>
 							</div>
@@ -1034,8 +1082,13 @@ function App() {
 						<div className="select_card_first" id="select_card_first" style={{position:'absolute',width:'100%',backgroundColor:'rgba(70,35,33,0.9)',zIndex:'999'}}>
 							<div className="select_card_first-inner">
 								<div className="select_box_bonus">
-								<img style={{width:'100%'}} src={`img/pi.png`}></img>
+									<img style={{width:'100%'}} src={`img/pi.png`}></img>
+									
 								</div>
+								{player_name != current_player_name?
+									<h3 style={{display:'block',marginTop:'+15%',textAlign:'center',color:'#F79401',fontFamily:'Bangers',fontSize:'40px'}}>{current_player_name} WAS STOPPED BY POLICE!!! </h3>
+								: ""
+								}
 							</div>
 						</div>
 					: ""
@@ -1107,8 +1160,12 @@ function App() {
 						<div className="select_card_first" id="select_card_first" style={{position:'absolute',width:'100%',backgroundColor:'rgba(70,35,33,0.9)',zIndex:'999'}}>
 							<div className="select_card_first-inner">
 								<div className="select_box_bonus">
-								<img style={{width:'100%'}} src={`img/go_jail_way.png`}></img>
+									<img style={{width:'100%'}} src={`img/go_jail_way.png`}></img>
 								</div>
+								{player_name != current_player_name?
+									<h3 style={{display:'block',marginTop:'+15%',textAlign:'center',color:'#1F9254',fontFamily:'Bangers',fontSize:'40px'}}>{current_player_name} got away!!! </h3>
+								: ""
+								}
 							</div>
 						</div>
 					: ""
@@ -1118,8 +1175,12 @@ function App() {
 						<div className="select_card_first" id="select_card_first" style={{position:'absolute',width:'100%',backgroundColor:'rgba(70,35,33,0.9)',zIndex:'999'}}>
 							<div className="select_card_first-inner">
 								<div className="select_box_bonus">
-								<img style={{width:'100%'}} src={`img/go_jail.png`}></img>
+									<img style={{width:'100%'}} src={`img/go_jail.png`}></img>
 								</div>
+								{player_name != current_player_name?
+									<h3 style={{display:'block',marginTop:'+15%',textAlign:'center',color:'#FA303F',fontFamily:'Bangers',fontSize:'40px'}}>{current_player_name} is going to jail!!!  </h3>
+								: ""
+								}
 							</div>
 						</div>
 					: ""
@@ -1424,6 +1485,39 @@ function App() {
 							</div>
 						</div>
 					: "" }
+					
+					{current_property.is_sale == 0?
+						<div className="show_cardt" id="oner_inheritance" style={{zIndex:'999'}}>
+							<div className="select_card_first " id="first-card-inheritance">
+								<div className="select_card_first-inner">
+									<div className="select_box_bonus">
+										<div className="select_card_fist_img">
+											<img src={board_cards[current_property.position].url}></img>
+										</div>
+										<div className="select_card_fist_text">
+											<h3 className="title_card">{board_cards[current_property.position].name}</h3>
+											<div className="cards_text_inner" style={{overflow:'auto',height:'180px',marginBottom:'20px'}}>
+												{board_cards[current_property.position].description.map(function(board_cards, i){
+													return <div className="select_card_fist_text_servies">
+															<h2>{board_cards.name}</h2>
+															<h3>{board_cards.value}</h3>
+														</div>
+													})}
+											</div>
+											<div className="how_would-join">
+												<button className="sign_in_btn" style={{margin:'auto',width:'80%',position:'relative',left:'10%'}} onClick={() => buy_property_dice_roll()}>BUY PROPERTY</button>
+											</div>
+											<div style={{margin:'5px auto',fontFamily:'Titan One',fontWeight:'normal',fontSize:'24px',color:'rgb(83, 46, 31)',opacity:'0.75',position:'relative',textAlign:'center',width:'100%',display:'flow-root'}}>OR</div>
+											<div className="how_would-join">
+												<button id="createaccount" className="button_2px_border" style={{margin:'auto',width:'80%',position:'relative',left:'10%',background:'transparent',fontFamily: 'Titan One',fontWeight:'normal',textAlign:'center',color:'#532e1f'}}>DON’T BUY PROPERTY</button>
+											</div> 
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					:
+					""}
 				</div>  
 			:
 			pickup_step == 4 ?
