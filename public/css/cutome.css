@@ -1389,9 +1389,12 @@ input:focus-visible{outline:0}
     right: 0;
 }
 .gameplay_game {
-	margin-top: -120vh;
+	/* margin-top: -120vh;
 	width: 90%;
-	height: 200vh;
+	height: 200vh; */
+    width: 1360px;
+    height: 1360px;
+    top: -771px;
 }
 .user_profile {
     display: flex;
@@ -1760,3 +1763,67 @@ input:focus-visible{outline:0}
 .button_2px_border{border:4px solid #342c24!important}
 .player_token{position:absolute;-webkit-transition:all 310ms ease-in-out;-moz-transition:all 310ms ease-in-out;-ms-transition:all 310ms ease-in-out;-o-transition:all 310ms ease-in-out;transition:all 310ms ease-in-out}
 .gameplay_game{-webkit-transition:all 2s ease-in-out;-moz-transition:all 2s ease-in-out;-ms-transition:all 2s ease-in-out;-o-transition:all 2s ease-in-out;transition:all 2s ease-in-out}
+
+/* .property_purchase_player_id_0{
+    position: absolute;
+    bottom: 0;
+    height: 36px;
+    width: calc(7.56585462468% + 2px);
+    background: #fff;
+    border-left: 5px solid #000;
+    color: #fff;
+    text-align: center;
+    font-family: Bangers;
+    border-right: 5px solid #000;
+    padding-top: 3px;
+    border-bottom: 5px solid #000;
+} */
+
+.property_purchase_player{
+	position: relative;
+	background: #fff;
+	border-left: 2.5px solid #000;
+	color: #fff;
+	text-align: center;
+	font-family: Bangers;
+	border-right: 2.5px solid #000;
+	padding-top: 3px;
+	border-bottom: 5px solid #000;
+	margin-left: -1px;
+	margin-right: -1px;
+}
+
+.property_purchase_player_left_last {
+    border-left-width: 5px;
+}
+
+.property_purchase_player_right_last {
+    border-right-width: 5px;
+}
+.property_purchase_player_bottom {
+	width: calc(100% + 2px);
+	height: 36px;
+	bottom: -95px;
+}
+.property_purchase_player_left {
+	transform: rotate(90deg);
+	width: calc(49% + 4.5px);
+	left: -40px;
+	bottom: 2px;
+	height: 34px;
+}
+.property_purchase_player_right {
+	transform: rotate(-90deg);
+	width: calc(49% + 4.5px);
+	float: right;
+	bottom: 0px;
+	height: 34px;
+	right: -40px;
+}
+.property_purchase_player_top {
+	width: calc(100% + 2px);
+	height: 36px;
+	top: -95px;
+	border-bottom-width: 0;
+	border-top: 5px solid #000;
+}

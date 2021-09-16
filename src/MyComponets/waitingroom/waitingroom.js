@@ -8,6 +8,7 @@ import {gameboard_assets} from "./gameboard_assets.js";
 import {identity_assets} from "./identity_assets.js";
 import {yellow_cars_assets} from "./yellow_cards_assets.js";
 import {green_cards_assets} from "./green_cards_assets.js";
+// import {all_properties} from "./all_properties.js";
 
 
 
@@ -81,7 +82,12 @@ function App() {
 	const [pink_tax, set_pink_tax] = useState(0);
 	const [direct_pic, set_direct_pic] = useState(0);
 	const [current_property, set_current_property] = useState([]);
+	const [top_bidder, set_top_bidder] = useState([]);
+	const [bidding_start, set_bidding_start] = useState(0);
+	const [property_purchase_status, set_property_purchase_status] = useState(0);
+	const [game_properties, set_game_properties] = useState([]);
 
+	
 
 	const invite_fucntion = (e) => {
 		if(invite_email == '' || invite_email == null){
@@ -145,6 +151,8 @@ function App() {
 			if(data.players != undefined){
 				setplayers(data.players);
 				setgamestart(data.text);
+				
+				set_game_properties(data.all_property);
 				data.players.forEach(function(element) {
 					if(element.PlayerID == current_user){
 						setmyidentity(element.IdentityID)
@@ -216,10 +224,10 @@ function App() {
 				|| (data.player_posstion == 17 && data.your_last_position != 17)
 				|| (data.player_posstion == 28 && data.your_last_position != 28)
 				|| (data.player_posstion == 37 && data.your_last_position != 37)){
-					setTimeout(() => set_life_event(1) ,token_move_time+1000);
+					setTimeout(() => set_life_event(2) ,token_move_time+1000);
 					setTimeout(() => set_life_event(0) ,token_move_time+4000);
 					setTimeout(() => set_green_card(data.green_card) ,token_move_time+4100);
-					if(data.green_card == 1 ){
+					if(data.green_card == 1 || data.green_card == 4 ){
 						setTimeout(() => set_green_card(0) ,token_move_time+14000);
 					}
 				}
@@ -238,20 +246,22 @@ function App() {
 				|| (data.player_posstion == 25 && data.your_last_position != 25)){
 					setTimeout(() => set_PIC(1) ,12000);
 				}
-
+				
 				// Green Cards
 				if((data.player_posstion == 9 && data.your_last_position != 9)
 				|| (data.player_posstion == 17 && data.your_last_position != 17)
 				|| (data.player_posstion == 28 && data.your_last_position != 28)
 				|| (data.player_posstion == 37 && data.your_last_position != 37)){
-					if(data.green_card != 1 ){
-						setTimeout(() => set_life_event(1) ,11000);
-						setTimeout(() => set_life_event(0) ,13000);
-						setTimeout(() => set_green_card(data.green_card) ,13100);
+					setTimeout(() => set_life_event(2) ,token_move_time+1000);
+					setTimeout(() => set_life_event(0) ,token_move_time+4000);
+					setTimeout(() => set_green_card(data.green_card) ,token_move_time+4100);
+					if(data.green_card == 1 || data.green_card == 4 ){
+						setTimeout(() => set_green_card(0) ,token_move_time+14000);
 					}
 				}
 			}
-			if(data.player_posstion == 8){
+			if(data.player_posstion == 7){
+
 				setTimeout(() => set_pink_tax(data.pink_tax) ,token_move_time+1000);
 			}
 			if(data.player_posstion == 10){
@@ -407,6 +417,7 @@ function App() {
 		});
 
 		socket.on("inheritance_green_card_dice_roll", (data) => {
+			set_game_properties(data.all_property);
 			if(data.current_user == current_user){
 				set_green_card(0);
 				setdice1(data.dice1);
@@ -448,12 +459,46 @@ function App() {
 		});
 
 		socket.on("buy_property_dice_roll", (data) => {
-			set_game_play_position(data.game_play_position);
+			set_game_properties(data.all_property);
+			setdice1(data.dice1);
+			setdice2(data.dice2);
+			set_deci_roll_step(1);
+			setTimeout(() =>  set_deci_roll_step(2),1500);
+			setTimeout(() =>  set_deci_roll_step(0),4500);
+			setTimeout(() =>  set_property_purchase_status(1),4500);
+			setTimeout(() =>  set_property_purchase_status(0),6000);
+			setTimeout(() => set_game_play_position(data.game_play_position) ,6000)
 			all_player_assets_update();
 			set_current_property([]);
 		});
-		
 
+		socket.on("bid_start_property_dice_roll", (data) => {
+			set_current_property(data.property);
+			setplayers(data.players);
+			set_top_bidder(data.top_bidder);
+
+			set_bidding_start(3);
+			setTimeout(() => set_bidding_start(1) ,3000)
+			setTimeout(() => set_bidding_start(2) ,18000)
+			setTimeout(() => bidding_complete() ,23000)
+		});
+
+		socket.on("property_bid", (data) => {
+			setplayers(data.players);
+			set_top_bidder(data.top_bidder)
+			all_player_assets_update();
+		});
+
+		socket.on("bidding_complete", (data) => {
+			set_game_properties(data.all_property);
+			if(data.status == 1){
+				set_bidding_start(0);
+				set_current_property([]);
+				set_top_bidder(1);
+				set_game_play_position(data.game_play_position);
+				all_player_assets_update();
+			}
+		});
 		
 		socket.on("game_stop", (data) => {
 			sethostisonline(2);
@@ -708,6 +753,44 @@ function App() {
 		socket.emit('send_buy_property_dice_roll', json_object, () => console.log(''));
 	}
 
+	//Buy Property Dice Roll
+	const bid_request_property_dice_roll = (e) => {
+		var json_object = {
+			'room_id' : room_id,
+			'current_user' : current_user,
+			'your_last_position' : your_last_position,
+			'game_play_position' : game_play_position,
+			'players' : players.length,
+			'player_name' : player_name
+		}
+		socket.emit('send_bid_request_property_dice_roll', json_object, () => console.log(''));
+	}
+
+	const property_bid = () => {
+		var json_object = {
+			'room_id' : room_id,
+			'current_user' : current_user,
+			'your_last_position' : your_last_position,
+			'game_play_position' : game_play_position,
+			'players' : players.length,
+			'player_name' : player_name,
+			'position' : top_bidder.Position
+		}
+		socket.emit('send_property_bid', json_object, () => console.log(''));
+	}
+
+	const bidding_complete = () => {
+		var json_object = {
+			'room_id' : room_id,
+			'current_user' : current_user,
+			'your_last_position' : your_last_position,
+			'game_play_position' : game_play_position,
+			'players' : players.length,
+			'player_name' : player_name
+		}
+		socket.emit('send_bidding_complete', json_object, () => console.log(''));
+	}
+
 
 	function all_player_assets_update(){
 		var json_object = {
@@ -875,66 +958,143 @@ function App() {
 							{/* <img src="img/December2020-Gameboard.png" alt="" style={{width:"100%"}}/> */}
 							<table className="Gameboard-playboard">
 								<tr>
-									<td className="Gameboard-playboard-card Gameboard-playboard-paydayi" id="Gameboard_playboard_20"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-19 top" id="Gameboard_playboard_21"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-20 top" id="Gameboard_playboard_22"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-21 top" id="Gameboard_playboard_23"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-22 top" id="Gameboard_playboard_24"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-23 top" id="Gameboard_playboard_25"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-24 top" id="Gameboard_playboard_26"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-25 top" id="Gameboard_playboard_27"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-26 top" id="Gameboard_playboard_28"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-27 top" id="Gameboard_playboard_29"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-jack_poTi" id="Gameboard_playboard_30"></td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-paydayi" id="Gameboard_playboard_20">
+										
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-19 top" id="Gameboard_playboard_21">
+										<div className={`property_purchase_player property_purchase_player_top ${game_properties[21].player_id}`} style={{background:game_properties[21].player_color}}>{game_properties[21].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-20 top" id="Gameboard_playboard_22">
+										<div className={`property_purchase_player property_purchase_player_top ${game_properties[22].player_id}`} style={{background:game_properties[22].player_color}}>{game_properties[22].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-21 top" id="Gameboard_playboard_23">
+										<div className={`property_purchase_player property_purchase_player_top ${game_properties[23].player_id}`} style={{background:game_properties[23].player_color}}>{game_properties[23].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-22 top" id="Gameboard_playboard_24">
+										<div className={`property_purchase_player property_purchase_player_top ${game_properties[24].player_id}`} style={{background:game_properties[24].player_color}}>{game_properties[24].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-23 top" id="Gameboard_playboard_25">
+										<div className={`property_purchase_player property_purchase_player_top ${game_properties[25].player_id}`} style={{background:game_properties[25].player_color}}>{game_properties[25].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-24 top" id="Gameboard_playboard_26">
+										<div className={`property_purchase_player property_purchase_player_top ${game_properties[26].player_id}`} style={{background:game_properties[26].player_color}}>{game_properties[26].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-25 top" id="Gameboard_playboard_27">
+										<div className={`property_purchase_player property_purchase_player_top ${game_properties[27].player_id}`} style={{background:game_properties[27].player_color}}>{game_properties[27].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-26 top" id="Gameboard_playboard_28">
+										<div className={`property_purchase_player property_purchase_player_top ${game_properties[28].player_id}`} style={{background:game_properties[28].player_color}}>{game_properties[28].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-27 top" id="Gameboard_playboard_29">
+										<div className={`property_purchase_player property_purchase_player_top ${game_properties[29].player_id}`} style={{background:game_properties[29].player_color}}>{game_properties[29].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-jack_poTi" id="Gameboard_playboard_30">
+										
+									</td>
 								</tr>
 								<tr>
-									<td className="Gameboard-playboard-card Gameboard-playboard-18 left" id="Gameboard_playboard_19"></td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-18 left" id="Gameboard_playboard_19">
+										<div className={`property_purchase_player property_purchase_player_left ${game_properties[19].player_id}`} style={{background:game_properties[19].player_color}}>{game_properties[19].player_name}</div>
+									</td>
 									<td className="center_gmaeboard" colspan="9" rowspan="9" ></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-28 right" id="Gameboard_playboard_31"></td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-28 right" id="Gameboard_playboard_31">
+										<div className={`property_purchase_player property_purchase_player_right ${game_properties[31].player_id}`} style={{background:game_properties[31].player_color}}>{game_properties[31].player_name}</div>
+									</td>
 								</tr>
 								<tr>
-									<td className="Gameboard-playboard-card Gameboard-playboard-17 left" id="Gameboard_playboard_18"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-29 right" id="Gameboard_playboard_32"></td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-17 left" id="Gameboard_playboard_18">
+										<div className={`property_purchase_player property_purchase_player_left ${game_properties[18].player_id}`} style={{background:game_properties[18].player_color}}>{game_properties[18].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-29 right" id="Gameboard_playboard_32">
+										<div className={`property_purchase_player property_purchase_player_right ${game_properties[32].player_id}`} style={{background:game_properties[32].player_color}}>{game_properties[32].player_name}</div>
+									</td>
 								</tr>
 								<tr>
-									<td className="Gameboard-playboard-card Gameboard-playboard-16 left" id="Gameboard_playboard_17"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-30 right" id="Gameboard_playboard_33"></td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-16 left" id="Gameboard_playboard_17">
+										<div className={`property_purchase_player property_purchase_player_left ${game_properties[17].player_id}`} style={{background:game_properties[17].player_color}}>{game_properties[17].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-30 right" id="Gameboard_playboard_33">
+										<div className={`property_purchase_player property_purchase_player_right ${game_properties[33].player_id}`} style={{background:game_properties[33].player_color}}>{game_properties[33].player_name}</div>
+									</td>
 								</tr>
 								<tr>
-									<td className="Gameboard-playboard-card Gameboard-playboard-15 left" id="Gameboard_playboard_16"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-31 right" id="Gameboard_playboard_34"></td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-15 left" id="Gameboard_playboard_16">
+										<div className={`property_purchase_player property_purchase_player_left ${game_properties[16].player_id}`} style={{background:game_properties[16].player_color}}>{game_properties[16].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-31 right" id="Gameboard_playboard_34">
+										<div className={`property_purchase_player property_purchase_player_right ${game_properties[34].player_id}`} style={{background:game_properties[34].player_color}}>{game_properties[34].player_name}</div>
+									</td>
 								</tr>
 								<tr>
-									<td className="Gameboard-playboard-card Gameboard-playboard-14 left" id="Gameboard_playboard_15"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-32 right" id="Gameboard_playboard_35"></td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-14 left" id="Gameboard_playboard_15">
+										<div className={`property_purchase_player property_purchase_player_left ${game_properties[15].player_id}`} style={{background:game_properties[15].player_color}}>{game_properties[15].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-32 right" id="Gameboard_playboard_35">
+										<div className={`property_purchase_player property_purchase_player_right ${game_properties[35].player_id}`} style={{background:game_properties[35].player_color}}>{game_properties[35].player_name}</div>
+									</td>
 								</tr>
 								<tr>
-									<td className="Gameboard-playboard-card Gameboard-playboard-13 left" id="Gameboard_playboard_14"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-33 right" id="Gameboard_playboard_36"></td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-13 left" id="Gameboard_playboard_14">
+										<div className={`property_purchase_player property_purchase_player_left ${game_properties[14].player_id}`} style={{background:game_properties[14].player_color}}>{game_properties[14].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-33 right" id="Gameboard_playboard_36">
+										<div className={`property_purchase_player property_purchase_player_right ${game_properties[36].player_id}`} style={{background:game_properties[36].player_color}}>{game_properties[36].player_name}</div>
+									</td>
 								</tr>
 								<tr>
-									<td className="Gameboard-playboard-card Gameboard-playboard-12 left" id="Gameboard_playboard_13"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-34 right" id="Gameboard_playboard_37"></td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-12 left" id="Gameboard_playboard_13">
+										<div className={`property_purchase_player property_purchase_player_left ${game_properties[13].player_id}`} style={{background:game_properties[13].player_color}}>{game_properties[13].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-34 right" id="Gameboard_playboard_37">
+										<div className={`property_purchase_player property_purchase_player_right ${game_properties[37].player_id}`} style={{background:game_properties[37].player_color}}>{game_properties[37].player_name}</div>
+									</td>
 								</tr>
 								<tr>
-									<td className="Gameboard-playboard-card Gameboard-playboard-11 left" id="Gameboard_playboard_12"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-35 right" id="Gameboard_playboard_38"></td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-11 left" id="Gameboard_playboard_12">
+										<div className={`property_purchase_player property_purchase_player_left ${game_properties[12].player_id}`} style={{background:game_properties[12].player_color}}>{game_properties[12].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-35 right" id="Gameboard_playboard_38">
+										<div className={`property_purchase_player property_purchase_player_right ${game_properties[38].player_id}`} style={{background:game_properties[38].player_color}}>{game_properties[38].player_name}</div>
+									</td>
 								</tr>
 								<tr>
-									<td className="Gameboard-playboard-card Gameboard-playboard-10 left" id="Gameboard_playboard_11"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-36 right"  id="Gameboard_playboard_39"></td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-10 left" id="Gameboard_playboard_11">
+										<div className={`property_purchase_player property_purchase_player_left ${game_properties[11].player_id}`} style={{background:game_properties[11].player_color}}>{game_properties[11].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-36 right"  id="Gameboard_playboard_39">
+										<div className={`property_purchase_player property_purchase_player_right ${game_properties[39].player_id}`} style={{background:game_properties[39].player_color}}>{game_properties[39].player_name}</div>
+									</td>
 								</tr>
 								<tr>
-									<td className="Gameboard-playboard-card Gameboard-playboard-9 bottom" id="Gameboard_playboard_10"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-8 bottom" id="Gameboard_playboard_9"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-7 bottom" id="Gameboard_playboard_8"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-6_1 Gameboard-playboard-6 bottom" id="Gameboard_playboard_7"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-4 bottom" id="Gameboard_playboard_6"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-5 bottom" id="Gameboard_playboard_5"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-6 bottom" id="Gameboard_playboard_4"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-3 bottom" id="Gameboard_playboard_3"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-2 bottom" id="Gameboard_playboard_2"></td>
-									<td className="Gameboard-playboard-card Gameboard-playboard-1 bottom" id="Gameboard_playboard_1"></td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-9 bottom" id="Gameboard_playboard_10">
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-8 bottom" id="Gameboard_playboard_9">
+										<div className={`property_purchase_player property_purchase_player_bottom ${game_properties[9].player_id}`} style={{background:game_properties[9].player_color}}>{game_properties[9].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-7 bottom" id="Gameboard_playboard_8">
+										<div className={`property_purchase_player property_purchase_player_bottom ${game_properties[8].player_id}`} style={{background:game_properties[8].player_color}}>{game_properties[8].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-6_1 Gameboard-playboard-6 bottom" id="Gameboard_playboard_7">
+										<div className={`property_purchase_player property_purchase_player_bottom ${game_properties[7].player_id}`} style={{background:game_properties[7].player_color}}>{game_properties[7].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-4 bottom" id="Gameboard_playboard_6">
+										<div className={`property_purchase_player property_purchase_player_bottom ${game_properties[6].player_id}`} style={{background:game_properties[6].player_color}}>{game_properties[6].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-5 bottom" id="Gameboard_playboard_5">
+										<div className={`property_purchase_player property_purchase_player_bottom ${game_properties[5].player_id}`} style={{background:game_properties[5].player_color}}>{game_properties[5].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-6 bottom" id="Gameboard_playboard_4">
+										<div className={`property_purchase_player property_purchase_player_bottom ${game_properties[4].player_id}`} style={{background:game_properties[4].player_color}}>{game_properties[4].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-3 bottom" id="Gameboard_playboard_3">
+										<div className={`property_purchase_player property_purchase_player_bottom ${game_properties[3].player_id}`} style={{background:game_properties[3].player_color}}>{game_properties[3].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-2 bottom" id="Gameboard_playboard_2">
+										<div className={`property_purchase_player property_purchase_player_bottom ${game_properties[2].player_id}`} style={{background:game_properties[2].player_color}}>{game_properties[2].player_name}</div>
+									</td>
+									<td className="Gameboard-playboard-card Gameboard-playboard-1 bottom" id="Gameboard_playboard_1">
+										<div className={`property_purchase_player property_purchase_player_bottom ${game_properties[1].player_id}`} style={{background:game_properties[1].player_color}}>{game_properties[1].player_name}</div>
+									</td>
 									<td className="Gameboard-playboard-card Gameboard-playboard-start" id="Gameboard_playboard_0">
 										{players.map(function(user, i){
 											return <img className="player_token" src={`img/indentity/${user.IdentityID}_token.png`} id={`${user.PlayerID}_player`}/>;
@@ -971,7 +1131,7 @@ function App() {
 									<li style={{backgroundColor: player_identity_assests.Color}}>
 										<a href="#">
 											<span className="user_data_icon"><img src="img/Group 4803.png" alt="" /></span>
-											<span className="user_data_icon_text">PROPERTIES</span>
+											<span className="user_data_icon_text">{player_assets.property}PROPERTIES</span>
 										</a> 
 									</li>
 									<li style={{backgroundColor: player_identity_assests.Color}}>
@@ -1190,8 +1350,29 @@ function App() {
 						<div className="select_card_first" id="select_card_first" style={{position:'absolute',width:'100%',backgroundColor:'rgba(70,35,33,0.9)',zIndex:'999'}}>
 							<div className="select_card_first-inner">
 								<div className="select_box_bonus">
-								<img src={`img/life_event.png`}></img>
+									<img src={`img/life_event.png`}></img>
 								</div>
+								{player_name != current_player_name?
+									<h3 style={{display:'block',marginTop:'+15%',textAlign:'center',color:'#F79401',fontFamily:'Bangers',fontSize:'40px'}}>{current_player_name} Landed on a Yellow Life Event!!! </h3>
+								:
+									<h3 style={{display:'block',marginTop:'+15%',textAlign:'center',color:'#F79401',fontFamily:'Bangers',fontSize:'40px'}}>You Landed on a Yellow Life Event!!! </h3>
+								}
+							</div>
+						</div>
+					: ""
+					}
+
+					{life_event == 2?
+						<div className="select_card_first" id="select_card_first" style={{position:'absolute',width:'100%',backgroundColor:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div className="select_card_first-inner">
+								<div className="select_box_bonus">
+									<img src={`img/life_event.png`}></img>
+								</div>
+								{player_name != current_player_name?
+									<h3 style={{display:'block',marginTop:'+15%',textAlign:'center',color:'#1F9254',fontFamily:'Bangers',fontSize:'40px'}}>{current_player_name} Landed on a Green Life Event!!! </h3>
+								:
+									<h3 style={{display:'block',marginTop:'+15%',textAlign:'center',color:'#1F9254',fontFamily:'Bangers',fontSize:'40px'}}>You Landed on a Green Life Event!!! </h3>
+								}
 							</div>
 						</div>
 					: ""
@@ -1335,12 +1516,6 @@ function App() {
 								</div>
 							: ""
 							}
-							{green_card == 4?
-								<div className="Roll_inheritance-main" style={{top:'-50px'}}>
-									<button className="sign_in_btn Roll_inheritance" onClick={() => student_loan_dice_roll()}>ROLL TO GET STUDENT LOAN</button>
-								</div>
-							: ""
-							}
 							{green_card == 5?
 								<div className="Roll_inheritance-main" style={{top:'-50px'}}>
 									<button className="sign_in_btn Roll_inheritance" onClick={() => inheritance_green_card_dice_roll()}>ROLL TO GET INHERITANCE</button>
@@ -1456,7 +1631,7 @@ function App() {
 						</div>
 					: ""}
 
-					{pink_tax != 0?
+					{pink_tax > 0?
 						<div class="select_card_first" style={{zIndex:'999',position:'absolute',width:'100%',backgroundColor:'rgba(70, 35, 33, 0.9)'}} id="select_card_first">
 							<div class="select_card_first-inner" style={{marginTop:"50px"}}>
 								<div className="select_box_bonus">
@@ -1477,16 +1652,16 @@ function App() {
 						<div class="select_card_first" style={{zIndex:'999',position:'absolute',width:'100%',backgroundColor:'rgba(70, 35, 33, 0.9)'}} id="select_card_first">
 							<div class="select_card_first-inner" style={{marginTop:"50px"}}>
 								<div className="select_box_bonus">
-									<img src="img/pink_tax.png" style={{margin:'0 auto'}} />
+									<img src="img/pi.png" style={{margin:'0 auto'}} />
 								</div>
 							</div>
 							<div className="Roll_inheritance-main" style={{top:'-50px'}}>
-								<button className="sign_in_btn Roll_inheritance" onClick={() => direct_pic_dice_roll()}>ROLL TO PIC</button>
+								<button className="sign_in_btn Roll_inheritance" onClick={() => direct_pic_dice_roll()}>PAY 10X ROLL</button>
 							</div>
 						</div>
 					: "" }
 					
-					{current_property.is_sale == 0?
+					{current_property.is_sale == 0 && current_property.bidder_status == 0?
 						<div className="show_cardt" id="oner_inheritance" style={{zIndex:'999'}}>
 							<div className="select_card_first " id="first-card-inheritance">
 								<div className="select_card_first-inner">
@@ -1509,8 +1684,8 @@ function App() {
 											</div>
 											<div style={{margin:'5px auto',fontFamily:'Titan One',fontWeight:'normal',fontSize:'24px',color:'rgb(83, 46, 31)',opacity:'0.75',position:'relative',textAlign:'center',width:'100%',display:'flow-root'}}>OR</div>
 											<div className="how_would-join">
-												<button id="createaccount" className="button_2px_border" style={{margin:'auto',width:'80%',position:'relative',left:'10%',background:'transparent',fontFamily: 'Titan One',fontWeight:'normal',textAlign:'center',color:'#532e1f'}}>DON’T BUY PROPERTY</button>
-											</div> 
+												<button onClick={() => bid_request_property_dice_roll()} id="createaccount" className="button_2px_border" style={{margin:'auto',width:'80%',position:'relative',left:'10%',background:'transparent',fontFamily: 'Titan One',fontWeight:'normal',textAlign:'center',color:'#532e1f'}}>DON’T BUY PROPERTY</button>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -1518,7 +1693,178 @@ function App() {
 						</div>
 					:
 					""}
-				</div>  
+					
+					{current_property.bidder_status == 1 && bidding_start == 1?
+						<div className="show_cardt" id="oner_inheritance" style={{zIndex:'999'}}>
+							<div className="select_card_first " id="first-card-inheritance">
+								<div className="select_card_first-inner" style={{width:'67%'}}>
+									<div className="select_box_bonus" style={{marginTop:'0',marginBottom:'0',width:'80%'}}>
+										
+										<div className="select_card_fist_text" style={{height:'360px',top:'40px',width:'32%',background:'#fff',padding:'15px',border:'15px solid #F8991D',borderRadius:'10px',marginRight:'25px'}}>
+											<div className="cards_text_inner" style={{overflow:'auto',width:'260px',marginBottom:'20px',height:'100%',width:'100%'}}>
+											{board_cards[current_property.position].description.map(function(board_cards, i){
+													return <div className="select_card_fist_text_servies">
+															<h2>{board_cards.name}</h2>
+															<h3>{board_cards.value}</h3>
+														</div>
+													})}
+											</div>
+										</div>
+										<div className="select_card_fist_img" style={{width:'32%',top:'10px'}}>
+											<img  src={board_cards[current_property.position].url} style={{maxWidth:'100%',height:'auto'}}></img>
+										</div>
+										<div className="select_card_fist_text" style={{height:'360px',top:'40px',width:'32%',background:'#fff',padding:'15px',border:'15px solid #F8991D',borderRadius:'10px',marginLeft:'25px'}}>
+											<div className="cards_text_inner" style={{overflow:'auto',width:'260px',marginBottom:'20px',height:'100%',width:'100%'}}>
+											{board_cards[current_property.position].description.map(function(board_cards, i){
+													return <div className="select_card_fist_text_servies">
+															<h2>{board_cards.name}</h2>
+															<h3>{board_cards.value}</h3>
+														</div>
+													})}
+											</div>
+										</div>
+									</div>
+									<br/>
+									<div class="how_would-join" style={{display:'flex'}}>
+										<div style={{margin:'auto',width:'15%',position:'relative',background:'#F8991D',padding:'5px',borderRadius:'50px'}}>
+											<img src="img/dollar.png" style={{width:'40px',float:'left',left:'5px',position:'relative'}} />
+											<span style={{fontFamily:'Bangers',fontWeight:'normal',fontSize:'40px',textAlign:'left',color:'#fff',left:'10px',position:'relative',letterSpacing:'0',lineHeight:'1.1em'}}>${top_bidder.BidAmount}</span>
+										</div>
+									</div>
+									<br/>
+									<div className="how_would-join" style={{marginTop:'10px',display:'flex'}}>
+										<button style={{margin:'auto',width:'10%'}} class="sign_in_btn go_premium" onClick={() => property_bid()}>+25</button>
+									</div>
+									<div className="player_cared_user" style={{width:'100%'}}>
+										{players.map(function(user, i){
+											return <div className="playser_with_money" style={{width:'15%'}}>
+														{top_bidder.BidAmount == JSON.parse(user.assets).bid_amount?
+															<img src="img/Group3331.png" class="host_icon" style={{width:'70px',position:'absolute',marginTop:'-50px',marginLeft:'-20px'}} />
+														: "" }
+														<img src={`img/indentity/${user.IdentityID}_avtar.png`}></img>
+														<div className="Playser_data">
+															<h3 className="player_user_name">{user.Name}</h3>
+															{JSON.parse(user.assets).bid_amount == 0 ?
+																<span>-</span>
+															:
+																<span>${JSON.parse(user.assets).bid_amount}</span>
+															}
+														</div>
+													</div>;
+											})}
+									</div>
+								</div>
+							</div>
+						</div>
+					: "" }
+
+					{current_property.bidder_status == 1 && bidding_start == 2?
+						<div className="show_cardt" id="oner_inheritance" style={{zIndex:'999'}}>
+							<div className="select_card_first " id="first-card-inheritance">
+								<div className="select_card_first-inner" style={{width:'67%'}}>
+									<div className="select_box_bonus" style={{marginTop:'0',marginBottom:'0',width:'80%'}}>
+										
+										<div className="select_card_fist_text" style={{opacity:0,height:'0',width:'32%',background:'transparent'}}>
+										</div>
+										<div className="select_card_fist_img" style={{width:'32%',top:'10px'}}>
+											<img  src={board_cards[current_property.position].url} style={{maxWidth:'100%',height:'auto'}}></img>
+										</div>
+										<div className="select_card_fist_text" style={{opacity:0,height:'0',width:'32%',background:'transparent'}}>
+										</div>
+									</div>
+									<br/>
+									<div className="player_cared_user" style={{width:'100%'}}>
+										{players.map(function(user, i){
+											return  <>
+														{top_bidder.BidAmount == JSON.parse(user.assets).bid_amount?
+
+															(top_bidder.PlayerID == current_user?
+																<div className="user_profile">
+																	<div className="user_profile_img">
+																		<img src={`img/indentity/${user.IdentityID}_profile.png`}></img>
+																	</div>
+																	<div className="user_profile_text">
+																		<ul className="user_data">
+																			<li style={{backgroundColor: player_identity_assests.Color}}>
+																				<a href="#">
+																					<span className="user_data_icon"><img src="img/Work.png" alt="" /></span>
+																					<span className="user_data_icon_text">$103,000</span>
+																				</a> 
+																			</li>
+																			<li style={{backgroundColor: player_identity_assests.Color}}>
+																				<a href="#">
+																					<span className="user_data_icon"><img src="img/Path 23800.png" alt="" /></span>
+																					<span className="user_data_icon_text">${player_assets.balance}</span>
+																				</a> 
+																			</li>
+																			<li style={{backgroundColor: player_identity_assests.Color}}>
+																				<a href="#">
+																					<span className="user_data_icon"><img src="img/Group 4803.png" alt="" /></span>
+																					<span className="user_data_icon_text">PROPERTIES</span>
+																				</a> 
+																			</li>
+																			<li style={{backgroundColor: player_identity_assests.Color}}>
+																				<a href="#">
+																					<span className="user_data_icon"><img src="img/User.png" alt="" /></span>
+																					<span className="user_data_icon_text">
+																						{player_assets.blue_chip == 1 ?
+																							"CAN VOTE"
+																							:
+																							"CAN NOT VOTE"
+																						}
+																						</span>
+																				</a> 
+																			</li>
+																		</ul>
+																	</div>
+																</div>
+															: 
+																<div className="user_profile">
+																	<div className="user_profile_img">
+																		<img src={`img/indentity/${user.IdentityID}_profile.png`}></img>
+																	</div>
+																</div> )
+														: 
+															""
+														}
+														
+													</>;
+											
+											})}
+									</div>
+								</div>
+							</div>
+						</div>
+					: "" }
+					
+					{current_property.bidder_status == 1 && bidding_start == 3?
+						<div class="select_card_first" style={{zIndex:'999',position:'absolute',width:'100%',backgroundColor:'rgba(70, 35, 33, 0.9)'}} id="select_card_first">
+							<div class="select_card_first-inner" style={{marginTop:"30px"}}>
+								<div className="select_box_bonus">
+									<img src="img/start_bid.png" style={{margin:'0 auto'}} />
+								</div>
+							</div>
+						</div>
+						
+					: "" }
+
+					{property_purchase_status != 0?
+						<div className="dice_throw" style={{position:'absolute',background:'rgba(70,35,33,0.9)',zIndex:'999'}}>
+							<div className="pass-number">
+								<h3 className="title_pass_number">Student Loan ?</h3>
+								<div className="pass_number-main">
+									<h3 className="pass_number">{dice1 + dice2}</h3>
+									<div className="pass_number-text">
+										<p style={{fontFamily:'Bangers',color:'#6B8E0C',fontSize:'30px'}}>
+											<span className="month-price-text red-class month-price-text2" style={{color:'#6B8E0C',fontSize:'30px'}}>Your mortagege was approved</span>
+										</p>
+									</div>    
+								</div>
+							</div>
+						</div>
+					: ""
+					}
+				</div>
 			:
 			pickup_step == 4 ?
 				<div className="wapper gamepay-wapper">

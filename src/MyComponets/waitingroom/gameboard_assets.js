@@ -522,7 +522,7 @@ export const gameboard_assets = [
     ]
   },
   {
-    url : "./img/cards/1.png",
+    url : "./img/cards/29.png",
     name : "INDIGO INTERNATIONAL",
     description : [
       {
